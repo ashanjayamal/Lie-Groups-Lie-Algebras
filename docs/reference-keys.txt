@@ -1,12 +1,11 @@
-fig:nice-fig
-tab:nice-tab
 eq:binom
-intrduction
+notation-and-some-definitions
+lie-group
+lie-algebra
+matrix-exponential
+computing-exponential
 hello-bookdown
 a-section
-cross
-chapters-and-sub-chapters
-captioned-figures-and-tables
 parts
 footnotes-and-citations
 footnotes

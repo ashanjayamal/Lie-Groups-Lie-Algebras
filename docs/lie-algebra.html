@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lie Groups and Lie Algbera</title>
+  <title>Chapter 3 Lie Algebra | Lie Groups and Lie Algbera</title>
   <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lie Groups and Lie Algbera" />
+  <meta property="og:title" content="Chapter 3 Lie Algebra | Lie Groups and Lie Algbera" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lie Groups and Lie Algbera" />
+  <meta name="twitter:title" content="Chapter 3 Lie Algebra | Lie Groups and Lie Algbera" />
   
   <meta name="twitter:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="lie-group.html"/>
+<link rel="prev" href="lie-group.html"/>
+<link rel="next" href="matrix-exponential.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -216,29 +216,54 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lie Groups and Lie Algbera</h1>
-<p class="author"><em>Ashan Jayamal</em></p>
-<p class="date"><em>2025-11-28</em></p>
-</div>
-<div id="notation-and-some-definitions" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Notation and Some definitions<a href="index.html#notation-and-some-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lie-algebra" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Lie Algebra<a href="lie-algebra.html#lie-algebra" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Definition (Lie Algebra):</strong> Let <span class="math inline">\(\mathbb{F}\)</span> be a field. A <em>Lie algebra</em> over <span class="math inline">\(\mathbb{F}\)</span> is a vector space <span class="math inline">\(\mathfrak{g}\)</span> over <span class="math inline">\(\mathbb{F}\)</span> together with a map <span class="math inline">\([\cdot,\cdot] : \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}\)</span>, called the <em>Lie bracket</em>, satisfying the following properties:</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\mathrm{GL}_n(\mathbb{C})\)</span>: the group of all <span class="math inline">\(n \times n\)</span> invertible matrices with entries in the field <span class="math inline">\(\mathbb{F}\)</span>.</li>
-<li><span class="math inline">\(M_n(\mathbb{C})\)</span>: the set of all <span class="math inline">\(n \times n\)</span> matrices with entries in the field <span class="math inline">\(\mathbb{F}\)</span>.</li>
-<li><span class="math inline">\(U(n)\)</span>: <span class="math inline">\(n \times n\)</span> unitary group</li>
-<li><span class="math inline">\(SU\)</span>: Special Unitary Group (Unitary Group + det=1)</li>
-<li><span class="math inline">\(O(n)\)</span>: <span class="math inline">\(n \times n\)</span> Orthogonal group</li>
-<li><span class="math inline">\(SO(n)\)</span>: <span class="math inline">\(n \times n\)</span> Special orthogonal Group (Orthogonal Group + det=1)</li>
+<li><p><strong>Bi-linearity:</strong> The bracket <span class="math inline">\([\cdot,\cdot]\)</span> is bilinear.</p></li>
+<li><p><strong>Skew-symmetry:</strong> For all <span class="math inline">\(X,Y \in \mathfrak{g}\)</span>,
+<span class="math display">\[[X,Y] = -[Y,X].\]</span></p></li>
+<li><p><strong>Jacobi identity:</strong> For all <span class="math inline">\(X,Y,Z \in \mathfrak{g}\)</span>,
+<span class="math display">\[[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0.\]</span></p></li>
 </ol>
+<p>Two elements <span class="math inline">\(X,Y \in \mathfrak{g}\)</span> are said to <em>commute</em> if <span class="math inline">\([X,Y] = 0\)</span>. The Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> is called <em>commutative</em> (or <em>abelian</em>) if <span class="math inline">\([X,Y] = 0\)</span> for all <span class="math inline">\(X,Y \in \mathfrak{g}\)</span>.</p>
+<p><strong>Example:</strong> Let <span class="math inline">\(\mathfrak{g} = \mathbb{R}^3\)</span> and define the bracket
+<span class="math display">\[[x,y] = x \times y, \quad x,y \in \mathbb{R}^3,\]</span>
+where <span class="math inline">\(x \times y\)</span> denotes the cross product. Then <span class="math inline">\(\mathfrak{g}\)</span> is a Lie algebra.</p>
+<p><em>Proof:</em> Bilinearity and skew-symmetry are standard properties of the cross product. To verify the Jacobi identity, it suffices (by bilinearity) to check it when
+<span class="math display">\[x = e_j, \quad y = e_k, \quad z = e_\ell,\]</span>
+where <span class="math inline">\(e_1, e_2, e_3\)</span> are the standard basis vectors of <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(j,k,\ell\)</span> are all equal, each term in the Jacobi identity is zero.</li>
+<li>If <span class="math inline">\(j,k,\ell\)</span> are all distinct, the cross product of any two of <span class="math inline">\(e_j, e_k, e_\ell\)</span> is a multiple of the third, so again each term in the Jacobi identity is zero.</li>
+<li>It remains to consider the case in which two of <span class="math inline">\(j,k,\ell\)</span> are equal and the third is different. By reordering the terms in the Jacobi identity as necessary, it suffices to verify
+<span class="math display">\[[e_j,[e_j,e_k]] + [e_j,[e_k,e_j]] + [e_k,[e_j,e_j]] = 0. \tag{3.1}\]</span></li>
+</ul>
+<p>The first two terms in (3.1) are negatives of each other, and the third is zero.</p>
+<p>Thus the Jacobi identity holds, and <span class="math inline">\(\mathfrak{g}\)</span> is a Lie algebra. <span class="math inline">\(\square\)</span></p>
+<p><strong>Example:</strong> Let <span class="math inline">\(A\)</span> be an associative algebra and let <span class="math inline">\(\mathfrak{g}\)</span> be a subspace of <span class="math inline">\(A\)</span> such that
+<span class="math display">\[XY - YX \in \mathfrak{g} \quad \text{for all } X,Y \in \mathfrak{g}.\]</span></p>
+<p>Then <span class="math inline">\(\mathfrak{g}\)</span> is a Lie algebra with bracket operation defined by
+<span class="math display">\[[X,Y] = XY - YX.\]</span></p>
+<p><em>Proof:</em> It is very easy to show the bilinear and skew symmetry properties. So, just go for Jacobi Identity.</p>
+<p>Let <span class="math inline">\(X,Y,Z \in \mathfrak{g}\)</span>, consider</p>
+<p><span class="math display">\[\begin{align*}
+[X,[Y,Z]] &amp;= X(YZ - ZY) - (YZ - ZY)X = XYZ - XZY - YZX + ZYX,\\
+[Y,[Z,X]] &amp;= Y(ZX - XZ) - (ZX - XZ)Y = YZX - YXZ - ZXY + XZY,\\
+[Z,[X,Y]] &amp;= Z(XY - YX) - (XY - YX)Z = ZXY - ZYX - XYZ + YXZ.
+\end{align*}\]</span></p>
+<p>Adding these three expressions together, every monomial in <span class="math inline">\(X,Y,Z\)</span> appears exactly twice, once with a plus sign and once with a minus sign:</p>
+<p><span class="math display">\[\begin{align*}
+(XYZ - XYZ) + (XZY - XZY) + (YZX - YZX) + (YXZ - YXZ) \\+ (ZXY - ZXY) + (ZYX - ZYX) = 0.
+\end{align*}\]</span> <span class="math inline">\(\square\)</span></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="lie-group.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lie-group.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="matrix-exponential.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

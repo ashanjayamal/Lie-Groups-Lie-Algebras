@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lie Groups and Lie Algbera</title>
+  <title>Chapter 2 Lie Group | Lie Groups and Lie Algbera</title>
   <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lie Groups and Lie Algbera" />
+  <meta property="og:title" content="Chapter 2 Lie Group | Lie Groups and Lie Algbera" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lie Groups and Lie Algbera" />
+  <meta name="twitter:title" content="Chapter 2 Lie Group | Lie Groups and Lie Algbera" />
   
   <meta name="twitter:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="lie-group.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="lie-algebra.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -216,20 +216,61 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lie Groups and Lie Algbera</h1>
-<p class="author"><em>Ashan Jayamal</em></p>
-<p class="date"><em>2025-11-28</em></p>
-</div>
-<div id="notation-and-some-definitions" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Notation and Some definitions<a href="index.html#notation-and-some-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lie-group" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Lie Group<a href="lie-group.html#lie-group" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Definition (Lie Group):</strong> A <em>Lie group</em> is a smooth manifold <span class="math inline">\(G\)</span> which is also a group, such that the group multiplication
+<span class="math display">\[\mu: G \times G \to G, \quad (g,h) \mapsto gh\]</span>
+and the inverse map
+<span class="math display">\[\iota: G \to G, \quad g \mapsto g^{-1}\]</span>
+are both smooth.</p>
+<p><strong>Example:</strong> Let <span class="math inline">\(G = \mathbb{R} \times \mathbb{R} \times S\)</span>, equipped with the group operation
+<span class="math display">\[(x_1, y_1, \lambda_1) \cdot (x_2, y_2, \lambda_2) = (x_1 + x_2,\, y_1 + y_2,\, e^{ix_1y_2}\lambda_1 \lambda_2).\]</span>
+Then <span class="math inline">\(G\)</span> is a Lie group.</p>
+<p><strong>Definition:</strong> Let <span class="math inline">\(A_m\)</span> be a sequence of complex matrices in <span class="math inline">\(\mathbb{M}_n(\mathbb{C})\)</span>. We say that <span class="math inline">\(A_m \to A\)</span> (i.e., <span class="math inline">\(A_m\)</span> converges to a matrix <span class="math inline">\(A\)</span>) if each entry of <span class="math inline">\(A_m\)</span> converges to the corresponding entry of <span class="math inline">\(A\)</span> as <span class="math inline">\(m \to \infty\)</span>; In other words,
+<span class="math display">\[(A_m)_{jk} \to A_{jk} \quad \text{for all } 1 \leq j, k \leq n.\]</span></p>
+<p><strong>Definition (Matrix Lie Group):</strong> A <em>matrix Lie group</em> is a subgroup <span class="math inline">\(G \subseteq \mathrm{GL}(n, \mathbb{C})\)</span> with the following property: If <span class="math inline">\(\{A_m\}\)</span> is any sequence of matrices in <span class="math inline">\(G\)</span> such that <span class="math inline">\(A_m \to A\)</span>, then either <span class="math inline">\(A \in G\)</span> or <span class="math inline">\(A\)</span> is not invertible.</p>
+<p><strong>Non Example (A Subgroup of <span class="math inline">\(\mathrm{GL}(2, \mathbb{C})\)</span> That Is Not a Matrix Lie Group):</strong> Let <span class="math inline">\(\alpha \in \mathbb{R} \setminus \mathbb{Q}\)</span>, and define the subgroup <span class="math inline">\(G \subseteq \mathrm{GL}(2, \mathbb{C})\)</span> consisting of matrices of the form</p>
+<p><span class="math display">\[G = \left\{
+\begin{pmatrix}
+e^{it} &amp; 0 \\
+0 &amp; e^{i\alpha t}
+\end{pmatrix}
+: t \in \mathbb{R}
+\right\}.\]</span></p>
+<p>Clearly, <span class="math inline">\(G\)</span> is a subgroup of <span class="math inline">\(\mathrm{GL}(2, \mathbb{C})\)</span>. The closure of <span class="math inline">\(G\)</span> in the standard topology is the torus subgroup</p>
+<p><span class="math display">\[\overline{G} = \left\{
+\begin{pmatrix}
+e^{i\theta} &amp; 0 \\
+0 &amp; e^{i\phi}
+\end{pmatrix}
+: \theta, \phi \in \mathbb{R}
+\right\}
+= \left\{
+\begin{pmatrix}
+z_1 &amp; 0 \\
+0 &amp; z_2
+\end{pmatrix}
+: |z_1| = |z_2| = 1
+\right\},\]</span></p>
+<p>which is a compact Lie group. Since <span class="math inline">\(G\)</span> is not closed, it fails the closure condition required for matrix Lie groups. Thus, <span class="math inline">\(G\)</span> is not a matrix Lie group.</p>
+<p>This subgroup <span class="math inline">\(G\)</span> is sometimes referred to as an <em>irrational line in a torus</em>.</p>
+<!--![A small portion of the group $G$ inside $\bar{G}$ (left) and a larger portion (right)](image.png)-->
+<p><strong>Example (Example of Matrix Linear Groups):</strong></p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\mathrm{GL}_n(\mathbb{C})\)</span>: the group of all <span class="math inline">\(n \times n\)</span> invertible matrices with entries in the field <span class="math inline">\(\mathbb{F}\)</span>.</li>
-<li><span class="math inline">\(M_n(\mathbb{C})\)</span>: the set of all <span class="math inline">\(n \times n\)</span> matrices with entries in the field <span class="math inline">\(\mathbb{F}\)</span>.</li>
-<li><span class="math inline">\(U(n)\)</span>: <span class="math inline">\(n \times n\)</span> unitary group</li>
-<li><span class="math inline">\(SU\)</span>: Special Unitary Group (Unitary Group + det=1)</li>
-<li><span class="math inline">\(O(n)\)</span>: <span class="math inline">\(n \times n\)</span> Orthogonal group</li>
-<li><span class="math inline">\(SO(n)\)</span>: <span class="math inline">\(n \times n\)</span> Special orthogonal Group (Orthogonal Group + det=1)</li>
+<li></li>
+</ol>
+<p><strong>Definition (Lie Group homomorphism and Isomorphisms):</strong> Let <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> be matrix Lie groups. A map <span class="math inline">\(\varphi : G \to H\)</span> is called a <em>Lie group homomorphism</em> if</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(\varphi\)</span> is a group homomorphism, and</li>
+<li><span class="math inline">\(\varphi\)</span> is continuous.</li>
+</ol>
+<p>If, in addition, <span class="math inline">\(\varphi\)</span> is one-to-one and onto, and the inverse map <span class="math inline">\(\varphi^{-1}\)</span> is continuous, then <span class="math inline">\(\varphi\)</span> is called a <em>Lie group isomorphism</em>.</p>
+<p><strong>Example (Examples of Lie Group Homomorphisms):</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>The determinant is a homomorphism <span class="math inline">\(\det : \mathrm{GL}_n(\mathbb{C}) \to \mathbb{C}\setminus \{0\}\)</span></p></li>
+<li><p>The map <span class="math inline">\(\varphi : \mathbb{R} \to \mathrm{SO}(2)\)</span>, defined by
+<span class="math display">\[\varphi(t) = \begin{pmatrix} \cos t &amp; -\sin t \\ \sin t &amp; \cos t \end{pmatrix}\]</span>
+is also a group homomorphism.</p></li>
 </ol>
 </div>
             </section>
@@ -237,8 +278,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-
-<a href="lie-group.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lie-algebra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lie Groups and Lie Algbera</title>
+  <title>Chapter 4 Matrix Exponential | Lie Groups and Lie Algbera</title>
   <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lie Groups and Lie Algbera" />
+  <meta property="og:title" content="Chapter 4 Matrix Exponential | Lie Groups and Lie Algbera" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lie Groups and Lie Algbera" />
+  <meta name="twitter:title" content="Chapter 4 Matrix Exponential | Lie Groups and Lie Algbera" />
   
   <meta name="twitter:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="lie-group.html"/>
+<link rel="prev" href="lie-algebra.html"/>
+<link rel="next" href="hello-bookdown.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -216,29 +216,108 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lie Groups and Lie Algbera</h1>
-<p class="author"><em>Ashan Jayamal</em></p>
-<p class="date"><em>2025-11-28</em></p>
-</div>
-<div id="notation-and-some-definitions" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Notation and Some definitions<a href="index.html#notation-and-some-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="matrix-exponential" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Matrix Exponential<a href="matrix-exponential.html#matrix-exponential" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The exponential of a matrix plays a crucial role in the theory of Lie groups. The exponential enters into the definition of the Lie algebra of a matrix Lie group and is the mechanism for passing information from the Lie algebra to the Lie group.</p>
+<p><strong>Definition (Matrix Exponential):</strong> If <span class="math inline">\(X\)</span> is an <span class="math inline">\(n \times n\)</span> matrix, we define the exponential of <span class="math inline">\(X\)</span>, denoted <span class="math inline">\(e^X\)</span> or <span class="math inline">\(\exp(X)\)</span>, by the usual power series
+<span class="math display">\[e^X = \sum_{m=0}^{\infty} \frac{X^m}{m!}, \tag{4.1}\]</span>
+where <span class="math inline">\(X^0=I\)</span>, and <span class="math inline">\(X^m\)</span> denotes the repeated matrix product of <span class="math inline">\(X\)</span> with itself.</p>
+<p><strong>Proposition:</strong> The series (4.1) converges for all <span class="math inline">\(X \in M_n(\mathbb{C})\)</span>, and <span class="math inline">\(e^X\)</span> is a continuous function of <span class="math inline">\(X\)</span>.</p>
+<p><strong>Theorem 4.1:</strong> Let <span class="math inline">\(X,Y \in M_n(\mathbb{C})\)</span>. Then the following properties hold:</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\mathrm{GL}_n(\mathbb{C})\)</span>: the group of all <span class="math inline">\(n \times n\)</span> invertible matrices with entries in the field <span class="math inline">\(\mathbb{F}\)</span>.</li>
-<li><span class="math inline">\(M_n(\mathbb{C})\)</span>: the set of all <span class="math inline">\(n \times n\)</span> matrices with entries in the field <span class="math inline">\(\mathbb{F}\)</span>.</li>
-<li><span class="math inline">\(U(n)\)</span>: <span class="math inline">\(n \times n\)</span> unitary group</li>
-<li><span class="math inline">\(SU\)</span>: Special Unitary Group (Unitary Group + det=1)</li>
-<li><span class="math inline">\(O(n)\)</span>: <span class="math inline">\(n \times n\)</span> Orthogonal group</li>
-<li><span class="math inline">\(SO(n)\)</span>: <span class="math inline">\(n \times n\)</span> Special orthogonal Group (Orthogonal Group + det=1)</li>
+<li><span class="math inline">\(e^0 = I\)</span>.</li>
+<li><span class="math inline">\(e^{X^T}=\left( e^X\right)^T\)</span>, <span class="math inline">\((e^X)^* = e^{X^*}\)</span>.</li>
+<li><span class="math inline">\(e^X\)</span> is invertible and <span class="math inline">\((e^X)^{-1} = e^{-X}\)</span>.</li>
+<li>If <span class="math inline">\(A\)</span> is invertible <span class="math inline">\(n \times n\)</span> matrix, then <span class="math inline">\(e^{AXA^{-1}}=Ae^XA^{-1}\)</span></li>
+<li><span class="math inline">\(e^{(\alpha+\beta)X} = e^{\alpha X} e^{\beta X}\)</span> for all <span class="math inline">\(\alpha,\beta \in \mathbb{C}\)</span>.</li>
+<li>If <span class="math inline">\(XY = YX\)</span>, then <span class="math inline">\(e^{X+Y} = e^X e^Y = e^Y e^X\)</span>.</li>
+<li>If <span class="math inline">\(C \in GL_n(\mathbb{C})\)</span>, then <span class="math inline">\(e^{CXC^{-1}} = C e^X C^{-1}\)</span>.</li>
 </ol>
+<p><em>Proof:</em> Point (1) is immediate from the definition of the exponential series. Point (2) follows by taking term-by-term adjoints in the series for <span class="math inline">\(e^X\)</span>. Points (3) and (4) are special cases of Point (5).</p>
+<p>To verify Point (5), note that both series <span class="math inline">\(e^X\)</span> and <span class="math inline">\(e^Y\)</span> converge absolutely, so we may multiply them term by term:</p>
+<p><span class="math display">\[e^X e^Y = \sum_{m=0}^{\infty} \sum_{k=0}^{m} \frac{X^k}{k!} \frac{Y^{\,m-k}}{(m-k)!}
+= \sum_{m=0}^{\infty} \frac{1}{m!} \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k}. \tag{4.2}\]</span></p>
+<p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> commute, then
+<span class="math display">\[(X+Y)^m = \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k},\]</span>
+so (4.2) becomes
+<span class="math display">\[e^X e^Y = \sum_{m=0}^{\infty} \frac{(X+Y)^m}{m!} = e^{X+Y}.\]</span></p>
+<p>For Point (6), observe that
+<span class="math display">\[(CXC^{-1})^m = C X^m C^{-1},\]</span>
+so term by term we have
+<span class="math display">\[e^{CXC^{-1}} = \sum_{m=0}^{\infty} \frac{(CXC^{-1})^m}{m!}
+= \sum_{m=0}^{\infty} \frac{C X^m C^{-1}}{m!}
+= C \left( \sum_{m=0}^{\infty} \frac{X^m}{m!} \right) C^{-1}
+= C e^X C^{-1}.\]</span> <span class="math inline">\(\square\)</span></p>
+<div id="computing-exponential" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Computing Exponential<a href="matrix-exponential.html#computing-exponential" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If <span class="math inline">\(X\)</span> is diagonalizable, then there exist invertible <span class="math inline">\(A\)</span> and <span class="math inline">\(\lambda_1,...,\lambda_n\)</span> such that</p>
+<p><span class="math display">\[X = A
+\begin{bmatrix}
+{\lambda_1} &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; {\lambda_2} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; {\lambda_n}
+\end{bmatrix}
+A^{-1}\]</span></p>
+<p>Then by Theorem 4.1 fourth property, we get the following:</p>
+<p><span class="math display">\[e^X = A
+\begin{bmatrix}
+e^{\lambda_1} &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; e^{\lambda_2} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; e^{\lambda_n}
+\end{bmatrix}A^{-1}\]</span></p>
+<p>If <span class="math inline">\(X\)</span> is nilpotent then the series that defines <span class="math inline">\(e^X\)</span> terminates.</p>
+<p><strong>Example:</strong> Consider the matrices</p>
+<p><span class="math display">\[X_1 =
+\begin{bmatrix}
+0 &amp; -a \\
+a &amp; 0
+\end{bmatrix}, \quad
+X_2 =
+\begin{bmatrix}
+0 &amp; a &amp; b \\
+0 &amp; 0 &amp; c \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}, \quad
+X_3 =
+\begin{bmatrix}
+a &amp; b \\
+0 &amp; a
+\end{bmatrix}.\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[e^{X_1} =
+\begin{bmatrix}
+\cos a &amp; -\sin a \\
+\sin a &amp; \cos a
+\end{bmatrix}, \text{ and }
+e^{X_2} =
+\begin{bmatrix}
+1 &amp; a &amp; b + \tfrac{ac}{2} \\
+0 &amp; 1 &amp; c \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}, \text{ and }
+e^{X_3} =
+\begin{bmatrix}
+e^a &amp; e^a b \\
+0 &amp; e^a
+\end{bmatrix}.\]</span></p>
+<p><em>Proof:</em>
+<span class="math display">\[e^{X_1} =
+\begin{bmatrix} 1 &amp; i \\ i &amp; 1 \end{bmatrix}
+\begin{bmatrix} e^{-ia} &amp; 0 \\ 0 &amp; e^{ia} \end{bmatrix}
+\frac{1}{2}
+\begin{bmatrix} 1 &amp; -i \\ -i &amp; 1 \end{bmatrix}.\]</span> <span class="math inline">\(\square\)</span></p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="lie-group.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lie-algebra.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hello-bookdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
