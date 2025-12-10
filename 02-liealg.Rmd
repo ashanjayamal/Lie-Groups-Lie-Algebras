@@ -1,0 +1,63 @@
+# Lie Algebra
+
+```{definition, name="Lie Algebra"}
+Let $\mathbb{F}$ be a field. A *Lie algebra* over $\mathbb{F}$ is a vector space $\mathfrak{g}$ over $\mathbb{F}$ together with a map $[\cdot,\cdot] : \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$, called the *Lie bracket*, satisfying the following properties:
+
+1. **Bi-linearity:** The bracket $[\cdot,\cdot]$ is bilinear.
+
+2. **Skew-symmetry:** For all $X,Y \in \mathfrak{g}$,
+$$[X,Y] = -[Y,X].$$
+
+3. **Jacobi identity:** For all $X,Y,Z \in \mathfrak{g}$,
+$$[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0.$$
+
+Two elements $X,Y \in \mathfrak{g}$ are said to *commute* if $[X,Y] = 0$. The Lie algebra $\mathfrak{g}$ is called *commutative* (or *abelian*) if $[X,Y] = 0$ for all $X,Y \in \mathfrak{g}$.
+```
+
+```{example}
+Let $\mathfrak{g} = \mathbb{R}^3$ and define the bracket
+$$[x,y] = x \times y, \quad x,y \in \mathbb{R}^3,$$
+where $x \times y$ denotes the cross product. Then $\mathfrak{g}$ is a Lie algebra.
+```
+
+```{proof}
+Bilinearity and skew-symmetry are standard properties of the cross product. To verify the Jacobi identity, it suffices (by bilinearity) to check it when
+$$x = e_j, \quad y = e_k, \quad z = e_\ell,$$
+where $e_1, e_2, e_3$ are the standard basis vectors of $\mathbb{R}^3$.
+
+- If $j,k,\ell$ are all equal, each term in the Jacobi identity is zero.
+- If $j,k,\ell$ are all distinct, the cross product of any two of $e_j, e_k, e_\ell$ is a multiple of the third, so again each term in the Jacobi identity is zero.
+- It remains to consider the case in which two of $j,k,\ell$ are equal and the third is different. By reordering the terms in the Jacobi identity as necessary, it suffices to verify
+$$[e_j,[e_j,e_k]] + [e_j,[e_k,e_j]] + [e_k,[e_j,e_j]] = 0. \qquad (3.1)$$
+
+The first two terms in (3.1) are negatives of each other, and the third is zero.
+
+Thus the Jacobi identity holds, and $\mathfrak{g}$ is a Lie algebra.
+```
+
+```{example}
+Let $A$ be an associative algebra and let $\mathfrak{g}$ be a subspace of $A$ such that
+$$XY - YX \in \mathfrak{g} \quad \text{for all } X,Y \in \mathfrak{g}.$$
+
+Then $\mathfrak{g}$ is a Lie algebra with bracket operation defined by
+$$[X,Y] = XY - YX.$$
+```
+
+```{proof}
+It is very easy to show the bilinear and skew symmetry properties. So, just go for Jacobi Identity.
+
+Let $X,Y,Z \in \mathfrak{g}$, consider
+
+\begin{align*}
+[X,[Y,Z]] &= X(YZ - ZY) - (YZ - ZY)X = XYZ - XZY - YZX + ZYX,\\
+[Y,[Z,X]] &= Y(ZX - XZ) - (ZX - XZ)Y = YZX - YXZ - ZXY + XZY,\\
+[Z,[X,Y]] &= Z(XY - YX) - (XY - YX)Z = ZXY - ZYX - XYZ + YXZ.
+\end{align*}
+
+Adding these three expressions together, every monomial in $X,Y,Z$ appears exactly twice, once with a plus sign and once with a minus sign:
+
+\begin{align*}
+(XYZ - XYZ) + (XZY - XZY) + (YZX - YZX) + (YXZ - YXZ) \\+ (ZXY - ZXY) + (ZYX - ZYX) = 0.
+\end{align*}
+```
+

@@ -1,12 +1,124 @@
-# Parts
+# Matrix Exponential
 
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file. 
+The exponential of a matrix plays a crucial role in the theory of Lie groups. The exponential enters into the definition of the Lie algebra of a matrix Lie group and is the mechanism for passing information from the Lie algebra to the Lie group.
 
-Add a numbered part: `# (PART) Act one {-}` (followed by `# A chapter`)
+```{definition, name="Matrix Exponential"}
+If $X$ is an $n \times n$ matrix, we define the exponential of $X$, denoted $e^X$ or $\exp(X)$, by the usual power series
+\begin{equation}
+e^X = \sum_{m=0}^{\infty} \frac{X^m}{m!}, (\#eq:matrixexp)
+\end{equation}
+where $X^0=I$, and $X^m$ denotes the repeated matrix product of $X$ with itself.
+```
 
-Add an unnumbered part: `# (PART\*) Act one {-}` (followed by `# A chapter`)
+```{proposition}
+The series \@ref(eq:matrixexp) converges for all $X \in M_n(\mathbb{C})$, and $e^X$ is a continuous function of $X$.
+```
 
-Add an appendix as a special kind of un-numbered part: `# (APPENDIX) Other stuff {-}` (followed by `# A chapter`). Chapters in an appendix are prepended with letters instead of numbers.
+```{theorem, label="thm1"}
+Let $X,Y \in M_n(\mathbb{C})$. Then the following properties hold:
 
+1. $e^0 = I$.
+2. $e^{X^T}=\left( e^X\right)^T$, $(e^X)^* = e^{X^*}$.
+3. $e^X$ is invertible and $(e^X)^{-1} = e^{-X}$.
+4. If $A$ is invertible $n \times n$ matrix, then $e^{AXA^{-1}}=Ae^XA^{-1}$
+5. $e^{(\alpha+\beta)X} = e^{\alpha X} e^{\beta X}$ for all $\alpha,\beta \in \mathbb{C}$.
+6. If $XY = YX$, then $e^{X+Y} = e^X e^Y = e^Y e^X$.
+7. If $C \in GL_n(\mathbb{C})$, then $e^{CXC^{-1}} = C e^X C^{-1}$.
+```
 
+```{proof}
+Point (1) is immediate from the definition of the exponential series. Point (2) follows by taking term-by-term adjoints in the series for $e^X$. Points (3) and (4) are special cases of Point (5).
 
+To verify Point (5), note that both series $e^X$ and $e^Y$ converge absolutely, so we may multiply them term by term:
+
+\begin{equation}
+e^X e^Y = \sum_{m=0}^{\infty} \sum_{k=0}^{m} \frac{X^k}{k!} \frac{Y^{\,m-k}}{(m-k)!}
+= \sum_{m=0}^{\infty} \frac{1}{m!} \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k}. (\#eq:exp25)
+\end{equation}
+
+If $X$ and $Y$ commute, then
+$$(X+Y)^m = \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k},$$
+so \@ref(eq:exp25) becomes
+$$e^X e^Y = \sum_{m=0}^{\infty} \frac{(X+Y)^m}{m!} = e^{X+Y}.$$
+
+For Point (6), observe that
+$$(CXC^{-1})^m = C X^m C^{-1},$$
+so term by term we have
+$$e^{CXC^{-1}} = \sum_{m=0}^{\infty} \frac{(CXC^{-1})^m}{m!}
+= \sum_{m=0}^{\infty} \frac{C X^m C^{-1}}{m!}
+= C \left( \sum_{m=0}^{\infty} \frac{X^m}{m!} \right) C^{-1}
+= C e^X C^{-1}.$$
+```
+
+## Computing Exponential
+
+If $X$ is diagonalizable, then there exist invertible $A$ and $\lambda_1,...,\lambda_n$ such that
+
+$$X = A
+\begin{bmatrix}
+{\lambda_1} & 0 & \cdots & 0 \\
+0 & {\lambda_2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & {\lambda_n}
+\end{bmatrix}
+A^{-1}$$
+
+Then by Theorem \@ref(thm:thm1) fourth property, we get the following:
+
+$$e^X = A
+\begin{bmatrix}
+e^{\lambda_1} & 0 & \cdots & 0 \\
+0 & e^{\lambda_2} & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & e^{\lambda_n}
+\end{bmatrix}A^{-1}$$
+
+If $X$ is nilpotent then the series that defines $e^X$ terminates.
+
+```{example}
+Consider the matrices
+
+$$X_1 =
+\begin{bmatrix}
+0 & -a \\
+a & 0
+\end{bmatrix}, \quad
+X_2 =
+\begin{bmatrix}
+0 & a & b \\
+0 & 0 & c \\
+0 & 0 & 0
+\end{bmatrix}, \quad
+X_3 =
+\begin{bmatrix}
+a & b \\
+0 & a
+\end{bmatrix}.$$
+
+Then
+
+$$e^{X_1} =
+\begin{bmatrix}
+\cos a & -\sin a \\
+\sin a & \cos a
+\end{bmatrix}, \text{ and }
+e^{X_2} =
+\begin{bmatrix}
+1 & a & b + \tfrac{ac}{2} \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix}, \text{ and } 
+e^{X_3} =
+\begin{bmatrix}
+e^a & e^a b \\
+0 & e^a
+\end{bmatrix}.$$
+```
+
+```{proof}
+$$e^{X_1} = 
+\begin{bmatrix} 1 & i \\ i & 1 \end{bmatrix}
+\begin{bmatrix} e^{-ia} & 0 \\ 0 & e^{ia} \end{bmatrix}
+\frac{1}{2}
+\begin{bmatrix} 1 & -i \\ -i & 1 \end{bmatrix}.$$
+```
