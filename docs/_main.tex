@@ -119,7 +119,7 @@
 
 \title{Lie Groups and Lie Algbera}
 \author{Ashan Jayamal}
-\date{2025-11-28}
+\date{2025-12-10}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -475,20 +475,47 @@ e^a & e^a b \\
 \begin{bmatrix} 1 & -i \\ -i & 1 \end{bmatrix}.\]
 \end{proof}
 
-\chapter{Footnotes and citations}\label{footnotes-and-citations}
+\chapter{The Lie Algebra of a Matrix Lie Group}\label{the-lie-algebra-of-a-matrix-lie-group}
 
-\section{Footnotes}\label{footnotes}
+Now we going to discuss the Lie Algebra \(\mathfrak{g}\) that associated with Matrix Lie group \(G\).
 
-Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
+\begin{definition}
+\protect\hypertarget{def:unnamed-chunk-19}{}\label{def:unnamed-chunk-19}If \(G \subset GL(n, \mathbb{C})\) is a matrix Lie group, then the Lie algebra \(\mathfrak{g}\) of \(G\) is defined as follows:
+\[
+\mathfrak{g} = \left\{ X \in M_n(\mathbb{C}) \;\middle|\; e^{tX} \in G \;\; \text{for all } t \in \mathbb{R} \right\}.
+\]
+\end{definition}
 
-\section{Citations}\label{citations}
+\begin{proposition}
+\protect\hypertarget{prp:unnamed-chunk-20}{}\label{prp:unnamed-chunk-20}
 
-Reference items in your bibliography file(s) using \texttt{@key}.
+For any matrix Lie group \(G\), the Lie algebra \(\mathfrak{g}\) of \(G\) has the following properties:
 
-For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
-Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
+\begin{itemize}
+\tightlist
+\item
+  The zero matrix \(0\) belongs to \(\mathfrak{g}\).
+\item
+  For all \(X \in \mathfrak{g}\), \(tX \in \mathfrak{g}\) for all real numbers \(t\).
+\item
+  For all \(X, Y \in \mathfrak{g}\), \(X + Y \in \mathfrak{g}\).
+\item
+  For all \(A \in G\) and \(X \in \mathfrak{g}\) we have \(AXA^{-1} \in \mathfrak{g}\).
+\item
+  For all \(X, Y \in \mathfrak{g}\), the commutator \([X, Y] := XY - YX\) belongs to \(\mathfrak{g}\).
+\end{itemize}
 
-The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
+\end{proposition}
+
+\begin{proof}
+Write the proof here
+\end{proof}
+
+\begin{remark}
+Write about real vector spaces.
+\end{remark}
+
+\section{Later updared with the correct picture.}\label{later-updared-with-the-correct-picture.}
 
 \chapter{Blocks}\label{blocks}
 

@@ -1,6 +1,3 @@
-# R codes
-
-```{r}
 # ============================================================================
 # MATRIX EXPONENTIAL AND LIE GROUPS - R IMPLEMENTATION
 # MATH 7370 Linear Algebra and Matrix Analysis
@@ -525,5 +522,3 @@ results <- run_complete_test_suite()
 # Display plots
 print(results$su2_plot)
 print(results$so3_plot)
-```
-
