@@ -1,4 +1,4 @@
-# Lie Group
+# Lie Group 
 
 ```{definition, name="Lie Group"}
 A *Lie group* is a smooth manifold $G$ which is also a group, such that the group multiplication

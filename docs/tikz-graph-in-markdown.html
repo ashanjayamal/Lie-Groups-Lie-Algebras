@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Footnotes and citations | Lie Groups and Lie Algbera</title>
+  <title>Chapter 8 TikZ Graph in Markdown | TikZ Graph Example</title>
   <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Footnotes and citations | Lie Groups and Lie Algbera" />
+  <meta property="og:title" content="Chapter 8 TikZ Graph in Markdown | TikZ Graph Example" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Footnotes and citations | Lie Groups and Lie Algbera" />
+  <meta name="twitter:title" content="Chapter 8 TikZ Graph in Markdown | TikZ Graph Example" />
   
   <meta name="twitter:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Ashan Jayamal" />
 
 
-<meta name="date" content="2025-12-10" />
+<meta name="date" content="2025-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="matrix-exponential.html"/>
-<link rel="next" href="blocks.html"/>
+<link rel="prev" href="references.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -123,29 +133,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -170,24 +157,28 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.1" data-path="matrix-exponential.html"><a href="matrix-exponential.html#computing-exponential"><i class="fa fa-check"></i><b>4.1</b> Computing Exponential</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<li class="chapter" data-level="5" data-path="the-lie-algebra-of-a-matrix-lie-group.html"><a href="the-lie-algebra-of-a-matrix-lie-group.html"><i class="fa fa-check"></i><b>5</b> The Lie Algebra of a Matrix Lie Group</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
-<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+<li class="chapter" data-level="5.1" data-path="the-lie-algebra-of-a-matrix-lie-group.html"><a href="the-lie-algebra-of-a-matrix-lie-group.html#later-updared-with-the-correct-picture."><i class="fa fa-check"></i><b>5.1</b> Later updared with the correct picture.</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<li class="chapter" data-level="6" data-path="relationships-between-lie-groups-and-lie-algebras.html"><a href="relationships-between-lie-groups-and-lie-algebras.html"><i class="fa fa-check"></i><b>6</b> Relationships Between Lie Groups and Lie Algebras</a></li>
+<li class="chapter" data-level="7" data-path="real-code.html"><a href="real-code.html"><i class="fa fa-check"></i><b>7</b> Real Code</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
-<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
-<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
-<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="7.1" data-path="real-code.html"><a href="real-code.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="real-code.html"><a href="real-code.html#matrix-exponential-algorithms"><i class="fa fa-check"></i><b>7.2</b> Matrix Exponential Algorithms</a></li>
+<li class="chapter" data-level="7.3" data-path="real-code.html"><a href="real-code.html#theorem-16.15-properties"><i class="fa fa-check"></i><b>7.3</b> Theorem 16.15 Properties</a></li>
+<li class="chapter" data-level="7.4" data-path="real-code.html"><a href="real-code.html#baker-campbell-hausdorff-formula"><i class="fa fa-check"></i><b>7.4</b> Baker-Campbell-Hausdorff Formula</a></li>
+<li class="chapter" data-level="7.5" data-path="real-code.html"><a href="real-code.html#so3-rotation-group"><i class="fa fa-check"></i><b>7.5</b> SO(3) Rotation Group</a></li>
+<li class="chapter" data-level="7.6" data-path="real-code.html"><a href="real-code.html#su2-special-unitary-group"><i class="fa fa-check"></i><b>7.6</b> SU(2) Special Unitary Group</a></li>
+<li class="chapter" data-level="7.7" data-path="real-code.html"><a href="real-code.html#quantum-rotation-operators"><i class="fa fa-check"></i><b>7.7</b> Quantum Rotation Operators</a></li>
+<li class="chapter" data-level="7.8" data-path="real-code.html"><a href="real-code.html#lie-bracket-properties"><i class="fa fa-check"></i><b>7.8</b> Lie Bracket Properties</a></li>
+<li class="chapter" data-level="7.9" data-path="real-code.html"><a href="real-code.html#conclusions"><i class="fa fa-check"></i><b>7.9</b> Conclusions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="tikz-graph-in-markdown.html"><a href="tikz-graph-in-markdown.html"><i class="fa fa-check"></i><b>8</b> TikZ Graph in Markdown</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tikz-graph-in-markdown.html"><a href="tikz-graph-in-markdown.html#using-the-graphs-library"><i class="fa fa-check"></i><b>8.1</b> Using the <code>graphs</code> library</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/ashanjayamal" target="blank">Published with bookdown</a></li>
 
@@ -200,7 +191,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lie Groups and Lie Algbera</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">TikZ Graph Example</a>
           </h1>
         </div>
 
@@ -208,43 +199,22 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="footnotes-and-citations" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Footnotes and citations<a href="footnotes-and-citations.html#footnotes-and-citations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="footnotes" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Footnotes<a href="footnotes-and-citations.html#footnotes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Footnotes are put inside the square brackets after a caret <code>^[]</code>. Like this one <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-</div>
-<div id="citations" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Citations<a href="footnotes-and-citations.html#citations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Reference items in your bibliography file(s) using <code>@key</code>.</p>
-<p>For example, we are using the <strong>bookdown</strong> package <span class="citation">(<a href="#ref-R-bookdown">Xie 2025</a>)</span> (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(<a href="#ref-xie2015">Xie 2015</a>)</span> (this citation was added manually in an external file book.bib).
-Note that the <code>.bib</code> files need to be listed in the index.Rmd with the YAML <code>bibliography</code> key.</p>
-<p>The RStudio Visual Markdown Editor can also make it easier to insert citations: <a href="https://rstudio.github.io/visual-markdown-editing/#/citations" class="uri">https://rstudio.github.io/visual-markdown-editing/#/citations</a></p>
+<div id="tikz-graph-in-markdown" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> TikZ Graph in Markdown<a href="tikz-graph-in-markdown.html#tikz-graph-in-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here is a simple graph drawn with TikZ:</p>
+<hr />
+<div id="using-the-graphs-library" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Using the <code>graphs</code> library<a href="tikz-graph-in-markdown.html#using-the-graphs-library" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-xie2015" class="csl-entry">
-Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.
-</div>
-<div id="ref-R-bookdown" class="csl-entry">
-———. 2025. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>This is a footnote.<a href="footnotes-and-citations.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="matrix-exponential.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="blocks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +245,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/ashanjayamal/Lie-Groups-Lie-Algebras/edit/BRANCH/04-citations.Rmd",
+    "link": "https://github.com/ashanjayamal/Lie-Groups-Lie-Algebras/edit/BRANCH/sdfghjkl.Rmd",
     "text": "Edit"
   },
   "history": {

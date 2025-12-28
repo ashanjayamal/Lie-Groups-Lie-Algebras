@@ -1,0 +1,38 @@
+---
+title: "TikZ Graph Example"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+header-includes:
+  - \usepackage{tikz}
+  - \usetikzlibrary{graphs,graphdrawing}
+  - \usegdlibrary{force} % optional for automatic layouts
+---
+
+# TikZ Graph in Markdown
+
+Here is a simple graph drawn with TikZ:
+
+\begin{tikzpicture}[>=stealth, node distance=2cm]
+  \node (A) [circle, draw] {A};
+  \node (B) [circle, draw, right of=A] {B};
+  \node (C) [circle, draw, below of=A] {C};
+  \node (D) [circle, draw, below of=B] {D};
+
+  \draw[->] (A) -- (B);
+  \draw[->] (A) -- (C);
+  \draw[->] (B) -- (D);
+  \draw[->] (C) -- (D);
+\end{tikzpicture}
+
+---
+
+## Using the `graphs` library
+
+\begin{tikzpicture}
+  \graph [spring layout, nodes={circle, draw}] {
+    a -- b -- c -- d -- a,
+    a -- c,
+    b -- d
+  };
+\end{tikzpicture}
