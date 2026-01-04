@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Lie Algebra | Lie Groups and Lie Algbera</title>
+  <title>Chapter 2 Lie Groups | Lie Groups and Lie Algbera</title>
   <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Lie Algebra | Lie Groups and Lie Algbera" />
+  <meta property="og:title" content="Chapter 2 Lie Groups | Lie Groups and Lie Algbera" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   <meta name="github-repo" content="ashanjayamal/Lie-Groups-Lie-Algebras" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Lie Algebra | Lie Groups and Lie Algbera" />
+  <meta name="twitter:title" content="Chapter 2 Lie Groups | Lie Groups and Lie Algbera" />
   
   <meta name="twitter:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="lie-groups.html"/>
-<link rel="next" href="matrix-exponential.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="lie-algebra.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="code-implantation.html"><a href="code-implantation.html#method-1-direct-power-series"><i class="fa fa-check"></i><b>7.2.1</b> Method 1: Direct Power Series</a></li>
 <li class="chapter" data-level="7.2.2" data-path="code-implantation.html"><a href="code-implantation.html#method-2-eigenvalue-decomposition"><i class="fa fa-check"></i><b>7.2.2</b> Method 2: Eigenvalue Decomposition</a></li>
-<li class="chapter" data-level="7.2.3" data-path="02-liealg.html"><a href="#method-3-pad%C3%A9-approximation-expm-package"><i class="fa fa-check"></i><b>7.2.3</b> Method 3: Padé Approximation (expm package)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="01-liegroups.html"><a href="#method-3-pad%C3%A9-approximation-expm-package"><i class="fa fa-check"></i><b>7.2.3</b> Method 3: Padé Approximation (expm package)</a></li>
 <li class="chapter" data-level="7.2.4" data-path="code-implantation.html"><a href="code-implantation.html#performance-comparison"><i class="fa fa-check"></i><b>7.2.4</b> Performance Comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="code-implantation.html"><a href="code-implantation.html#seven-fundamental-properties"><i class="fa fa-check"></i><b>7.3</b> Seven Fundamental Properties</a>
@@ -206,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8.4" data-path="code-implantation.html"><a href="code-implantation.html#su2-basis-elements"><i class="fa fa-check"></i><b>7.8.4</b> SU(2) Basis Elements</a></li>
 <li class="chapter" data-level="7.8.5" data-path="code-implantation.html"><a href="code-implantation.html#double-cover-property"><i class="fa fa-check"></i><b>7.8.5</b> Double Cover Property</a></li>
 <li class="chapter" data-level="7.8.6" data-path="code-implantation.html"><a href="code-implantation.html#determinant-evolution-along-path"><i class="fa fa-check"></i><b>7.8.6</b> Determinant Evolution Along Path</a></li>
-<li class="chapter" data-level="7.8.7" data-path="02-liealg.html"><a href="#covering-map-%CF%86-su2-so3"><i class="fa fa-check"></i><b>7.8.7</b> Covering Map Φ: SU(2) → SO(3)</a></li>
+<li class="chapter" data-level="7.8.7" data-path="01-liegroups.html"><a href="#covering-map-%CF%86-su2-so3"><i class="fa fa-check"></i><b>7.8.7</b> Covering Map Φ: SU(2) → SO(3)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="code-implantation.html"><a href="code-implantation.html#quantum-rotation-operators"><i class="fa fa-check"></i><b>7.9</b> Quantum Rotation Operators</a>
 <ul>
@@ -240,55 +240,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lie-algebra" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Lie Algebra<a href="lie-algebra.html#lie-algebra" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lie-groups" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Lie Groups<a href="lie-groups.html#lie-groups" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div class="definition">
-<p><span id="def:unnamed-chunk-10" class="definition"><strong>Definition 3.1  (Lie Algebra) </strong></span>Let <span class="math inline">\(\mathbb{F}\)</span> be a field. A <em>Lie algebra</em> over <span class="math inline">\(\mathbb{F}\)</span> is a vector space <span class="math inline">\(\mathfrak{g}\)</span> over <span class="math inline">\(\mathbb{F}\)</span> together with a map <span class="math inline">\([\cdot,\cdot] : \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}\)</span>, called the <em>Lie bracket</em>, satisfying the following properties:</p>
+<p><span id="def:unnamed-chunk-1" class="definition"><strong>Definition 2.1  (Lie Group) </strong></span>A <em>Lie group</em> is a smooth manifold <span class="math inline">\(G\)</span> which is also a group, such that the group multiplication
+<span class="math display">\[\mu: G \times G \to G, \quad (g,h) \mapsto gh\]</span>
+and the inverse map
+<span class="math display">\[\iota: G \to G, \quad g \mapsto g^{-1}\]</span>
+are both smooth.</p>
+</div>
+<div class="example">
+<p><span id="exm:unnamed-chunk-2" class="example"><strong>Example 2.1  </strong></span>Let <span class="math inline">\(G = \mathbb{R} \times \mathbb{R} \times S\)</span>, equipped with the group operation
+<span class="math display">\[(x_1, y_1, \lambda_1) \cdot (x_2, y_2, \lambda_2) = (x_1 + x_2,\, y_1 + y_2,\, e^{ix_1y_2}\lambda_1 \lambda_2). \text{ and } \]</span>
+<span class="math display">\[(x,y,\lambda)^{-1}=\left(-x,\; -y,\; e^{ixy}\lambda^{-1}\right)\]</span>$$
+Then <span class="math inline">\(G\)</span> is a Lie group.</p>
+</div>
+<div class="definition">
+<p><span id="def:unnamed-chunk-3" class="definition"><strong>Definition 2.2  </strong></span>Let <span class="math inline">\(A_m\)</span> be a sequence of complex matrices in <span class="math inline">\(\mathbb{M}_n(\mathbb{C})\)</span>. We say that <span class="math inline">\(A_m \to A\)</span> (i.e., <span class="math inline">\(A_m\)</span> converges to a matrix <span class="math inline">\(A\)</span>) if each entry of <span class="math inline">\(A_m\)</span> converges to the corresponding entry of <span class="math inline">\(A\)</span> as <span class="math inline">\(m \to \infty\)</span>; In other words,
+<span class="math display">\[(A_m)_{jk} \to A_{jk} \quad \text{for all } 1 \leq j, k \leq n.\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unnamed-chunk-4" class="definition"><strong>Definition 2.3  (Matrix Lie Group) </strong></span>A <em>matrix Lie group</em> is a subgroup <span class="math inline">\(G \subseteq \mathrm{GL}(n, \mathbb{C})\)</span> with the following property: If <span class="math inline">\(\{A_m\}\)</span> is any sequence of matrices in <span class="math inline">\(G\)</span> such that <span class="math inline">\(A_m \to A\)</span>, then either <span class="math inline">\(A \in G\)</span> or <span class="math inline">\(A\)</span> is not invertible.</p>
+</div>
+<div class="example">
+<p><span id="exm:unnamed-chunk-5" class="example"><strong>Example 2.2  (Example of Matrix Linear Groups) </strong></span></p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Bi-linearity:</strong> The bracket <span class="math inline">\([\cdot,\cdot]\)</span> is bilinear.</p></li>
-<li><p><strong>Skew-symmetry:</strong> For all <span class="math inline">\(X,Y \in \mathfrak{g}\)</span>,
-<span class="math display">\[[X,Y] = -[Y,X].\]</span></p></li>
-<li><p><strong>Jacobi identity:</strong> For all <span class="math inline">\(X,Y,Z \in \mathfrak{g}\)</span>,
-<span class="math display">\[[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0.\]</span></p></li>
+<li>General Linear Groups over <span class="math inline">\(\mathbb{C}\)</span> and <span class="math inline">\(\mathbb{R}\)</span>.</li>
 </ol>
-<p>Two elements <span class="math inline">\(X,Y \in \mathfrak{g}\)</span> are said to <em>commute</em> if <span class="math inline">\([X,Y] = 0\)</span>. The Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> is called <em>commutative</em> (or <em>abelian</em>) if <span class="math inline">\([X,Y] = 0\)</span> for all <span class="math inline">\(X,Y \in \mathfrak{g}\)</span>.</p>
-</div>
-<div class="example">
-<p><span id="exm:unnamed-chunk-11" class="example"><strong>Example 3.1  </strong></span>Let <span class="math inline">\(\mathfrak{g} = \mathbb{R}^3\)</span> and define the bracket
-<span class="math display">\[[x,y] = x \times y, \quad x,y \in \mathbb{R}^3,\]</span>
-where <span class="math inline">\(x \times y\)</span> denotes the cross product. Then <span class="math inline">\(\mathfrak{g}\)</span> is a Lie algebra.</p>
-</div>
-<div class="proof">
-<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span>Bilinearity and skew-symmetry are standard properties of the cross product. To verify the Jacobi identity, it suffices (by bilinearity) to check it when
-<span class="math display">\[x = e_j, \quad y = e_k, \quad z = e_\ell,\]</span>
-where <span class="math inline">\(e_1, e_2, e_3\)</span> are the standard basis vectors of <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
 <ul>
-<li>If <span class="math inline">\(j,k,\ell\)</span> are all equal, each term in the Jacobi identity is zero.</li>
-<li>If <span class="math inline">\(j,k,\ell\)</span> are all distinct, the cross product of any two of <span class="math inline">\(e_j, e_k, e_\ell\)</span> is a multiple of the third, so again each term in the Jacobi identity is zero.</li>
-<li>It remains to consider the case in which two of <span class="math inline">\(j,k,\ell\)</span> are equal and the third is different. By reordering the terms in the Jacobi identity as necessary, it suffices to verify
-<span class="math display">\[[e_j,[e_j,e_k]] + [e_j,[e_k,e_j]] + [e_k,[e_j,e_j]] = 0. \qquad (3.1)\]</span></li>
+<li><span class="math inline">\(GL_n(\mathbb{C})\)</span> is sub group itsself.</li>
+<li>if <span class="math inline">\(A_m\)</span> is a sequence of matrices in <span class="math inline">\(GL_n(\mathbb{C}\)</span> and <span class="math inline">\(A_m\)</span> converges to <span class="math inline">\(A\)</span>, then by the definition of <span class="math inline">\(GL_n(\mathbb{C}\)</span>, either <span class="math inline">\(A\)</span> is in <span class="math inline">\(GL_n(\mathbb{C}\)</span>,or <span class="math inline">\(A\)</span> is not invertible.</li>
 </ul>
-<p>The first two terms in (3.1) are negatives of each other, and the third is zero.</p>
-<p>Thus the Jacobi identity holds, and <span class="math inline">\(\mathfrak{g}\)</span> is a Lie algebra.</p>
+<ol style="list-style-type: decimal">
+<li>Special linear Groups over <span class="math inline">\(\mathbb{C}\)</span> and <span class="math inline">\(\mathbb{R}\)</span>.</li>
+<li></li>
+</ol>
 </div>
 <div class="example">
-<p><span id="exm:unnamed-chunk-13" class="example"><strong>Example 3.2  </strong></span>Let <span class="math inline">\(A\)</span> be an associative algebra and let <span class="math inline">\(\mathfrak{g}\)</span> be a subspace of <span class="math inline">\(A\)</span> such that
-<span class="math display">\[XY - YX \in \mathfrak{g} \quad \text{for all } X,Y \in \mathfrak{g}.\]</span></p>
-<p>Then <span class="math inline">\(\mathfrak{g}\)</span> is a Lie algebra with bracket operation defined by
-<span class="math display">\[[X,Y] = XY - YX.\]</span></p>
+<p><span id="exm:unnamed-chunk-6" class="example"><strong>Example 2.3  (Non example) </strong></span>Let <span class="math inline">\(\alpha \in \mathbb{R} \setminus \mathbb{Q}\)</span>, and define the subgroup <span class="math inline">\(G \subseteq \mathrm{GL}(2, \mathbb{C})\)</span> consisting of matrices of the form</p>
+<p><span class="math display">\[G = \left\{
+\begin{pmatrix}
+e^{it} &amp; 0 \\
+0 &amp; e^{i\alpha t}
+\end{pmatrix}
+: t \in \mathbb{R}
+\right\}.\]</span></p>
+<p>Clearly, <span class="math inline">\(G\)</span> is a subgroup of <span class="math inline">\(\mathrm{GL}(2, \mathbb{C})\)</span>. The closure of <span class="math inline">\(G\)</span> in the standard topology is the torus subgroup</p>
+<p><span class="math display">\[\overline{G} = \left\{
+\begin{pmatrix}
+e^{i\theta} &amp; 0 \\
+0 &amp; e^{i\phi}
+\end{pmatrix}
+: \theta, \phi \in \mathbb{R}
+\right\}
+= \left\{
+\begin{pmatrix}
+z_1 &amp; 0 \\
+0 &amp; z_2
+\end{pmatrix}
+: |z_1| = |z_2| = 1
+\right\},\]</span></p>
+<p>which is a compact Lie group. Since <span class="math inline">\(G\)</span> is not closed, it fails the closure condition required for matrix Lie groups. Thus, <span class="math inline">\(G\)</span> is not a matrix Lie group.</p>
+<p>This subgroup <span class="math inline">\(G\)</span> is sometimes referred to as an <em>irrational line in a torus</em>.</p>
 </div>
-<div class="proof">
-<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>It is very easy to show the bilinear and skew symmetry properties. So, just go for Jacobi Identity.</p>
-<p>Let <span class="math inline">\(X,Y,Z \in \mathfrak{g}\)</span>, consider</p>
-<p><span class="math display">\[\begin{align*}
-[X,[Y,Z]] &amp;= X(YZ - ZY) - (YZ - ZY)X = XYZ - XZY - YZX + ZYX,\\
-[Y,[Z,X]] &amp;= Y(ZX - XZ) - (ZX - XZ)Y = YZX - YXZ - ZXY + XZY,\\
-[Z,[X,Y]] &amp;= Z(XY - YX) - (XY - YX)Z = ZXY - ZYX - XYZ + YXZ.
-\end{align*}\]</span></p>
-<p>Adding these three expressions together, every monomial in <span class="math inline">\(X,Y,Z\)</span> appears exactly twice, once with a plus sign and once with a minus sign:</p>
-<p><span class="math display">\[\begin{align*}
-(XYZ - XYZ) + (XZY - XZY) + (YZX - YZX) + (YXZ - YXZ) \\+ (ZXY - ZXY) + (ZYX - ZYX) = 0.
-\end{align*}\]</span></p>
+<iframe src="torus-html-file.html" width="1000" height="600" style="border:none;"></iframe>
+<p>I had problem synchronized with yellow dots. Sorry about that.</p>
+<p>–<img src="image.png" alt="A small portion of the group G inside \bar{G} (left) and a larger portion (right)" /></p>
+<div class="definition">
+<p><span id="def:unnamed-chunk-8" class="definition"><strong>Definition 2.4  (Lie Group homomorphism and Isomorphisms) </strong></span>Let <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> be matrix Lie groups. A map <span class="math inline">\(\varphi : G \to H\)</span> is called a <em>Lie group homomorphism</em> if</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(\varphi\)</span> is a group homomorphism, and</li>
+<li><span class="math inline">\(\varphi\)</span> is continuous.</li>
+</ol>
+<p>If, in addition, <span class="math inline">\(\varphi\)</span> is one-to-one and onto, and the inverse map <span class="math inline">\(\varphi^{-1}\)</span> is continuous, then <span class="math inline">\(\varphi\)</span> is called a <em>Lie group isomorphism</em>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unnamed-chunk-9" class="example"><strong>Example 2.4  (Examples of Lie Group Homomorphisms) </strong></span></p>
+<ol style="list-style-type: decimal">
+<li><p>The determinant is a homomorphism <span class="math inline">\(\det : \mathrm{GL}_n(\mathbb{C}) \to \mathbb{C}\setminus \{0\}\)</span></p></li>
+<li><p>The map <span class="math inline">\(\varphi : \mathbb{R} \to \mathrm{SO}(2)\)</span>, defined by
+<span class="math display">\[\varphi(t) = \begin{pmatrix} \cos t &amp; -\sin t \\ \sin t &amp; \cos t \end{pmatrix}\]</span>
+is also a group homomorphism.</p></li>
+</ol>
 </div>
 
 </div>
@@ -297,8 +330,8 @@ where <span class="math inline">\(e_1, e_2, e_3\)</span> are the standard basis 
           </div>
         </div>
       </div>
-<a href="lie-groups.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="matrix-exponential.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lie-algebra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -329,7 +362,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/ashanjayamal/Lie-Groups-Lie-Algebras/edit/BRANCH/02-liealg.Rmd",
+    "link": "https://github.com/ashanjayamal/Lie-Groups-Lie-Algebras/edit/BRANCH/01-liegroups.Rmd",
     "text": "Edit"
   },
   "history": {

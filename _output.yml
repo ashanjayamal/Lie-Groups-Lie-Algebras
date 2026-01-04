@@ -5,7 +5,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Lie Groups</a></li>
       after: |
-        <li><a href="https://github.com/ashanjayamal" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/ashanjayamal" target="blank">Ashan De Silva</a></li>
     edit: https://github.com/ashanjayamal/Lie-Groups-Lie-Algebras/edit/BRANCH/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
@@ -15,3 +15,4 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: default
+

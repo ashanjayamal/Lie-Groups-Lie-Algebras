@@ -1,4 +1,4 @@
-# Lie Group 
+# Lie Groups
 
 ```{definition, name="Lie Group"}
 A *Lie group* is a smooth manifold $G$ which is also a group, such that the group multiplication
@@ -10,7 +10,8 @@ are both smooth.
 
 ```{example}
 Let $G = \mathbb{R} \times \mathbb{R} \times S$, equipped with the group operation
-$$(x_1, y_1, \lambda_1) \cdot (x_2, y_2, \lambda_2) = (x_1 + x_2,\, y_1 + y_2,\, e^{ix_1y_2}\lambda_1 \lambda_2).$$
+$$(x_1, y_1, \lambda_1) \cdot (x_2, y_2, \lambda_2) = (x_1 + x_2,\, y_1 + y_2,\, e^{ix_1y_2}\lambda_1 \lambda_2). \text{ and } $$
+\[(x,y,\lambda)^{-1}=\left(-x,\; -y,\; e^{ixy}\lambda^{-1}\right)\]$$
 Then $G$ is a Lie group.
 ```
 
@@ -23,7 +24,15 @@ $$(A_m)_{jk} \to A_{jk} \quad \text{for all } 1 \leq j, k \leq n.$$
 A *matrix Lie group* is a subgroup $G \subseteq \mathrm{GL}(n, \mathbb{C})$ with the following property: If $\{A_m\}$ is any sequence of matrices in $G$ such that $A_m \to A$, then either $A \in G$ or $A$ is not invertible.
 ```
 
-```{example, name="A Subgroup of $\\mathrm{GL}(2, \\mathbb{C})$ That Is Not a Matrix Lie Group"}
+```{example, name="Example of Matrix Linear Groups"}
+1. General Linear Groups over $\mathbb{C}$ and $\mathbb{R}$.
+  - $GL_n(\mathbb{C})$ is sub group itsself.
+  - if $A_m$ is a sequence of matrices in $GL_n(\mathbb{C}$ and $A_m$ converges to $A$, then by the definition of $GL_n(\mathbb{C}$, either $A$ is in $GL_n(\mathbb{C}$,or $A$ is not invertible.
+1. Special linear Groups over $\mathbb{C}$ and $\mathbb{R}$.
+1. 
+```
+
+```{example, name="Non example"}
 Let $\alpha \in \mathbb{R} \setminus \mathbb{Q}$, and define the subgroup $G \subseteq \mathrm{GL}(2, \mathbb{C})$ consisting of matrices of the form
 
 $$G = \left\{
@@ -56,11 +65,23 @@ which is a compact Lie group. Since $G$ is not closed, it fails the closure cond
 This subgroup $G$ is sometimes referred to as an *irrational line in a torus*.
 ```
 
-<!--![A small portion of the group $G$ inside $\bar{G}$ (left) and a larger portion (right)](image.png)-->
 
-```{example, name="Example of Matrix Linear Groups"}
-1. 
+
+
+
+
+```{r, echo=FALSE}
+htmltools::tags$iframe(src = "torus-html-file.html",
+                       width = "1000",
+                       height = "600",
+                       style = "border:none;")
 ```
+
+I had problem synchronized with  yellow dots. Sorry about that.
+
+
+--![A small portion of the group $G$ inside $\bar{G}$ (left) and a larger portion (right)](image.png)
+
 
 ```{definition, name="Lie Group homomorphism and Isomorphisms"}
 Let $G$ and $H$ be matrix Lie groups. A map $\varphi : G \to H$ is called a *Lie group homomorphism* if

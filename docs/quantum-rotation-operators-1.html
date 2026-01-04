@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Quantum Rotation Operators | Lie Groups and Lie Algbera</title>
+  <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Quantum Rotation Operators | Lie Groups and Lie Algbera" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
+  <meta name="github-repo" content="ashanjayamal/Lie-Groups-Lie-Algebras" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Quantum Rotation Operators | Lie Groups and Lie Algbera" />
+  
+  <meta name="twitter:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
+  
+
+<meta name="author" content="Ashan De Silva (Student Number: 008058631)" />
+
+
+<meta name="date" content="2026-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="code-implantation.html"/>
+<link rel="next" href="lie-bracket-general-properties.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Lie Groups</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#notation-and-some-definitions"><i class="fa fa-check"></i><b>1.1</b> Notation and Some definitions</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lie-groups.html"><a href="lie-groups.html"><i class="fa fa-check"></i><b>2</b> Lie Groups</a></li>
+<li class="chapter" data-level="3" data-path="lie-algebra.html"><a href="lie-algebra.html"><i class="fa fa-check"></i><b>3</b> Lie Algebra</a></li>
+<li class="chapter" data-level="4" data-path="matrix-exponential.html"><a href="matrix-exponential.html"><i class="fa fa-check"></i><b>4</b> Matrix Exponential</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matrix-exponential.html"><a href="matrix-exponential.html#computing-exponential"><i class="fa fa-check"></i><b>4.1</b> Computing Exponential</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="the-lie-algebra-of-a-matrix-lie-group.html"><a href="the-lie-algebra-of-a-matrix-lie-group.html"><i class="fa fa-check"></i><b>5</b> The Lie Algebra of a Matrix Lie Group</a></li>
+<li class="chapter" data-level="6" data-path="relationships-between-lie-groups-and-lie-algebras.html"><a href="relationships-between-lie-groups-and-lie-algebras.html"><i class="fa fa-check"></i><b>6</b> Relationships Between Lie Groups and Lie Algebras</a></li>
+<li class="chapter" data-level="7" data-path="code-implantation.html"><a href="code-implantation.html"><i class="fa fa-check"></i><b>7</b> Code Implantation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="code-implantation.html"><a href="code-implantation.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="code-implantation.html"><a href="code-implantation.html#matrix-exponential-algorithms"><i class="fa fa-check"></i><b>7.2</b> Matrix Exponential Algorithms</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="code-implantation.html"><a href="code-implantation.html#method-1-direct-power-series"><i class="fa fa-check"></i><b>7.2.1</b> Method 1: Direct Power Series</a></li>
+<li class="chapter" data-level="7.2.2" data-path="code-implantation.html"><a href="code-implantation.html#method-2-eigenvalue-decomposition"><i class="fa fa-check"></i><b>7.2.2</b> Method 2: Eigenvalue Decomposition</a></li>
+<li class="chapter" data-level="7.2.3" data-path="06-code.html"><a href="#method-3-pad%C3%A9-approximation-expm-package"><i class="fa fa-check"></i><b>7.2.3</b> Method 3: Padé Approximation (expm package)</a></li>
+<li class="chapter" data-level="7.2.4" data-path="code-implantation.html"><a href="code-implantation.html#performance-comparison"><i class="fa fa-check"></i><b>7.2.4</b> Performance Comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="code-implantation.html"><a href="code-implantation.html#seven-fundamental-properties"><i class="fa fa-check"></i><b>7.3</b> Seven Fundamental Properties</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="code-implantation.html"><a href="code-implantation.html#property-1-identity-element"><i class="fa fa-check"></i><b>7.3.1</b> Property 1: Identity Element</a></li>
+<li class="chapter" data-level="7.3.2" data-path="code-implantation.html"><a href="code-implantation.html#property-2-transpose"><i class="fa fa-check"></i><b>7.3.2</b> Property 2: Transpose</a></li>
+<li class="chapter" data-level="7.3.3" data-path="code-implantation.html"><a href="code-implantation.html#property-3-adjoint-conjugate-transpose"><i class="fa fa-check"></i><b>7.3.3</b> Property 3: Adjoint (Conjugate Transpose)</a></li>
+<li class="chapter" data-level="7.3.4" data-path="code-implantation.html"><a href="code-implantation.html#property-4-conjugation"><i class="fa fa-check"></i><b>7.3.4</b> Property 4: Conjugation</a></li>
+<li class="chapter" data-level="7.3.5" data-path="code-implantation.html"><a href="code-implantation.html#property-5-determinant"><i class="fa fa-check"></i><b>7.3.5</b> Property 5: Determinant</a></li>
+<li class="chapter" data-level="7.3.6" data-path="code-implantation.html"><a href="code-implantation.html#property-6-commuting-matrices"><i class="fa fa-check"></i><b>7.3.6</b> Property 6: Commuting Matrices</a></li>
+<li class="chapter" data-level="7.3.7" data-path="code-implantation.html"><a href="code-implantation.html#property-7-lie-product-formula"><i class="fa fa-check"></i><b>7.3.7</b> Property 7: Lie Product Formula</a></li>
+<li class="chapter" data-level="7.3.8" data-path="code-implantation.html"><a href="code-implantation.html#summary-theorem-refthmthm1"><i class="fa fa-check"></i><b>7.3.8</b> Summary: Theorem @ref(thm:thm1)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="code-implantation.html"><a href="code-implantation.html#baker-campbell-hausdorff-formula"><i class="fa fa-check"></i><b>7.4</b> Baker-Campbell-Hausdorff Formula</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="code-implantation.html"><a href="code-implantation.html#background"><i class="fa fa-check"></i><b>7.4.1</b> Background</a></li>
+<li class="chapter" data-level="7.4.2" data-path="code-implantation.html"><a href="code-implantation.html#implimentation"><i class="fa fa-check"></i><b>7.4.2</b> Implimentation</a></li>
+<li class="chapter" data-level="7.4.3" data-path="code-implantation.html"><a href="code-implantation.html#convergence-analysis"><i class="fa fa-check"></i><b>7.4.3</b> Convergence Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="code-implantation.html"><a href="code-implantation.html#so3-rotation-group"><i class="fa fa-check"></i><b>7.5</b> SO(3) Rotation Group</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="code-implantation.html"><a href="code-implantation.html#mathematical-background"><i class="fa fa-check"></i><b>7.5.1</b> Mathematical Background</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="code-implantation.html"><a href="code-implantation.html#su2-special-unitary-group"><i class="fa fa-check"></i><b>7.6</b> SU(2) Special Unitary Group</a></li>
+<li class="chapter" data-level="7.7" data-path="code-implantation.html"><a href="code-implantation.html#quantum-rotation-operators"><i class="fa fa-check"></i><b>7.7</b> Quantum Rotation Operators</a></li>
+<li class="chapter" data-level="7.8" data-path="code-implantation.html"><a href="code-implantation.html#lie-bracket-properties"><i class="fa fa-check"></i><b>7.8</b> Lie Bracket Properties</a></li>
+<li class="chapter" data-level="7.9" data-path="code-implantation.html"><a href="code-implantation.html#basis-for-mathfrakso3"><i class="fa fa-check"></i><b>7.9</b> Basis for <span class="math inline">\(\mathfrak{so}(3)\)</span></a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="code-implantation.html"><a href="code-implantation.html#d-visualization-rotation-path"><i class="fa fa-check"></i><b>7.9.1</b> 3D Visualization: Rotation Path</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="code-implantation.html"><a href="code-implantation.html#one-parameter-subgroups"><i class="fa fa-check"></i><b>7.10</b> One-Parameter Subgroups</a></li>
+<li class="chapter" data-level="7.11" data-path="code-implantation.html"><a href="code-implantation.html#lie-bracket-and-cross-product"><i class="fa fa-check"></i><b>7.11</b> Lie Bracket and Cross Product</a></li>
+<li class="chapter" data-level="7.12" data-path="code-implantation.html"><a href="code-implantation.html#su2-special-unitary-group-1"><i class="fa fa-check"></i><b>7.12</b> SU(2): Special Unitary Group</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="code-implantation.html"><a href="code-implantation.html#definition-and-structure"><i class="fa fa-check"></i><b>7.12.1</b> Definition and Structure</a></li>
+<li class="chapter" data-level="7.12.2" data-path="code-implantation.html"><a href="code-implantation.html#pauli-matrices"><i class="fa fa-check"></i><b>7.12.2</b> Pauli Matrices</a></li>
+<li class="chapter" data-level="7.12.3" data-path="code-implantation.html"><a href="code-implantation.html#pauli-commutation-relations"><i class="fa fa-check"></i><b>7.12.3</b> Pauli Commutation Relations</a></li>
+<li class="chapter" data-level="7.12.4" data-path="code-implantation.html"><a href="code-implantation.html#su2-basis-elements"><i class="fa fa-check"></i><b>7.12.4</b> SU(2) Basis Elements</a></li>
+</ul></li>
+<li class="chapter" data-level="7.13" data-path="code-implantation.html"><a href="code-implantation.html#double-cover-property"><i class="fa fa-check"></i><b>7.13</b> Double Cover Property</a></li>
+<li class="chapter" data-level="7.14" data-path="code-implantation.html"><a href="code-implantation.html#determinant-evolution-along-path"><i class="fa fa-check"></i><b>7.14</b> Determinant Evolution Along Path</a></li>
+<li class="chapter" data-level="7.15" data-path="06-code.html"><a href="#covering-map-%CF%86-su2-so3"><i class="fa fa-check"></i><b>7.15</b> Covering Map Φ: SU(2) → SO(3)</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quantum-rotation-operators-1.html"><a href="quantum-rotation-operators-1.html"><i class="fa fa-check"></i><b>8</b> Quantum Rotation Operators</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="quantum-rotation-operators-1.html"><a href="quantum-rotation-operators-1.html#definition"><i class="fa fa-check"></i><b>8.1</b> Definition</a></li>
+<li class="chapter" data-level="8.2" data-path="quantum-rotation-operators-1.html"><a href="quantum-rotation-operators-1.html#implementation"><i class="fa fa-check"></i><b>8.2</b> Implementation</a></li>
+<li class="chapter" data-level="8.3" data-path="quantum-rotation-operators-1.html"><a href="quantum-rotation-operators-1.html#properties-verification"><i class="fa fa-check"></i><b>8.3</b> Properties Verification</a></li>
+<li class="chapter" data-level="8.4" data-path="quantum-rotation-operators-1.html"><a href="quantum-rotation-operators-1.html#rotation-composition"><i class="fa fa-check"></i><b>8.4</b> Rotation Composition</a></li>
+<li class="chapter" data-level="8.5" data-path="quantum-rotation-operators-1.html"><a href="quantum-rotation-operators-1.html#action-on-spin-states"><i class="fa fa-check"></i><b>8.5</b> Action on Spin States</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lie-bracket-general-properties.html"><a href="lie-bracket-general-properties.html"><i class="fa fa-check"></i><b>9</b> Lie Bracket: General Properties</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="lie-bracket-general-properties.html"><a href="lie-bracket-general-properties.html#jacobi-identity"><i class="fa fa-check"></i><b>9.1</b> Jacobi Identity</a></li>
+<li class="chapter" data-level="9.2" data-path="lie-bracket-general-properties.html"><a href="lie-bracket-general-properties.html#conclusions"><i class="fa fa-check"></i><b>9.2</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/ashanjayamal" target="blank">Ashan De Silva</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lie Groups and Lie Algbera</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="quantum-rotation-operators-1" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Quantum Rotation Operators<a href="quantum-rotation-operators-1.html#quantum-rotation-operators-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="definition" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Definition<a href="quantum-rotation-operators-1.html#definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quantum rotations are given by (following Chapter 16.7):</p>
+<p><span class="math display">\[U(\theta, \mathbf{n}) = \exp(-i\theta \mathbf{n} \cdot \mathbf{J})\]</span></p>
+<p>where <span class="math inline">\(\mathbf{J} = \boldsymbol{\sigma}/2\)</span> are the angular momentum operators.</p>
+</div>
+<div id="implementation" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Implementation<a href="quantum-rotation-operators-1.html#implementation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="quantum-rotation-operators-1.html#cb44-1" tabindex="-1"></a>rotation_operator <span class="ot">&lt;-</span> <span class="cf">function</span>(theta, n) {</span>
+<span id="cb44-2"><a href="quantum-rotation-operators-1.html#cb44-2" tabindex="-1"></a>  <span class="co"># Normalize axis</span></span>
+<span id="cb44-3"><a href="quantum-rotation-operators-1.html#cb44-3" tabindex="-1"></a>  n <span class="ot">&lt;-</span> n <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(n<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb44-4"><a href="quantum-rotation-operators-1.html#cb44-4" tabindex="-1"></a>  </span>
+<span id="cb44-5"><a href="quantum-rotation-operators-1.html#cb44-5" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">pauli_matrices</span>()</span>
+<span id="cb44-6"><a href="quantum-rotation-operators-1.html#cb44-6" tabindex="-1"></a>  </span>
+<span id="cb44-7"><a href="quantum-rotation-operators-1.html#cb44-7" tabindex="-1"></a>  <span class="co"># J·n = (σ·n)/2</span></span>
+<span id="cb44-8"><a href="quantum-rotation-operators-1.html#cb44-8" tabindex="-1"></a>  J_dot_n <span class="ot">&lt;-</span> (n[<span class="dv">1</span>]<span class="sc">*</span>sigma<span class="sc">$</span>x <span class="sc">+</span> n[<span class="dv">2</span>]<span class="sc">*</span>sigma<span class="sc">$</span>y <span class="sc">+</span> n[<span class="dv">3</span>]<span class="sc">*</span>sigma<span class="sc">$</span>z) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb44-9"><a href="quantum-rotation-operators-1.html#cb44-9" tabindex="-1"></a>  </span>
+<span id="cb44-10"><a href="quantum-rotation-operators-1.html#cb44-10" tabindex="-1"></a>  <span class="co"># U = exp(-i·θ·J·n)</span></span>
+<span id="cb44-11"><a href="quantum-rotation-operators-1.html#cb44-11" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">expm</span>(<span class="sc">-</span><span class="dv">1</span><span class="dt">i</span> <span class="sc">*</span> theta <span class="sc">*</span> J_dot_n)</span>
+<span id="cb44-12"><a href="quantum-rotation-operators-1.html#cb44-12" tabindex="-1"></a>  </span>
+<span id="cb44-13"><a href="quantum-rotation-operators-1.html#cb44-13" tabindex="-1"></a>  <span class="fu">return</span>(U)</span>
+<span id="cb44-14"><a href="quantum-rotation-operators-1.html#cb44-14" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="properties-verification" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Properties Verification<a href="quantum-rotation-operators-1.html#properties-verification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="quantum-rotation-operators-1.html#cb45-1" tabindex="-1"></a>theta <span class="ot">&lt;-</span> pi <span class="sc">/</span> <span class="dv">3</span></span>
+<span id="cb45-2"><a href="quantum-rotation-operators-1.html#cb45-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb45-3"><a href="quantum-rotation-operators-1.html#cb45-3" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="quantum-rotation-operators-1.html#cb45-4" tabindex="-1"></a>U <span class="ot">&lt;-</span> <span class="fu">rotation_operator</span>(theta, n)</span>
+<span id="cb45-5"><a href="quantum-rotation-operators-1.html#cb45-5" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="quantum-rotation-operators-1.html#cb45-6" tabindex="-1"></a>quantum_props <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb45-7"><a href="quantum-rotation-operators-1.html#cb45-7" tabindex="-1"></a>  <span class="at">Property =</span> <span class="fu">c</span>(</span>
+<span id="cb45-8"><a href="quantum-rotation-operators-1.html#cb45-8" tabindex="-1"></a>    <span class="st">&quot;U is unitary (U†U = I)&quot;</span>,</span>
+<span id="cb45-9"><a href="quantum-rotation-operators-1.html#cb45-9" tabindex="-1"></a>    <span class="st">&quot;det(U) = 1 (SU(2))&quot;</span>,</span>
+<span id="cb45-10"><a href="quantum-rotation-operators-1.html#cb45-10" tabindex="-1"></a>    <span class="st">&quot;U(0) = I (identity)&quot;</span>,</span>
+<span id="cb45-11"><a href="quantum-rotation-operators-1.html#cb45-11" tabindex="-1"></a>    <span class="st">&quot;U(-θ) = U(θ)† (inverse)&quot;</span>,</span>
+<span id="cb45-12"><a href="quantum-rotation-operators-1.html#cb45-12" tabindex="-1"></a>    <span class="st">&quot;U(2π) = -I (spinor)&quot;</span>,</span>
+<span id="cb45-13"><a href="quantum-rotation-operators-1.html#cb45-13" tabindex="-1"></a>    <span class="st">&quot;U(4π) = I (full rotation)&quot;</span></span>
+<span id="cb45-14"><a href="quantum-rotation-operators-1.html#cb45-14" tabindex="-1"></a>  ),</span>
+<span id="cb45-15"><a href="quantum-rotation-operators-1.html#cb45-15" tabindex="-1"></a>  <span class="at">Error =</span> <span class="fu">c</span>(</span>
+<span id="cb45-16"><a href="quantum-rotation-operators-1.html#cb45-16" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">Conj</span>(<span class="fu">t</span>(U)) <span class="sc">%*%</span> U <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>))),</span>
+<span id="cb45-17"><a href="quantum-rotation-operators-1.html#cb45-17" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">det_complex</span>(U) <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb45-18"><a href="quantum-rotation-operators-1.html#cb45-18" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="dv">0</span>, n) <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>))),</span>
+<span id="cb45-19"><a href="quantum-rotation-operators-1.html#cb45-19" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="sc">-</span>theta, n) <span class="sc">-</span> <span class="fu">Conj</span>(<span class="fu">t</span>(U)))),</span>
+<span id="cb45-20"><a href="quantum-rotation-operators-1.html#cb45-20" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="dv">2</span><span class="sc">*</span>pi, n) <span class="sc">+</span> <span class="fu">diag</span>(<span class="dv">2</span>))),</span>
+<span id="cb45-21"><a href="quantum-rotation-operators-1.html#cb45-21" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="dv">4</span><span class="sc">*</span>pi, n) <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>)))</span>
+<span id="cb45-22"><a href="quantum-rotation-operators-1.html#cb45-22" tabindex="-1"></a>  ),</span>
+<span id="cb45-23"><a href="quantum-rotation-operators-1.html#cb45-23" tabindex="-1"></a>  <span class="at">Verified =</span> <span class="fu">c</span>(</span>
+<span id="cb45-24"><a href="quantum-rotation-operators-1.html#cb45-24" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">Conj</span>(<span class="fu">t</span>(U)) <span class="sc">%*%</span> U <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>))) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb45-25"><a href="quantum-rotation-operators-1.html#cb45-25" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">det_complex</span>(U) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb45-26"><a href="quantum-rotation-operators-1.html#cb45-26" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="dv">0</span>, n) <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>))) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb45-27"><a href="quantum-rotation-operators-1.html#cb45-27" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="sc">-</span>theta, n) <span class="sc">-</span> <span class="fu">Conj</span>(<span class="fu">t</span>(U)))) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb45-28"><a href="quantum-rotation-operators-1.html#cb45-28" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="dv">2</span><span class="sc">*</span>pi, n) <span class="sc">+</span> <span class="fu">diag</span>(<span class="dv">2</span>))) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb45-29"><a href="quantum-rotation-operators-1.html#cb45-29" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">rotation_operator</span>(<span class="dv">4</span><span class="sc">*</span>pi, n) <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>))) <span class="sc">&lt;</span> <span class="fl">1e-10</span></span>
+<span id="cb45-30"><a href="quantum-rotation-operators-1.html#cb45-30" tabindex="-1"></a>  )</span>
+<span id="cb45-31"><a href="quantum-rotation-operators-1.html#cb45-31" tabindex="-1"></a>)</span>
+<span id="cb45-32"><a href="quantum-rotation-operators-1.html#cb45-32" tabindex="-1"></a></span>
+<span id="cb45-33"><a href="quantum-rotation-operators-1.html#cb45-33" tabindex="-1"></a><span class="fu">kable</span>(quantum_props,</span>
+<span id="cb45-34"><a href="quantum-rotation-operators-1.html#cb45-34" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">12</span>,</span>
+<span id="cb45-35"><a href="quantum-rotation-operators-1.html#cb45-35" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;Table 18: Quantum Rotation Operator Properties&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-36"><a href="quantum-rotation-operators-1.html#cb45-36" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-37"><a href="quantum-rotation-operators-1.html#cb45-37" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">3</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb45-38"><a href="quantum-rotation-operators-1.html#cb45-38" tabindex="-1"></a>              <span class="at">color =</span> <span class="fu">ifelse</span>(quantum_props<span class="sc">$</span>Verified, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:quantum-properties">Table 8.1: </span>Table 18: Quantum Rotation Operator Properties
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Property
+</th>
+<th style="text-align:right;">
+Error
+</th>
+<th style="text-align:left;">
+Verified
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+U is unitary (U†U = I)
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: green !important;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+det(U) = 1 (SU(2))
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: green !important;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U(0) = I (identity)
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: green !important;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U(-θ) = U(θ)† (inverse)
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: green !important;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U(2π) = -I (spinor)
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: green !important;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U(4π) = I (full rotation)
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;font-weight: bold;color: green !important;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="rotation-composition" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Rotation Composition<a href="quantum-rotation-operators-1.html#rotation-composition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Verify that rotations compose correctly:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="quantum-rotation-operators-1.html#cb46-1" tabindex="-1"></a>n_x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb46-2"><a href="quantum-rotation-operators-1.html#cb46-2" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="quantum-rotation-operators-1.html#cb46-3" tabindex="-1"></a><span class="co"># Test: U(θ1) · U(θ2) = U(θ1 + θ2) for rotations around same axis</span></span>
+<span id="cb46-4"><a href="quantum-rotation-operators-1.html#cb46-4" tabindex="-1"></a>theta1 <span class="ot">&lt;-</span> pi<span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb46-5"><a href="quantum-rotation-operators-1.html#cb46-5" tabindex="-1"></a>theta2 <span class="ot">&lt;-</span> pi<span class="sc">/</span><span class="dv">6</span></span>
+<span id="cb46-6"><a href="quantum-rotation-operators-1.html#cb46-6" tabindex="-1"></a>theta_sum <span class="ot">&lt;-</span> pi<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb46-7"><a href="quantum-rotation-operators-1.html#cb46-7" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="quantum-rotation-operators-1.html#cb46-8" tabindex="-1"></a>U1 <span class="ot">&lt;-</span> <span class="fu">rotation_operator</span>(theta1, n_x)</span>
+<span id="cb46-9"><a href="quantum-rotation-operators-1.html#cb46-9" tabindex="-1"></a>U2 <span class="ot">&lt;-</span> <span class="fu">rotation_operator</span>(theta2, n_x)</span>
+<span id="cb46-10"><a href="quantum-rotation-operators-1.html#cb46-10" tabindex="-1"></a>U_product <span class="ot">&lt;-</span> U1 <span class="sc">%*%</span> U2</span>
+<span id="cb46-11"><a href="quantum-rotation-operators-1.html#cb46-11" tabindex="-1"></a>U_direct <span class="ot">&lt;-</span> <span class="fu">rotation_operator</span>(theta_sum, n_x)</span>
+<span id="cb46-12"><a href="quantum-rotation-operators-1.html#cb46-12" tabindex="-1"></a></span>
+<span id="cb46-13"><a href="quantum-rotation-operators-1.html#cb46-13" tabindex="-1"></a>comp_error <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">abs</span>(U_product <span class="sc">-</span> U_direct))</span>
+<span id="cb46-14"><a href="quantum-rotation-operators-1.html#cb46-14" tabindex="-1"></a></span>
+<span id="cb46-15"><a href="quantum-rotation-operators-1.html#cb46-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Composition: U(π/3)·U(π/6) vs U(π/2)</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>## Composition: U(π/3)·U(π/6) vs U(π/2)</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="quantum-rotation-operators-1.html#cb48-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Error: %.2e</span><span class="sc">\n</span><span class="st">&quot;</span>, comp_error))</span></code></pre></div>
+<pre><code>## Error: 1.11e-16</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="quantum-rotation-operators-1.html#cb50-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Verified: %s</span><span class="sc">\n\n</span><span class="st">&quot;</span>, comp_error <span class="sc">&lt;</span> <span class="fl">1e-10</span>))</span></code></pre></div>
+<pre><code>## Verified: TRUE</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="quantum-rotation-operators-1.html#cb52-1" tabindex="-1"></a><span class="co"># Test different axes</span></span>
+<span id="cb52-2"><a href="quantum-rotation-operators-1.html#cb52-2" tabindex="-1"></a>n_y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb52-3"><a href="quantum-rotation-operators-1.html#cb52-3" tabindex="-1"></a>n_z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb52-4"><a href="quantum-rotation-operators-1.html#cb52-4" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="quantum-rotation-operators-1.html#cb52-5" tabindex="-1"></a>rot_axes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb52-6"><a href="quantum-rotation-operators-1.html#cb52-6" tabindex="-1"></a>  <span class="at">Axis =</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>),</span>
+<span id="cb52-7"><a href="quantum-rotation-operators-1.html#cb52-7" tabindex="-1"></a>  <span class="at">Unitary =</span> <span class="fu">c</span>(</span>
+<span id="cb52-8"><a href="quantum-rotation-operators-1.html#cb52-8" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">Conj</span>(<span class="fu">t</span>(<span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_x))) <span class="sc">%*%</span> <span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_x) <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>))),</span>
+<span id="cb52-9"><a href="quantum-rotation-operators-1.html#cb52-9" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">Conj</span>(<span class="fu">t</span>(<span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_y))) <span class="sc">%*%</span> <span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_y) <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>))),</span>
+<span id="cb52-10"><a href="quantum-rotation-operators-1.html#cb52-10" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">Conj</span>(<span class="fu">t</span>(<span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_z))) <span class="sc">%*%</span> <span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_z) <span class="sc">-</span> <span class="fu">diag</span>(<span class="dv">2</span>)))</span>
+<span id="cb52-11"><a href="quantum-rotation-operators-1.html#cb52-11" tabindex="-1"></a>  ),</span>
+<span id="cb52-12"><a href="quantum-rotation-operators-1.html#cb52-12" tabindex="-1"></a>  <span class="at">Det_equals_1 =</span> <span class="fu">c</span>(</span>
+<span id="cb52-13"><a href="quantum-rotation-operators-1.html#cb52-13" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">det_complex</span>(<span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_x)) <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb52-14"><a href="quantum-rotation-operators-1.html#cb52-14" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">det_complex</span>(<span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_y)) <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb52-15"><a href="quantum-rotation-operators-1.html#cb52-15" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">det_complex</span>(<span class="fu">rotation_operator</span>(pi<span class="sc">/</span><span class="dv">4</span>, n_z)) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb52-16"><a href="quantum-rotation-operators-1.html#cb52-16" tabindex="-1"></a>  )</span>
+<span id="cb52-17"><a href="quantum-rotation-operators-1.html#cb52-17" tabindex="-1"></a>)</span>
+<span id="cb52-18"><a href="quantum-rotation-operators-1.html#cb52-18" tabindex="-1"></a></span>
+<span id="cb52-19"><a href="quantum-rotation-operators-1.html#cb52-19" tabindex="-1"></a><span class="fu">kable</span>(rot_axes,</span>
+<span id="cb52-20"><a href="quantum-rotation-operators-1.html#cb52-20" tabindex="-1"></a>      <span class="at">digits =</span> <span class="dv">12</span>,</span>
+<span id="cb52-21"><a href="quantum-rotation-operators-1.html#cb52-21" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;Table 19: Rotations Around Different Axes&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb52-22"><a href="quantum-rotation-operators-1.html#cb52-22" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))</span></code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:rotation-composition">Table 8.2: </span>Table 19: Rotations Around Different Axes
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Axis
+</th>
+<th style="text-align:right;">
+Unitary
+</th>
+<th style="text-align:right;">
+Det_equals_1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+x
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+z
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="action-on-spin-states" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Action on Spin States<a href="quantum-rotation-operators-1.html#action-on-spin-states" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="quantum-rotation-operators-1.html#cb53-1" tabindex="-1"></a><span class="co"># Define spin states</span></span>
+<span id="cb53-2"><a href="quantum-rotation-operators-1.html#cb53-2" tabindex="-1"></a>spin_up <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="dv">2</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="dv">0</span><span class="dt">i</span></span>
+<span id="cb53-3"><a href="quantum-rotation-operators-1.html#cb53-3" tabindex="-1"></a>spin_down <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dv">2</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="dv">0</span><span class="dt">i</span></span>
+<span id="cb53-4"><a href="quantum-rotation-operators-1.html#cb53-4" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="quantum-rotation-operators-1.html#cb53-5" tabindex="-1"></a><span class="co"># Rotation around x-axis by π flips spin</span></span>
+<span id="cb53-6"><a href="quantum-rotation-operators-1.html#cb53-6" tabindex="-1"></a>U_flip <span class="ot">&lt;-</span> <span class="fu">rotation_operator</span>(pi, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb53-7"><a href="quantum-rotation-operators-1.html#cb53-7" tabindex="-1"></a>result_up <span class="ot">&lt;-</span> U_flip <span class="sc">%*%</span> spin_up</span>
+<span id="cb53-8"><a href="quantum-rotation-operators-1.html#cb53-8" tabindex="-1"></a>result_down <span class="ot">&lt;-</span> U_flip <span class="sc">%*%</span> spin_down</span>
+<span id="cb53-9"><a href="quantum-rotation-operators-1.html#cb53-9" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="quantum-rotation-operators-1.html#cb53-10" tabindex="-1"></a>spin_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb53-11"><a href="quantum-rotation-operators-1.html#cb53-11" tabindex="-1"></a>  <span class="at">Transformation =</span> <span class="fu">c</span>(</span>
+<span id="cb53-12"><a href="quantum-rotation-operators-1.html#cb53-12" tabindex="-1"></a>    <span class="st">&quot;U(π,x)|↑⟩&quot;</span>,</span>
+<span id="cb53-13"><a href="quantum-rotation-operators-1.html#cb53-13" tabindex="-1"></a>    <span class="st">&quot;U(π,x)|↓⟩&quot;</span>,</span>
+<span id="cb53-14"><a href="quantum-rotation-operators-1.html#cb53-14" tabindex="-1"></a>    <span class="st">&quot;Normalization |U(π,x)|↑⟩|&quot;</span></span>
+<span id="cb53-15"><a href="quantum-rotation-operators-1.html#cb53-15" tabindex="-1"></a>  ),</span>
+<span id="cb53-16"><a href="quantum-rotation-operators-1.html#cb53-16" tabindex="-1"></a>  <span class="at">Expected =</span> <span class="fu">c</span>(</span>
+<span id="cb53-17"><a href="quantum-rotation-operators-1.html#cb53-17" tabindex="-1"></a>    <span class="st">&quot;i|↓⟩&quot;</span>,</span>
+<span id="cb53-18"><a href="quantum-rotation-operators-1.html#cb53-18" tabindex="-1"></a>    <span class="st">&quot;-i|↑⟩&quot;</span>,</span>
+<span id="cb53-19"><a href="quantum-rotation-operators-1.html#cb53-19" tabindex="-1"></a>    <span class="st">&quot;1&quot;</span></span>
+<span id="cb53-20"><a href="quantum-rotation-operators-1.html#cb53-20" tabindex="-1"></a>  ),</span>
+<span id="cb53-21"><a href="quantum-rotation-operators-1.html#cb53-21" tabindex="-1"></a>  <span class="at">Error =</span> <span class="fu">c</span>(</span>
+<span id="cb53-22"><a href="quantum-rotation-operators-1.html#cb53-22" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(result_up <span class="sc">-</span> <span class="dv">1</span><span class="dt">i</span><span class="sc">*</span>spin_down)),</span>
+<span id="cb53-23"><a href="quantum-rotation-operators-1.html#cb53-23" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(result_down <span class="sc">+</span> <span class="dv">1</span><span class="dt">i</span><span class="sc">*</span>spin_up)),</span>
+<span id="cb53-24"><a href="quantum-rotation-operators-1.html#cb53-24" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">Mod</span>(result_up)<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb53-25"><a href="quantum-rotation-operators-1.html#cb53-25" tabindex="-1"></a>  ),</span>
+<span id="cb53-26"><a href="quantum-rotation-operators-1.html#cb53-26" tabindex="-1"></a>  <span class="at">Verified =</span> <span class="fu">c</span>(</span>
+<span id="cb53-27"><a href="quantum-rotation-operators-1.html#cb53-27" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(result_up <span class="sc">-</span> <span class="dv">1</span><span class="dt">i</span><span class="sc">*</span>spin_down)) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb53-28"><a href="quantum-rotation-operators-1.html#cb53-28" tabindex="-1"></a>    <span class="fu">max</span>(<span class="fu">abs</span>(result_down <span class="sc">+</span> <span class="dv">1</span><span class="dt">i</span><span class="sc">*</span>spin_up)) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb53-29"><a href="quantum-rotation-operators-1.html#cb53-29" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">Mod</span>(result_up)<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">1e-10</span></span>
+<span id="cb53-30"><a href="quantum-rotation-operators-1.html#cb53-30" tabindex="-1"></a>  )</span>
+<span id="cb53-31"><a href="quantum-rotation-operators-1.html#cb53-31" tabindex="-1"></a>)</span>
+<span id="cb53-32"><a href="quantum-rotation-operators-1.html#cb53-32" tabindex="-1"></a></span>
+<span id="cb53-33"><a href="quantum-rotation-operators-1.html#cb53-33" tabindex="-1"></a><span class="fu">kable</span>(spin_results,</span>
+<span id="cb53-34"><a href="quantum-rotation-operators-1.html#cb53-34" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;Table 20: Action on Spin-1/2 States&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-35"><a href="quantum-rotation-operators-1.html#cb53-35" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))</span></code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:spin-states">Table 8.3: </span>Table 20: Action on Spin-1/2 States
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Transformation
+</th>
+<th style="text-align:left;">
+Expected
+</th>
+<th style="text-align:right;">
+Error
+</th>
+<th style="text-align:left;">
+Verified
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+U(π,x)|↑⟩
+</td>
+<td style="text-align:left;">
+i|↓⟩
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U(π,x)|↓⟩
+</td>
+<td style="text-align:left;">
+-i|↑⟩
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Normalization |U(π,x)|↑⟩|
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Physical Interpretation</strong>: Rotating a spin state by <span class="math inline">\(\pi\)</span> around the x-axis transforms <span class="math inline">\(|\uparrow\rangle \to i|\downarrow\rangle\)</span>, demonstrating the action of SU(2) on the quantum Hilbert space.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="code-implantation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lie-bracket-general-properties.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/ashanjayamal/Lie-Groups-Lie-Algebras/edit/BRANCH/06-code.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

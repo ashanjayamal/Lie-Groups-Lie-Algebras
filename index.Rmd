@@ -1,21 +1,42 @@
 --- 
 title: "Lie Groups and Lie Algbera"
-author: "Ashan Jayamal"
+author: "Ashan De Silva (Student Number: 008058631)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+always_allow_html: true
 documentclass: book
 bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
+url: https://ashanjayamal.github.io/Lie-Groups-Lie-Algebras
 description: |
   This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later.
-  
+
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: ashanjayamal/Lie-Groups-Lie-Algebras
 ---
+# Introduction
 
 
-# Notation and Some definitions
+
+
+Physical systems often show continuous symmetries, such as rotational symmetry or Lorentz symmetry. These symmetries form what mathematicians call **Lie groups**. A Lie group is a smooth manifold that also has a group structure. This means it combines geometry with algebraic operations. To make the study of these curved structures easier, we look at the associated **Lie algebra**. The Lie algebra is defined as the tangent space at the identity element of the group.
+
+
+
+Because the Lie algebra is a linear vector space, it is much easier to perform calculations with it than with the full group. Even though it is simpler, it still carries the local properties of the group through a tool called the **matrix exponential map**.
+
+In quantum mechanics, symmetries are described by unitary operators acting on the Hilbert space of a system. When the Hamiltonian of the system commutes with these symmetry operators, the energy states stay the same under the symmetry. This principle is very important for solving problems, such as finding the energy levels of the hydrogen atom.
+
+This project focuses on **matrix Lie groups**, which are closed subgroups of the general linear group $GL(n; \mathbb{C})$. We will study how the way a group behaves leads to the way its algebra behaves. In the algebra, the group operation is replaced by a bracket operation, defined as $[X,Y] = XY - YX$.
+
+
+
+A very important detail in this study is the idea of **projective representations**. These are used because in quantum mechanics, two states are physically the same if they only differ by a phase factor. For groups that are not simply connected, like the rotation group $SO(3)$, some representations of the algebra do not match the group perfectly. Instead, they match a related group called the universal cover. For example, the simply connected group $SU(2)$ is used as the cover for $SO(3)$ to correctly describe particle spin in quantum mechanics.
+
+
+
+
+
+## Notation and Some definitions
 
 1. $\mathrm{GL}_n(\mathbb{C})$: the group of all $n \times n$ invertible matrices with entries in the field $\mathbb{F}$.
 2. $M_n(\mathbb{C})$: the set of all $n \times n$ matrices with entries in the field $\mathbb{F}$.
@@ -23,4 +44,5 @@ github-repo: rstudio/bookdown-demo
 4. $SU$: Special Unitary Group (Unitary Group + det=1)
 5. $O(n)$: $n \times n$ Orthogonal group
 6. $SO(n)$: $n \times n$ Special orthogonal Group (Orthogonal Group + det=1)
+
 

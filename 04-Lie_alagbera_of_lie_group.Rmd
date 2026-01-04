@@ -26,25 +26,6 @@ Write  the proof here
 Write about real vector spaces.
 ```
 
-## Later updared with the correct picture.
-
-
-
-
-
-```{r, echo=FALSE}
-htmltools::tags$iframe(src = "torus-html-file.html",
-                       width = "1000",
-                       height = "600",
-                       style = "border:none;")
-```
-
-I had problem synchronized with  yellow dots. Sorry about that.
-
- 
-```{example}
-Let 
-```
 
 
 

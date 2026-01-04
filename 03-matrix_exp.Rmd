@@ -2,10 +2,10 @@
 
 The exponential of a matrix plays a crucial role in the theory of Lie groups. The exponential enters into the definition of the Lie algebra of a matrix Lie group and is the mechanism for passing information from the Lie algebra to the Lie group.
 
-```{definition, name="Matrix Exponential"}
+```{definition,label="mat_exp", name="Matrix Exponential"}
 If $X$ is an $n \times n$ matrix, we define the exponential of $X$, denoted $e^X$ or $\exp(X)$, by the usual power series
 \begin{equation}
-e^X = \sum_{m=0}^{\infty} \frac{X^m}{m!}, (\#eq:matrixexp)
+e^X = \sum_{m=0}^{\infty} \frac{X^m}{m!},(\#eq:matrixexp)
 \end{equation}
 where $X^0=I$, and $X^m$ denotes the repeated matrix product of $X$ with itself.
 ```
@@ -14,40 +14,61 @@ where $X^0=I$, and $X^m$ denotes the repeated matrix product of $X$ with itself.
 The series \@ref(eq:matrixexp) converges for all $X \in M_n(\mathbb{C})$, and $e^X$ is a continuous function of $X$.
 ```
 
-```{theorem, label="thm1"}
+```{theorem, label='thm1'}
 Let $X,Y \in M_n(\mathbb{C})$. Then the following properties hold:
 
-1. $e^0 = I$.
-2. $e^{X^T}=\left( e^X\right)^T$, $(e^X)^* = e^{X^*}$.
-3. $e^X$ is invertible and $(e^X)^{-1} = e^{-X}$.
-4. If $A$ is invertible $n \times n$ matrix, then $e^{AXA^{-1}}=Ae^XA^{-1}$
-5. $e^{(\alpha+\beta)X} = e^{\alpha X} e^{\beta X}$ for all $\alpha,\beta \in \mathbb{C}$.
-6. If $XY = YX$, then $e^{X+Y} = e^X e^Y = e^Y e^X$.
-7. If $C \in GL_n(\mathbb{C})$, then $e^{CXC^{-1}} = C e^X C^{-1}$.
+1. \(e^{0} = I\)
+2. \((e^{X})^{\mathrm{T}} = e^{X^{\mathrm{T}}}\qquad\text{and}\qquad(e^{X})^{*} = e^{X^{*}}\)
+3. If \(A\) is an invertible \(n \times n\) matrix, then  
+\(e^{AXA^{-1}} = A\, e^{X}\, A^{-1}\)
+4. \(\det(e^{X}) = e^{\operatorname{trace}(X)}\)
+5. If \(XY = YX\), then \(e^{X+Y} = e^{X} e^{Y}\)
+6. \(e^{X} \text{ is invertible and } (e^{X})^{-1} = e^{-X}\)
+7. Even if \(XY \neq YX\), we have  \(e^{X+Y} = \lim_{m\to\infty} \left(e^{X/m} e^{Y/m}\right)^{m}\) (This is a special case of the **Trotter Product Formula**.)
+
 ```
 
 ```{proof}
-Point (1) is immediate from the definition of the exponential series. Point (2) follows by taking term-by-term adjoints in the series for $e^X$. Points (3) and (4) are special cases of Point (5).
+1. It is trivial from the defnition \@ref(def:mat_exp).
+2. This is follows by taking term-by-term adjoints in the series for $e^X$.
+3. This is also easily verified using term-by-term computation.
+4. On schur decomposition, Over $\mathbb{C}$, any matrix $X$ is similar to an upper triangular matrix $T$. That is, there exists an invertible matrix $S$  such that, \(X=STS^{-1}), where $T$ is upper triangular. By proptery 3,
+\[
+e^X = e^{STS^{-1}}= Se^TS^{-1}
+\]
+Then,\[\det(e^X)=\det(Se^TS^{-1})=\det(e^T).\]
+For the trace,
+\[\operatorname{tr}(X)=\operatorname{tr}(STS^{-1})=\operatorname{tr}(T).\]
+Furthur we can calualate 
 
-To verify Point (5), note that both series $e^X$ and $e^Y$ converge absolutely, so we may multiply them term by term:
+\[
+\det(e^{T}) = \prod_{i=1}^{n} e^{\lambda_i}
+= e^{\lambda_1} e^{\lambda_2} \cdots e^{\lambda_n}
+= e^{\lambda_1 + \lambda_2 + \cdots + \lambda_n}
+= e^{\operatorname{tr}(T)}.
+\]
 
+By some computaiaonal,\(e^{T}\) is upper triangular with diagonal entries \(e^{\lambda_1}, \dots, e^{\lambda_n}\). Thus, $\det(e^X)=\det(e^T)$.
+
+Now combining all the results,
+\[
+\det(e^{X}) = \det(e^{T}) = e^{\operatorname{tr}(T)} = e^{\operatorname{tr}(X)}.
+\]
+
+
+
+
+5. First, note that both series both series $e^X$ and $e^Y$ converge absolutely. So, we can  multiply them term by term,
 \begin{equation}
 e^X e^Y = \sum_{m=0}^{\infty} \sum_{k=0}^{m} \frac{X^k}{k!} \frac{Y^{\,m-k}}{(m-k)!}
 = \sum_{m=0}^{\infty} \frac{1}{m!} \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k}. (\#eq:exp25)
 \end{equation}
-
 If $X$ and $Y$ commute, then
 $$(X+Y)^m = \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k},$$
 so \@ref(eq:exp25) becomes
 $$e^X e^Y = \sum_{m=0}^{\infty} \frac{(X+Y)^m}{m!} = e^{X+Y}.$$
-
-For Point (6), observe that
-$$(CXC^{-1})^m = C X^m C^{-1},$$
-so term by term we have
-$$e^{CXC^{-1}} = \sum_{m=0}^{\infty} \frac{(CXC^{-1})^m}{m!}
-= \sum_{m=0}^{\infty} \frac{C X^m C^{-1}}{m!}
-= C \left( \sum_{m=0}^{\infty} \frac{X^m}{m!} \right) C^{-1}
-= C e^X C^{-1}.$$
+6. This is foolowed from Property 5 by taking Y = −X and applying Property.
+7. Proof is ommited. (Becasue it is quite long.)
 ```
 
 ## Computing Exponential
