@@ -111,7 +111,7 @@ matrix_exp_eigen <- function(X) {
   D <- diag(exp(eigen_decomp$values))
   
   result <- V %*% D %*% solve(V)
-  return(Re(result))
+  return(result)
 }
 ```
 

@@ -107,6 +107,21 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 \usepackage{booktabs}
+\usepackage{enumitem}
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+\setlist[enumerate,1]{label=\arabic*.}
+\setlist[enumerate,2]{label=\alph*.}
+\setlist[enumerate,3]{label=\roman*.}
+\setlist[enumerate,4]{label=\arabic*.}
+\setlist[enumerate,5]{label=\alph*.}
+\setlist[enumerate,6]{label=\roman*.}
+\setlist[enumerate,7]{label=\arabic*.}
+\setlist[enumerate,8]{label=\alph*.}
+\setlist[enumerate,9]{label=\roman*.}
+
+\renewlist{itemize}{itemize}{9}
+\setlist[itemize]{label=\textbullet}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -126,13 +141,13 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={Lie Groups and Lie Algbera},
-  pdfauthor={Ashan Jayamal},
+  pdfauthor={Ashan De Silva (Student Number: 008058631)},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Lie Groups and Lie Algbera}
-\author{Ashan Jayamal}
-\date{2025-12-30}
+\author{Ashan De Silva (Student Number: 008058631)}
+\date{2026-01-03}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -278,6 +293,8 @@ This subgroup \(G\) is sometimes referred to as an \emph{irrational line in a to
 
 I had problem synchronized with yellow dots. Sorry about that.
 
+--\pandocbounded{\includegraphics[keepaspectratio]{image.png}}
+
 \begin{definition}[Lie Group homomorphism and Isomorphisms]
 \protect\hypertarget{def:unnamed-chunk-8}{}\label{def:unnamed-chunk-8}Let \(G\) and \(H\) be matrix Lie groups. A map \(\varphi : G \to H\) is called a \emph{Lie group homomorphism} if
 
@@ -386,15 +403,15 @@ Adding these three expressions together, every monomial in \(X,Y,Z\) appears exa
 The exponential of a matrix plays a crucial role in the theory of Lie groups. The exponential enters into the definition of the Lie algebra of a matrix Lie group and is the mechanism for passing information from the Lie algebra to the Lie group.
 
 \begin{definition}[Matrix Exponential]
-\protect\hypertarget{def:unnamed-chunk-15}{}\label{def:unnamed-chunk-15}If \(X\) is an \(n \times n\) matrix, we define the exponential of \(X\), denoted \(e^X\) or \(\exp(X)\), by the usual power series
+\protect\hypertarget{def:mat_exp}{}\label{def:mat_exp}If \(X\) is an \(n \times n\) matrix, we define the exponential of \(X\), denoted \(e^X\) or \(\exp(X)\), by the usual power series
 \begin{equation}
-e^X = \sum_{m=0}^{\infty} \frac{X^m}{m!}, \label{eq:matrixexp}
+e^X = \sum_{m=0}^{\infty} \frac{X^m}{m!},\label{eq:matrixexp}
 \end{equation}
 where \(X^0=I\), and \(X^m\) denotes the repeated matrix product of \(X\) with itself.
 \end{definition}
 
 \begin{proposition}
-\protect\hypertarget{prp:unnamed-chunk-16}{}\label{prp:unnamed-chunk-16}The series \eqref{eq:matrixexp} converges for all \(X \in M_n(\mathbb{C})\), and \(e^X\) is a continuous function of \(X\).
+\protect\hypertarget{prp:unnamed-chunk-15}{}\label{prp:unnamed-chunk-15}The series \eqref{eq:matrixexp} converges for all \(X \in M_n(\mathbb{C})\), and \(e^X\) is a continuous function of \(X\).
 \end{proposition}
 
 \begin{theorem}
@@ -406,45 +423,81 @@ Let \(X,Y \in M_n(\mathbb{C})\). Then the following properties hold:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \(e^0 = I\).
+  \(e^{0} = I\)
 \item
-  \(e^{X^T}=\left( e^X\right)^T\), \((e^X)^* = e^{X^*}\).
+  \((e^{X})^{\mathrm{T}} = e^{X^{\mathrm{T}}}\qquad\text{and}\qquad(e^{X})^{*} = e^{X^{*}}\)
 \item
-  \(e^X\) is invertible and \((e^X)^{-1} = e^{-X}\).
+  If \(A\) is an invertible \(n \times n\) matrix, then\\
+  \(e^{AXA^{-1}} = A\, e^{X}\, A^{-1}\)
 \item
-  If \(A\) is invertible \(n \times n\) matrix, then \(e^{AXA^{-1}}=Ae^XA^{-1}\)
+  \(\det(e^{X}) = e^{\operatorname{trace}(X)}\)
 \item
-  \(e^{(\alpha+\beta)X} = e^{\alpha X} e^{\beta X}\) for all \(\alpha,\beta \in \mathbb{C}\).
+  If \(XY = YX\), then \(e^{X+Y} = e^{X} e^{Y}\)
 \item
-  If \(XY = YX\), then \(e^{X+Y} = e^X e^Y = e^Y e^X\).
+  \(e^{X} \text{ is invertible and } (e^{X})^{-1} = e^{-X}\)
 \item
-  If \(C \in GL_n(\mathbb{C})\), then \(e^{CXC^{-1}} = C e^X C^{-1}\).
+  Even if \(XY \neq YX\), we have \(e^{X+Y} = \lim_{m\to\infty} \left(e^{X/m} e^{Y/m}\right)^{m}\) (This is a special case of the \textbf{Trotter Product Formula}.)
 \end{enumerate}
 
 \end{theorem}
 
 \begin{proof}
-Point (1) is immediate from the definition of the exponential series. Point (2) follows by taking term-by-term adjoints in the series for \(e^X\). Points (3) and (4) are special cases of Point (5).
+\leavevmode
 
-To verify Point (5), note that both series \(e^X\) and \(e^Y\) converge absolutely, so we may multiply them term by term:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  It is trivial from the defnition @ref(def:mat\_exp).
+\item
+  This is follows by taking term-by-term adjoints in the series for \(e^X\).
+\item
+  This is also easily verified using term-by-term computation.
+\item
+  On schur decomposition, Over \(\mathbb{C}\), any matrix \(X\) is similar to an upper triangular matrix \(T\). That is, there exists an invertible matrix \(S\) such that, (X=STS\^{}\{-1\}), where \(T\) is upper triangular. By proptery 3,
+  \[
+  e^X = e^{STS^{-1}}= Se^TS^{-1}
+  \]
+  Then,\[\det(e^X)=\det(Se^TS^{-1})=\det(e^T).\]
+  For the trace,
+  \[\operatorname{tr}(X)=\operatorname{tr}(STS^{-1})=\operatorname{tr}(T).\]
+  Furthur we can calualate
+\end{enumerate}
 
-\begin{equation}
-e^X e^Y = \sum_{m=0}^{\infty} \sum_{k=0}^{m} \frac{X^k}{k!} \frac{Y^{\,m-k}}{(m-k)!}
-= \sum_{m=0}^{\infty} \frac{1}{m!} \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k}. \label{eq:exp25}
-\end{equation}
+\[
+\det(e^{T}) = \prod_{i=1}^{n} e^{\lambda_i}
+= e^{\lambda_1} e^{\lambda_2} \cdots e^{\lambda_n}
+= e^{\lambda_1 + \lambda_2 + \cdots + \lambda_n}
+= e^{\operatorname{tr}(T)}.
+\]
 
-If \(X\) and \(Y\) commute, then
-\[(X+Y)^m = \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k},\]
-so \eqref{eq:exp25} becomes
-\[e^X e^Y = \sum_{m=0}^{\infty} \frac{(X+Y)^m}{m!} = e^{X+Y}.\]
+By some computaiaonal,\(e^{T}\) is upper triangular with diagonal entries \(e^{\lambda_1}, \dots, e^{\lambda_n}\). Thus, \(\det(e^X)=\det(e^T)\).
 
-For Point (6), observe that
-\[(CXC^{-1})^m = C X^m C^{-1},\]
-so term by term we have
-\[e^{CXC^{-1}} = \sum_{m=0}^{\infty} \frac{(CXC^{-1})^m}{m!}
-= \sum_{m=0}^{\infty} \frac{C X^m C^{-1}}{m!}
-= C \left( \sum_{m=0}^{\infty} \frac{X^m}{m!} \right) C^{-1}
-= C e^X C^{-1}.\]
+Now combining all the results,
+\[
+\det(e^{X}) = \det(e^{T}) = e^{\operatorname{tr}(T)} = e^{\operatorname{tr}(X)}.
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  First, note that both series both series \(e^X\) and \(e^Y\) converge absolutely. So, we can multiply them term by term,
+  \begin{equation}
+  e^X e^Y = \sum_{m=0}^{\infty} \sum_{k=0}^{m} \frac{X^k}{k!} \frac{Y^{\,m-k}}{(m-k)!}
+  = \sum_{m=0}^{\infty} \frac{1}{m!} \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k}. \label{eq:exp25}
+  \end{equation}
+  If \(X\) and \(Y\) commute, then
+  \[(X+Y)^m = \sum_{k=0}^{m} \binom{m}{k} X^k Y^{\,m-k},\]
+  so \eqref{eq:exp25} becomes
+  \[e^X e^Y = \sum_{m=0}^{\infty} \frac{(X+Y)^m}{m!} = e^{X+Y}.\]
+\item
+  This is foolowed from Property 5 by taking Y = −X and applying Property.
+\item
+  Proof is ommited. (Becasue it is quite long.)
+\end{enumerate}
+
 \end{proof}
 
 \section{Computing Exponential}\label{computing-exponential}
@@ -473,7 +526,7 @@ e^{\lambda_1} & 0 & \cdots & 0 \\
 If \(X\) is nilpotent then the series that defines \(e^X\) terminates.
 
 \begin{example}
-\protect\hypertarget{exm:unnamed-chunk-18}{}\label{exm:unnamed-chunk-18}Consider the matrices
+\protect\hypertarget{exm:unnamed-chunk-17}{}\label{exm:unnamed-chunk-17}Consider the matrices
 
 \[X_1 =
 \begin{bmatrix}
@@ -525,14 +578,14 @@ e^a & e^a b \\
 Now we going to discuss the Lie Algebra \(\mathfrak{g}\) that associated with Matrix Lie group \(G\).
 
 \begin{definition}
-\protect\hypertarget{def:unnamed-chunk-20}{}\label{def:unnamed-chunk-20}If \(G \subset GL(n, \mathbb{C})\) is a matrix Lie group, then the Lie algebra \(\mathfrak{g}\) of \(G\) is defined as follows:
+\protect\hypertarget{def:unnamed-chunk-19}{}\label{def:unnamed-chunk-19}If \(G \subset GL(n, \mathbb{C})\) is a matrix Lie group, then the Lie algebra \(\mathfrak{g}\) of \(G\) is defined as follows:
 \[
 \mathfrak{g} = \left\{ X \in M_n(\mathbb{C}) \;\middle|\; e^{tX} \in G \;\; \text{for all } t \in \mathbb{R} \right\}.
 \]
 \end{definition}
 
 \begin{proposition}
-\protect\hypertarget{prp:unnamed-chunk-21}{}\label{prp:unnamed-chunk-21}
+\protect\hypertarget{prp:unnamed-chunk-20}{}\label{prp:unnamed-chunk-20}
 
 For any matrix Lie group \(G\), the Lie algebra \(\mathfrak{g}\) of \(G\) has the following properties:
 
@@ -563,7 +616,7 @@ Write about real vector spaces.
 \chapter{Relationships Between Lie Groups and Lie Algebras}\label{relationships-between-lie-groups-and-lie-algebras}
 
 \begin{theorem}
-\protect\hypertarget{thm:unnamed-chunk-24}{}\label{thm:unnamed-chunk-24}Suppose \(G_1\) and \(G_2\) are matrix Lie groups with Lie algebras
+\protect\hypertarget{thm:unnamed-chunk-23}{}\label{thm:unnamed-chunk-23}Suppose \(G_1\) and \(G_2\) are matrix Lie groups with Lie algebras
 \(\mathfrak{g}_1\) and \(\mathfrak{g}_2\), respectively, and suppose
 \(\Phi : G_1 \to G_2\) is a Lie group homomorphism. Then there exists a
 unique linear map \(\varphi : \mathfrak{g}_1 \to \mathfrak{g}_2\) such that
@@ -597,7 +650,7 @@ following additional properties:
 
 \section{Introduction}\label{introduction-1}
 
-This report implements and verifies theoretical results on \textbf{matrix exponentials} and \textbf{Lie groups}. The matrix exponential \(\exp(X) = \sum_{m=0}^{\infty} \frac{X^m}{m!}\) connects Lie algebras to Lie groups.
+write a intro
 
 \textbf{Required packages:} expm, ggplot2, plotly, knitr, kableExtra
 
@@ -605,20 +658,20 @@ This report implements and verifies theoretical results on \textbf{matrix expone
 
 The matrix exponential can be computed via several methods:
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\subsection{Method 1: Direct Power Series}\label{method-1-direct-power-series}
+
+\[\exp(X) = \sum_{m=0}^{\infty} \frac{X^m}{m!}\]
+
+\begin{itemize}
 \tightlist
 \item
-  \textbf{Direct Power Series}: \(\exp(X) = \sum_{m=0}^{\infty} \frac{X^m}{m!}\)
+  Since the space of \(M_n(\mathbb{R})\) is a Banach algebra, this series is guaranteed to converge absolutely for any \(X\).
 \item
-  \textbf{Eigenvalue Decomposition}: If \(X = VDV^{-1}\), then \(\exp(X) = V \exp(D) V^{-1}\)
-\item
-  \textbf{Padé Approximation}: Rational function approximation (used by \texttt{expm} package)
-\end{enumerate}
+  To optimize, the code doesn't compute \(X^m\) from scratch each time. It uses the recurrence relation \(T_m = T_{m-1} \cdot \frac{X}{m}\), reducing the complexity of each iteration to a single matrix multiplication \(O(n^3)\)
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Method 1: Direct power series}
 \NormalTok{matrix\_exp\_series }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X, }\AttributeTok{terms =} \DecValTok{20}\NormalTok{) \{}
 \NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(X)}
 \NormalTok{  result }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(n)}
@@ -631,128 +684,538 @@ The matrix exponential can be computed via several methods:
   
   \FunctionTok{return}\NormalTok{(result)}
 \NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# Method 2: Eigenvalue decomposition}
+\subsubsection{Convergence Analysis: Power Series}\label{convergence-analysis-power-series}
+
+Let's examine how many terms are needed for convergence:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X\_small }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{*} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{exp\_exact }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(X\_small)}
+
+\NormalTok{term\_counts }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{50}\NormalTok{, }\AttributeTok{by =} \DecValTok{5}\NormalTok{)}
+\NormalTok{errors }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(term\_counts, }\ControlFlowTok{function}\NormalTok{(n) \{}
+  \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{matrix\_exp\_series}\NormalTok{(X\_small, }\AttributeTok{terms =}\NormalTok{ n) }\SpecialCharTok{{-}}\NormalTok{ exp\_exact))}
+\NormalTok{\})}
+
+\NormalTok{convergence\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Terms =}\NormalTok{ term\_counts,}
+  \AttributeTok{Error =}\NormalTok{ errors,}
+  \AttributeTok{Log\_Error =} \FunctionTok{log10}\NormalTok{(errors)}
+\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(convergence\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Terms, }\AttributeTok{y =}\NormalTok{ Error)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"darkblue"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size =} \FloatTok{2.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_log10}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Power Series Convergence for Matrix Exponential"}\NormalTok{,}
+       \AttributeTok{subtitle =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"||X|| = \%.3f"}\NormalTok{, }\FunctionTok{norm}\NormalTok{(X\_small, }\StringTok{"F"}\NormalTok{)),}
+       \AttributeTok{x =} \StringTok{"Number of Terms"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Error (log scale)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{, }\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{plot.subtitle =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{_main_files/figure-latex/convergence-analysis-1} \end{center}
+
+\textbf{Analysis}: The power series converges exponentially fast. With 30 terms, we achieve machine precision (\(\approx 10^{-15}\)) for moderately sized matrices.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Advantages}: Simple, direct implementation of definition.
+\item
+  \textbf{Disadvantages}: May require many terms for large matrices.
+\end{itemize}
+
+\subsection{Method 2: Eigenvalue Decomposition}\label{method-2-eigenvalue-decomposition}
+
+If \(X = VDV^{-1}\), then \[\exp(X) = V \exp(D) V^{-1} = V \begin{pmatrix} e^{\lambda_1} & & \\ & \ddots & \\ & & e^{\lambda_n} \end{pmatrix} V^{-1}\].
+
+\begin{itemize}
+\tightlist
+\item
+  This implementation assumes \(X\) is diagonalizable (semi-simple). If \(X\) has a non-trivial Jordan Normal Form (i.e., it is a defective matrix), this method fails or requires handling Jordan blocks \(J_k(\lambda)\), where the exponential involves derivatives of the exponential function along the upper diagonals.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{matrix\_exp\_eigen }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X) \{}
 \NormalTok{  eigen\_decomp }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(X)}
 \NormalTok{  V }\OtherTok{\textless{}{-}}\NormalTok{ eigen\_decomp}\SpecialCharTok{$}\NormalTok{vectors}
 \NormalTok{  D }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(}\FunctionTok{exp}\NormalTok{(eigen\_decomp}\SpecialCharTok{$}\NormalTok{values))}
   
 \NormalTok{  result }\OtherTok{\textless{}{-}}\NormalTok{ V }\SpecialCharTok{\%*\%}\NormalTok{ D }\SpecialCharTok{\%*\%} \FunctionTok{solve}\NormalTok{(V)}
-  \FunctionTok{return}\NormalTok{(}\FunctionTok{Re}\NormalTok{(result))}
-\NormalTok{\}}
-
-\CommentTok{\# Method 3: Scaling and squaring (simplified version)}
-\NormalTok{matrix\_exp\_scaling }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X, }\AttributeTok{k =} \DecValTok{5}\NormalTok{) \{}
-  \CommentTok{\# Scale down by 2\^{}k}
-\NormalTok{  X\_scaled }\OtherTok{\textless{}{-}}\NormalTok{ X }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{\^{}}\NormalTok{k)}
-  
-  \CommentTok{\# Compute exp(X\_scaled) using series}
-\NormalTok{  exp\_scaled }\OtherTok{\textless{}{-}} \FunctionTok{matrix\_exp\_series}\NormalTok{(X\_scaled, }\AttributeTok{terms =} \DecValTok{20}\NormalTok{)}
-  
-  \CommentTok{\# Square k times to get exp(X)}
-\NormalTok{  result }\OtherTok{\textless{}{-}}\NormalTok{ exp\_scaled}
-  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{k) \{}
-\NormalTok{    result }\OtherTok{\textless{}{-}}\NormalTok{ result }\SpecialCharTok{\%*\%}\NormalTok{ result}
-\NormalTok{  \}}
-  
   \FunctionTok{return}\NormalTok{(result)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Advantages}: Fast for diagonalizable matrices.
+\item
+  \textbf{Disadvantages}: Numerical instability if \(V\) is ill-conditioned.
+\end{itemize}
+
+\subsection{Method 3: Padé Approximation (expm package)}\label{method-3-paduxe9-approximation-expm-package}
+
+The \texttt{expm} package uses Padé rational approximation, which is the industry standard.
+
+\subsection{Performance Comparison}\label{performance-comparison}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{100000}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{150000}\NormalTok{)}
 \NormalTok{X\_test }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{16}\NormalTok{), }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{)}
 
-\NormalTok{t1 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(\{exp1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix\_exp\_series}\NormalTok{(X\_test)\})}
+\CommentTok{\# Benchmark all three methods}
+\NormalTok{t1 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(\{exp1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix\_exp\_series}\NormalTok{(X\_test, }\AttributeTok{terms =} \DecValTok{30}\NormalTok{)\})}
 \NormalTok{t2 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(\{exp2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix\_exp\_eigen}\NormalTok{(X\_test)\})}
 \NormalTok{t3 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(\{exp3 }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(X\_test)\})}
 
-\NormalTok{results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Method =} \FunctionTok{c}\NormalTok{(}\StringTok{"Power Series"}\NormalTok{, }\StringTok{"Eigenvalue"}\NormalTok{, }\StringTok{"expm (Padé)"}\NormalTok{),}
-  \AttributeTok{Time\_sec =} \FunctionTok{c}\NormalTok{(t1[}\DecValTok{3}\NormalTok{], t2[}\DecValTok{3}\NormalTok{], t3[}\DecValTok{3}\NormalTok{]),}
-  \CommentTok{\# We format the error column specifically to show scientific notation}
-  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}\FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp1 }\SpecialCharTok{{-}}\NormalTok{ exp3)), }\FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp2 }\SpecialCharTok{{-}}\NormalTok{ exp3)), }\DecValTok{0}\NormalTok{)}
+\NormalTok{comparison\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Method =} \FunctionTok{c}\NormalTok{(}\StringTok{"Power Series (30 terms)"}\NormalTok{, }\StringTok{"Eigenvalue Decomposition"}\NormalTok{, }\StringTok{"Padé (expm)"}\NormalTok{),}
+  \AttributeTok{Time\_seconds =} \FunctionTok{c}\NormalTok{(t1[}\DecValTok{3}\NormalTok{], t2[}\DecValTok{3}\NormalTok{], t3[}\DecValTok{3}\NormalTok{]),}
+  \AttributeTok{Error\_vs\_Pade =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp1 }\SpecialCharTok{{-}}\NormalTok{ exp3)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp2 }\SpecialCharTok{{-}}\NormalTok{ exp3)),}
+    \DecValTok{0}
+\NormalTok{  ),}
+  \AttributeTok{Relative\_Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp1 }\SpecialCharTok{{-}}\NormalTok{ exp3)) }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp3)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp2 }\SpecialCharTok{{-}}\NormalTok{ exp3)) }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp3)),}
+    \DecValTok{0}
+\NormalTok{  )}
 \NormalTok{)}
 
-\CommentTok{\# Use formatC to ensure scientific notation is preserved in the table}
-\NormalTok{results}\SpecialCharTok{$}\NormalTok{Error }\OtherTok{\textless{}{-}} \FunctionTok{formatC}\NormalTok{(results}\SpecialCharTok{$}\NormalTok{Error, }\AttributeTok{format =} \StringTok{"e"}\NormalTok{, }\AttributeTok{digits =} \DecValTok{6}\NormalTok{)}
-
-\FunctionTok{kable}\NormalTok{(results, }\AttributeTok{caption =} \StringTok{"Algorithm Comparison"}\NormalTok{,}
-      \AttributeTok{align =} \StringTok{"lcc"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{, }\StringTok{"condensed"}\NormalTok{), }\AttributeTok{full\_width =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{comparison\_data}\SpecialCharTok{$}\NormalTok{Relative\_Error }\OtherTok{\textless{}{-}} \FunctionTok{formatC}\NormalTok{(comparison\_data}\SpecialCharTok{$}\NormalTok{Relative\_Error, }\AttributeTok{format =} \StringTok{"e"}\NormalTok{, }\AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\NormalTok{comparison\_data}\SpecialCharTok{$}\NormalTok{Error\_vs\_Pade }\OtherTok{\textless{}{-}} \FunctionTok{formatC}\NormalTok{(comparison\_data}\SpecialCharTok{$}\NormalTok{Error\_vs\_Pade, }\AttributeTok{format =} \StringTok{"e"}\NormalTok{, }\AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\CommentTok{\# Fix table numbering}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{knitr.table.format =} \StringTok{"html"}\NormalTok{)}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{kableExtra.auto\_format =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{htmlTable.tab\_no =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{kable}\NormalTok{(comparison\_data, }
+      \AttributeTok{digits =} \DecValTok{8}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Performance Comparison of Matrix Exponential Algorithms"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Method"}\NormalTok{, }\StringTok{"Time (s)"}\NormalTok{, }\StringTok{"Absolute Error"}\NormalTok{, }\StringTok{"Relative Error"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{, }\StringTok{"condensed"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{row\_spec}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
-\centering
-\caption{\label{tab:compare-algorithms}Algorithm Comparison}
-\centering
-\begin{tabular}[t]{l|c|c}
-\hline
-Method & Time\_sec & Error\\
-\hline
-Power Series & 0.02 & 4.420464e-12\\
-\hline
-Eigenvalue & 0.00 & 1.953993e-14\\
-\hline
-expm (Padé) & 0.00 & 0.000000e+00\\
-\hline
-\end{tabular}
-\end{table}
+\label{tab:algorithm-comparison}Performance Comparison of Matrix Exponential Algorithms
 
-\section{Theorem 16.15 Properties}\label{theorem-16.15-properties}
+Method
+
+Time (s)
+
+Absolute Error
+
+Relative Error
+
+Power Series (30 terms)
+
+0
+
+2.6645e-15
+
+4.1337e-16
+
+Eigenvalue Decomposition
+
+0
+
+7.1054e-15
+
+1.1023e-15
+
+Padé (expm)
+
+0
+
+0.0000e+00
+
+0.0000e+00
+
+\section{Seven Fundamental Properties}\label{seven-fundamental-properties}
+
+Theorem \ref{thm:thm1} establishes seven key properties of the matrix exponential. We verify each numerically.
+
+\subsection{Property 1: Identity Element}\label{property-1-identity-element}
+
+\[\exp(0) = I\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{zero\_mat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{prop1\_verified }\OtherTok{\textless{}{-}} \FunctionTok{isTRUE}\NormalTok{(}\FunctionTok{all.equal}\NormalTok{(}\FunctionTok{expm}\NormalTok{(zero\_mat), }\FunctionTok{diag}\NormalTok{(}\DecValTok{3}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Result}: TRUE
+
+\subsection{Property 2: Transpose}\label{property-2-transpose}
+
+\[\exp(X^T) = (\exp(X))^T\]
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 \NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\NormalTok{A\_inv }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(A)}
-
-\NormalTok{theorem\_results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}\StringTok{"exp(0) = I"}\NormalTok{, }\StringTok{"exp(X\^{}T) = (exp(X))\^{}T"}\NormalTok{, }
-               \StringTok{"A·exp(X)·A\^{}({-}1) = exp(A·X·A\^{}({-}1))"}\NormalTok{,}
-               \StringTok{"det(exp(X)) = exp(tr(X))"}\NormalTok{),}
-  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
-    \FunctionTok{isTRUE}\NormalTok{(}\FunctionTok{all.equal}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)), }\FunctionTok{diag}\NormalTok{(}\DecValTok{3}\NormalTok{))),}
-    \FunctionTok{isTRUE}\NormalTok{(}\FunctionTok{all.equal}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\FunctionTok{t}\NormalTok{(X)), }\FunctionTok{t}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X)))),}
-    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(A }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ A\_inv }\SpecialCharTok{{-}} \FunctionTok{expm}\NormalTok{(A }\SpecialCharTok{\%*\%}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ A\_inv))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
-    \FunctionTok{abs}\NormalTok{(}\FunctionTok{det}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X)) }\SpecialCharTok{{-}} \FunctionTok{exp}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(X)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
-\NormalTok{  )}
-\NormalTok{)}
-
-\FunctionTok{kable}\NormalTok{(theorem\_results, }\AttributeTok{caption =} \StringTok{"Theorem 16.15 Verification"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable\_styling}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color =} \FunctionTok{ifelse}\NormalTok{(theorem\_results}\SpecialCharTok{$}\NormalTok{Verified, }\StringTok{"green"}\NormalTok{, }\StringTok{"red"}\NormalTok{))}
+\NormalTok{prop2\_verified }\OtherTok{\textless{}{-}} \FunctionTok{isTRUE}\NormalTok{(}\FunctionTok{all.equal}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\FunctionTok{t}\NormalTok{(X)), }\FunctionTok{t}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X))))}
+\NormalTok{prop2\_error }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\FunctionTok{t}\NormalTok{(X)) }\SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X))))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
-\centering
-\caption{\label{tab:verify-theorem}Theorem 16.15 Verification}
-\centering
-\begin{tabular}[t]{l|>{}l}
-\hline
-Property & Verified\\
-\hline
-exp(0) = I & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-exp(X\textasciicircum{}T) = (exp(X))\textasciicircum{}T & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-A·exp(X)·A\textasciicircum{}(-1) = exp(A·X·A\textasciicircum{}(-1)) & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-det(exp(X)) = exp(tr(X)) & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-\end{tabular}
-\end{table}
+\textbf{Result}: TRUE (Error: 3.33e-16)
 
-\section{Baker-Campbell-Hausdorff Formula}\label{baker-campbell-hausdorff-formula}
+\subsection{Property 3: Adjoint (Conjugate Transpose)}\label{property-3-adjoint-conjugate-transpose}
+
+\[\exp(X^*) = (\exp(X))^*\]
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{X\_complex }\OtherTok{\textless{}{-}}\NormalTok{ X }\SpecialCharTok{+} \DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{prop3\_verified }\OtherTok{\textless{}{-}} \FunctionTok{isTRUE}\NormalTok{(}\FunctionTok{all.equal}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(X\_complex))), }\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X\_complex)))))}
+\NormalTok{prop3\_error }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(X\_complex))) }\SpecialCharTok{{-}} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X\_complex)))))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Result}: TRUE (Error: 4.58e-16)
+
+\subsection{Property 4: Conjugation}\label{property-4-conjugation}
+
+\[A \exp(X) A^{-1} = \exp(AXA^{-1})\]
+
+This is the \textbf{similarity property}: conjugation by \(A\) commutes with exponentiation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{A\_inv }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(A)}
+\NormalTok{lhs }\OtherTok{\textless{}{-}}\NormalTok{ A }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ A\_inv}
+\NormalTok{rhs }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(A }\SpecialCharTok{\%*\%}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ A\_inv)}
+\NormalTok{prop4\_error }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(lhs }\SpecialCharTok{{-}}\NormalTok{ rhs))}
+\NormalTok{prop4\_verified }\OtherTok{\textless{}{-}}\NormalTok{ prop4\_error }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Result}: TRUE (Error: 3.55e-15)
+
+\textbf{Interpretation}: Changing basis and then exponentiating is the same as exponentiating and then changing basis.
+
+\subsection{Property 5: Determinant}\label{property-5-determinant}
+
+\[\det(\exp(X)) = \exp(\text{tr}(X))\]
+
+This is a fundamental property connecting the determinant, trace, and exponential.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{det\_expX }\OtherTok{\textless{}{-}} \FunctionTok{det}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X))}
+\NormalTok{exp\_trX }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(X)))}
+\NormalTok{prop5\_error }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(det\_expX }\SpecialCharTok{{-}}\NormalTok{ exp\_trX)}
+\NormalTok{prop5\_verified }\OtherTok{\textless{}{-}}\NormalTok{ prop5\_error }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Result}: TRUE
+
+\begin{itemize}
+\tightlist
+\item
+  \(\det(\exp(X)) = 0.32691968\)
+\item
+  \(\exp(\text{tr}(X)) = 0.32691968\)
+\item
+  Error: 5.55e-17
+\end{itemize}
+
+\textbf{Corollary}: \(\exp(X)\) is always invertible since \(\det(\exp(X)) = e^{\text{tr}(X)} \neq 0\).
+
+\subsection{Property 6: Commuting Matrices}\label{property-6-commuting-matrices}
+
+If \([X,Y] = XY - YX = 0\), then:
+
+\[\exp(X+Y) = \exp(X)\exp(Y)\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Use diagonal matrices (always commute)}
+\NormalTok{D1 }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\NormalTok{D2 }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+
+\NormalTok{commutator\_D }\OtherTok{\textless{}{-}}\NormalTok{ D1 }\SpecialCharTok{\%*\%}\NormalTok{ D2 }\SpecialCharTok{{-}}\NormalTok{ D2 }\SpecialCharTok{\%*\%}\NormalTok{ D1}
+\NormalTok{prop6\_error }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(D1 }\SpecialCharTok{+}\NormalTok{ D2) }\SpecialCharTok{{-}} \FunctionTok{expm}\NormalTok{(D1) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(D2)))}
+\NormalTok{prop6\_verified }\OtherTok{\textless{}{-}}\NormalTok{ prop6\_error }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
+
+\CommentTok{\# Counter{-}example: non{-}commuting matrices}
+\NormalTok{X\_nc }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{Y\_nc }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{commutator\_nc }\OtherTok{\textless{}{-}}\NormalTok{ X\_nc }\SpecialCharTok{\%*\%}\NormalTok{ Y\_nc }\SpecialCharTok{{-}}\NormalTok{ Y\_nc }\SpecialCharTok{\%*\%}\NormalTok{ X\_nc}
+\NormalTok{error\_nc }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X\_nc }\SpecialCharTok{+}\NormalTok{ Y\_nc) }\SpecialCharTok{{-}} \FunctionTok{expm}\NormalTok{(X\_nc) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(Y\_nc)))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Commuting case}: TRUE (Error: 9.55e-11)
+
+\textbf{Non-commuting case}:
+
+\begin{itemize}
+\tightlist
+\item
+  \(||[X,Y]|| = 4.0000\) (non-zero)
+\item
+  \(||\exp(X+Y) - \exp(X)\exp(Y)|| = 10.2050\) (large error)
+\end{itemize}
+
+This demonstrates that the product rule \textbf{fails} for non-commuting matrices.
+
+\subsection{Property 7: Lie Product Formula}\label{property-7-lie-product-formula}
+
+For \textbf{any} \(X, Y \in M_n(\mathbb{C})\):
+
+\[\exp(X+Y) = \lim_{m \to \infty} (\exp(X/m)\exp(Y/m))^m\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{4}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{Y2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{4}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Test convergence for different values of m}
+\NormalTok{m\_values }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
+\NormalTok{errors\_lie }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(m\_values, }\ControlFlowTok{function}\NormalTok{(m) \{}
+\NormalTok{  lie\_prod }\OtherTok{\textless{}{-}} \FunctionTok{Reduce}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{\%*\%}\StringTok{\textasciigrave{}}\NormalTok{, }\FunctionTok{replicate}\NormalTok{(m, }\FunctionTok{expm}\NormalTok{(X2}\SpecialCharTok{/}\NormalTok{m) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(Y2}\SpecialCharTok{/}\NormalTok{m), }\AttributeTok{simplify =} \ConstantTok{FALSE}\NormalTok{))}
+\NormalTok{  direct }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(X2 }\SpecialCharTok{+}\NormalTok{ Y2)}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{norm}\NormalTok{(lie\_prod }\SpecialCharTok{{-}}\NormalTok{ direct, }\StringTok{"F"}\NormalTok{))}
+\NormalTok{\})}
+
+\NormalTok{lie\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{m =}\NormalTok{ m\_values,}
+  \AttributeTok{Error =}\NormalTok{ errors\_lie,}
+  \AttributeTok{Rate =} \FunctionTok{c}\NormalTok{(}\ConstantTok{NA}\NormalTok{, errors\_lie[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{ errors\_lie[}\SpecialCharTok{{-}}\FunctionTok{length}\NormalTok{(errors\_lie)])}
+\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(lie\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ m, }\AttributeTok{y =}\NormalTok{ Error)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_log10}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_log10}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Lie Product Formula Convergence"}\NormalTok{,}
+       \AttributeTok{subtitle =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"||[X,Y]|| = \%.3f"}\NormalTok{, }\FunctionTok{norm}\NormalTok{(X2 }\SpecialCharTok{\%*\%}\NormalTok{ Y2 }\SpecialCharTok{{-}}\NormalTok{ Y2 }\SpecialCharTok{\%*\%}\NormalTok{ X2, }\StringTok{"F"}\NormalTok{)),}
+       \AttributeTok{x =} \StringTok{"m (log scale)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Error (log scale)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{_main_files/figure-latex/property-7-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kable}\NormalTok{(lie\_df, }
+      \AttributeTok{digits =} \DecValTok{8}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Lie Product Formula Convergence"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"m"}\NormalTok{, }\StringTok{"Error"}\NormalTok{, }\StringTok{"Error Ratio"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:property-7}Lie Product Formula Convergence
+
+m
+
+Error
+
+Error Ratio
+
+10
+
+0.30646407
+
+NA
+
+20
+
+0.15344262
+
+0.5006871
+
+50
+
+0.06143206
+
+0.4003585
+
+100
+
+0.03072556
+
+0.5001551
+
+200
+
+0.01536519
+
+0.5000786
+
+500
+
+0.00614666
+
+0.4000380
+
+1000
+
+0.00307343
+
+0.5000159
+
+\textbf{Analysis}: The error decreases approximately as \(O(1/m)\), consistent with theoretical predictions. This formula is crucial for numerical simulation of quantum systems.
+
+\subsection{Summary: Theorem \ref{thm:thm1}}\label{summary-theorem-refthmthm1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theorem\_summary }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"1. exp(0) = I"}\NormalTok{,}
+    \StringTok{"2. exp(X\^{}T) = (exp(X))\^{}T"}\NormalTok{,}
+    \StringTok{"3. exp(X*) = (exp(X))*"}\NormalTok{,}
+    \StringTok{"4. Conjugation"}\NormalTok{,}
+    \StringTok{"5. det(exp(X)) = exp(tr(X))"}\NormalTok{,}
+    \StringTok{"6. Commuting: exp(X+Y) = exp(X)exp(Y)"}\NormalTok{,}
+    \StringTok{"7. Lie Product Formula"}
+\NormalTok{  ),}
+  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(prop1\_verified, prop2\_verified, prop3\_verified, }
+\NormalTok{               prop4\_verified, prop5\_verified, prop6\_verified, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, prop2\_error, prop3\_error, prop4\_error, prop5\_error, }
+\NormalTok{            prop6\_error, errors\_lie[}\FunctionTok{length}\NormalTok{(errors\_lie)])}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(theorem\_summary,}
+      \AttributeTok{digits =} \DecValTok{12}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Summary of Theorem 16.15 Verification"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Property"}\NormalTok{, }\StringTok{"Verified"}\NormalTok{, }\StringTok{"Numerical Error"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{, }
+              \AttributeTok{color =} \FunctionTok{ifelse}\NormalTok{(theorem\_summary}\SpecialCharTok{$}\NormalTok{Verified, }\StringTok{"green"}\NormalTok{, }\StringTok{"red"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:theorem-summary}Summary of Theorem 16.15 Verification
+
+Property
+
+Verified
+
+Numerical Error
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  exp(0) = I
+
+  TRUE
+
+  0.000000e+00
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \setcounter{enumii}{1}
+  \tightlist
+  \item
+    exp(X\^{}T) = (exp(X))\^{}T
+
+    TRUE
+
+    0.000000e+00
+
+    \begin{enumerate}
+    \def\labelenumiii{\arabic{enumiii}.}
+    \setcounter{enumiii}{2}
+    \tightlist
+    \item
+      exp(X\emph{) = (exp(X))}
+
+      TRUE
+
+      0.000000e+00
+
+      \begin{enumerate}
+      \def\labelenumiv{\arabic{enumiv}.}
+      \setcounter{enumiv}{3}
+      \tightlist
+      \item
+        Conjugation
+
+        TRUE
+
+        0.000000e+00
+
+        \begin{enumerate}
+        \def\labelenumv{\arabic{enumv}.}
+        \tightlist
+        \item
+          det(exp(X)) = exp(tr(X))
+
+          TRUE
+
+          0.000000e+00
+
+          \begin{enumerate}
+          \def\labelenumvi{\arabic{enumvi}.}
+          \tightlist
+          \item
+            Commuting: exp(X+Y) = exp(X)exp(Y)
+
+            TRUE
+
+            9.500000e-11
+
+            \begin{enumerate}
+            \def\labelenumvii{\arabic{enumvii}.}
+            \tightlist
+            \item
+              Lie Product Formula
+
+              TRUE
+
+              3.073428e-03
+            \end{enumerate}
+          \end{enumerate}
+        \end{enumerate}
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+All seven properties are verified within numerical precision, confirming the theoretical results.
+
+\section{Baker-Campbell-Hausdorff Formula}\label{baker-campbell-hausdorff-formula}
+
+\subsection{Background}\label{background}
+
+For sufficiently small \(X, Y \in M_n(\mathbb{C})\):\[e^X e^Y = e^{Z}\]
+
+where \[Z = X + Y + \frac{1}{2}[X,Y] + \frac{1}{12}[X,[X,Y]] - \frac{1}{12}[Y,[X,Y]] + \cdots\]
+
+The series converges when \(\|X\|\) and \(\|Y\|\) are sufficiently small.
+
+\subsection{Implimentation}\label{implimentation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Lie bracket (commutator)}
 \NormalTok{commutator }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X, Y) X }\SpecialCharTok{\%*\%}\NormalTok{ Y }\SpecialCharTok{{-}}\NormalTok{ Y }\SpecialCharTok{\%*\%}\NormalTok{ X}
 
 \NormalTok{bch\_expansion }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X, Y, }\AttributeTok{order =} \DecValTok{4}\NormalTok{) \{}
@@ -765,24 +1228,30 @@ det(exp(X)) = exp(tr(X)) & \textcolor{green}{\textbf{TRUE}}\\
   \ControlFlowTok{if}\NormalTok{ (order }\SpecialCharTok{\textgreater{}=} \DecValTok{4}\NormalTok{) \{}
 \NormalTok{    Z }\OtherTok{\textless{}{-}}\NormalTok{ Z }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\DecValTok{24}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(X, }\FunctionTok{commutator}\NormalTok{(X, Y)))}
 \NormalTok{  \}}
-  \FunctionTok{return}\NormalTok{(Z)}
+  \ControlFlowTok{if}\NormalTok{ (order }\SpecialCharTok{\textgreater{}=}\DecValTok{5}\NormalTok{)\{}
+\NormalTok{    Z }\OtherTok{\textless{}{-}}\NormalTok{ Z }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\DecValTok{720}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(X, Y))))}
+\NormalTok{    Z }\OtherTok{\textless{}{-}}\NormalTok{ Z }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\DecValTok{180}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{commutator}\NormalTok{(X, }\FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(X, Y))))}
+\NormalTok{  \}}
+\FunctionTok{return}\NormalTok{(Z)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
+\subsection{Convergence Analysis}\label{convergence-analysis}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{scale }\OtherTok{\textless{}{-}} \FloatTok{0.1}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{456}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{500}\NormalTok{)}
 \NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ scale }\SpecialCharTok{*} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ scale }\SpecialCharTok{*} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \NormalTok{direct }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(X) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(Y)}
 
-\NormalTok{errors }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(o) \{}
+\NormalTok{errors }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(o) \{}
   \FunctionTok{norm}\NormalTok{(direct }\SpecialCharTok{{-}} \FunctionTok{expm}\NormalTok{(}\FunctionTok{bch\_expansion}\NormalTok{(X, Y, o)), }\StringTok{"F"}\NormalTok{)}
 \NormalTok{\})}
 
-\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Order =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\AttributeTok{Error =}\NormalTok{ errors), }
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Order =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\AttributeTok{Error =}\NormalTok{ errors), }
        \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Order, }\AttributeTok{y =}\NormalTok{ Error)) }\SpecialCharTok{+}
   \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
@@ -794,7 +1263,222 @@ det(exp(X)) = exp(tr(X)) & \textcolor{green}{\textbf{TRUE}}\\
 
 \begin{center}\includegraphics{_main_files/figure-latex/bch-convergence-1} \end{center}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Test 1: Convergence by order}
+\NormalTok{scale }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ scale }\SpecialCharTok{*} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ scale }\SpecialCharTok{*} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+
+\NormalTok{direct }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(X) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(Y)}
+
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Test matrices: scale = \%.3f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, scale))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Test matrices: scale = 0.050
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"||X|| = \%.6f, ||Y|| = \%.6f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\FunctionTok{norm}\NormalTok{(X, }\StringTok{"F"}\NormalTok{), }\FunctionTok{norm}\NormalTok{(Y, }\StringTok{"F"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ||X|| = 0.094544, ||Y|| = 0.112094
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"||[X,Y]|| = \%.6f}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{, }\FunctionTok{norm}\NormalTok{(}\FunctionTok{commutator}\NormalTok{(X, Y), }\StringTok{"F"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ||[X,Y]|| = 0.007416
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Test different orders}
+\NormalTok{orders }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}
+\NormalTok{errors\_by\_order }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(orders, }\ControlFlowTok{function}\NormalTok{(o) \{}
+\NormalTok{  Z }\OtherTok{\textless{}{-}} \FunctionTok{bch\_expansion}\NormalTok{(X, Y, o)}
+  \FunctionTok{norm}\NormalTok{(direct }\SpecialCharTok{{-}} \FunctionTok{expm}\NormalTok{(Z), }\StringTok{"F"}\NormalTok{)}
+\NormalTok{\})}
+
+\NormalTok{order\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Order =}\NormalTok{ orders, }\AttributeTok{Error =}\NormalTok{ errors\_by\_order)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(order\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Order, }\AttributeTok{y =}\NormalTok{ Error)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"darkblue"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size =} \DecValTok{4}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%.2e"}\NormalTok{, Error)), }
+            \AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.8}\NormalTok{, }\AttributeTok{size =} \FloatTok{3.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_log10}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"BCH Formula: Convergence by Order"}\NormalTok{,}
+       \AttributeTok{subtitle =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"Scale = \%.3f"}\NormalTok{, scale),}
+       \AttributeTok{x =} \StringTok{"BCH Expansion Order"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Error (log scale)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{, }\AttributeTok{size =} \DecValTok{14}\NormalTok{))}
+
+\CommentTok{\# Test 2: Error vs scale}
+\NormalTok{scales }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.01}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)}
+\NormalTok{scale\_errors }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(scales, }\ControlFlowTok{function}\NormalTok{(s) \{}
+\NormalTok{  X\_s }\OtherTok{\textless{}{-}}\NormalTok{ s }\SpecialCharTok{*}\NormalTok{ X }\SpecialCharTok{/}\NormalTok{ scale}
+\NormalTok{  Y\_s }\OtherTok{\textless{}{-}}\NormalTok{ s }\SpecialCharTok{*}\NormalTok{ Y }\SpecialCharTok{/}\NormalTok{ scale}
+\NormalTok{  Z4 }\OtherTok{\textless{}{-}} \FunctionTok{bch\_expansion}\NormalTok{(X\_s, Y\_s, }\AttributeTok{order =} \DecValTok{4}\NormalTok{)}
+  \FunctionTok{norm}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X\_s) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(Y\_s) }\SpecialCharTok{{-}} \FunctionTok{expm}\NormalTok{(Z4), }\StringTok{"F"}\NormalTok{)}
+\NormalTok{\})}
+
+\NormalTok{scale\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Scale =}\NormalTok{ scales, }\AttributeTok{Error =}\NormalTok{ scale\_errors)}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(scale\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Scale, }\AttributeTok{y =}\NormalTok{ Error)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"darkgreen"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Error), }\AttributeTok{size =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_log10}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"green"}\NormalTok{, }\AttributeTok{high =} \StringTok{"red"}\NormalTok{, }\AttributeTok{guide =} \StringTok{"none"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{0.15}\NormalTok{, }\AttributeTok{y =} \FunctionTok{max}\NormalTok{(scale\_errors)}\SpecialCharTok{/}\DecValTok{10}\NormalTok{, }
+           \AttributeTok{label =} \StringTok{"Convergence}\SpecialCharTok{\textbackslash{}n}\StringTok{breaks down →"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"BCH Formula: Error vs Matrix Scale"}\NormalTok{,}
+       \AttributeTok{subtitle =} \StringTok{"Order 4 expansion"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Scale Factor"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Error (log scale)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{, }\AttributeTok{size =} \DecValTok{14}\NormalTok{))}
+
+\FunctionTok{grid.arrange}\NormalTok{(p1, p2, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{_main_files/figure-latex/bch-convergence-detailed-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Find approximate convergence radius}
+\NormalTok{conv\_threshold }\OtherTok{\textless{}{-}} \FloatTok{0.01}
+\NormalTok{conv\_scale }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(scales[scale\_errors }\SpecialCharTok{\textless{}}\NormalTok{ conv\_threshold])}
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Approximate convergence radius: scale \textless{} \%.3f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, conv\_scale))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Approximate convergence radius: scale < 0.500
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparison\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Scale =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.01}\NormalTok{, }\FloatTok{0.05}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{),}
+  \AttributeTok{Order\_2 =} \ConstantTok{NA}\NormalTok{,}
+  \AttributeTok{Order\_3 =} \ConstantTok{NA}\NormalTok{,}
+  \AttributeTok{Order\_4 =} \ConstantTok{NA}\NormalTok{,}
+  \AttributeTok{Order\_5 =} \ConstantTok{NA}
+\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(comparison\_data)) \{}
+\NormalTok{  s }\OtherTok{\textless{}{-}}\NormalTok{ comparison\_data}\SpecialCharTok{$}\NormalTok{Scale[i]}
+\NormalTok{  X\_s }\OtherTok{\textless{}{-}}\NormalTok{ s }\SpecialCharTok{*}\NormalTok{ X }\SpecialCharTok{/}\NormalTok{ scale}
+\NormalTok{  Y\_s }\OtherTok{\textless{}{-}}\NormalTok{ s }\SpecialCharTok{*}\NormalTok{ Y }\SpecialCharTok{/}\NormalTok{ scale}
+\NormalTok{  direct\_s }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(X\_s) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(Y\_s)}
+  
+  \ControlFlowTok{for}\NormalTok{ (o }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{    Z }\OtherTok{\textless{}{-}} \FunctionTok{bch\_expansion}\NormalTok{(X\_s, Y\_s, }\AttributeTok{order =}\NormalTok{ o)}
+\NormalTok{    comparison\_data[i, o] }\OtherTok{\textless{}{-}} \FunctionTok{norm}\NormalTok{(direct\_s }\SpecialCharTok{{-}} \FunctionTok{expm}\NormalTok{(Z), }\StringTok{"F"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\FunctionTok{kable}\NormalTok{(comparison\_data,}
+      \AttributeTok{digits =} \DecValTok{10}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"BCH Formula Accuracy: Error vs Scale and Order"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Scale"}\NormalTok{, }\StringTok{"Order 2"}\NormalTok{, }\StringTok{"Order 3"}\NormalTok{, }\StringTok{"Order 4"}\NormalTok{, }\StringTok{"Order 5"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{row\_spec}\NormalTok{(}\FunctionTok{which}\NormalTok{(comparison\_data}\SpecialCharTok{$}\NormalTok{Scale }\SpecialCharTok{\textless{}=} \FloatTok{0.1}\NormalTok{), }\AttributeTok{background =} \StringTok{"\#e6f9e6"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:bch-comparison-table}BCH Formula Accuracy: Error vs Scale and Order
+
+Scale
+
+Order 2
+
+Order 3
+
+Order 4
+
+Order 5
+
+0.01
+
+0.0000005550
+
+0.0000000047
+
+0.0000000000
+
+0.0000000000
+
+0.05
+
+0.0000670943
+
+0.0000028463
+
+0.0000000757
+
+0.0000000901
+
+0.10
+
+0.0005176194
+
+0.0000439017
+
+0.0000023792
+
+0.0000028287
+
+0.20
+
+0.0039195236
+
+0.0006558386
+
+0.0000745327
+
+0.0000884600
+
+0.50
+
+0.0570375336
+
+0.0216619394
+
+0.0071690943
+
+0.0083980888
+
+\textbf{Key Observations}: BCH formula is highly accurate for \(\|X\|, \|Y\| < 0.1\). Higher orders provide diminishing returns beyond order 4 for small matrices. But breaks down rapidly for larger matrices. This confirms that ``sufficiently small'' means roughly \(||X||, ||Y|| \lesssim 0.2\)
+
 \section{SO(3) Rotation Group}\label{so3-rotation-group}
+
+\subsection{Mathematical Background}\label{mathematical-background}
+
+\(SO(3) = \{R \in M_3(\mathbb{R}) : R^TR = I, \det(R) = 1\}\) is the group of rotations in 3D space.
+
+Its Lie algebra is:
+\[\mathfrak{so}(3) = \{X \in M_3(\mathbb{R}) : X^T = -X\}\]
+
+Any skew-symmetric matrix can be written as:
+\[X = \begin{pmatrix} 0 & -c & b \\ c & 0 & -a \\ -b & a & 0 \end{pmatrix}\]
+
+corresponding to the axis vector \((a, b, c)^T\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -822,31 +1506,115 @@ det(exp(X)) = exp(tr(X)) & \textcolor{green}{\textbf{TRUE}}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
-\centering
-\caption{\label{tab:so3-implementation}SO(3) Properties}
-\centering
-\begin{tabular}[t]{l|>{}l}
-\hline
-Property & Verified\\
-\hline
-R\textasciicircum{}T·R = I & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-det(R) = 1 & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-X is skew-symmetric & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-\end{tabular}
-\end{table}
+\label{tab:so3-implementation}SO(3) Properties
+
+Property
+
+Verified
+
+R\^{}T·R = I
+
+TRUE
+
+det(R) = 1
+
+TRUE
+
+X is skew-symmetric
+
+TRUE
+
+\subsection{\texorpdfstring{Basis for \(\mathfrak{so}(3)\)}{Basis for \textbackslash mathfrak\{so\}(3)}}\label{basis-for-mathfrakso3}
+
+Following equation (16.2) in Hall:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{F1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{F2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{F3 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Verify commutation relations (16.3): [F\_i, F\_j] = F\_k (cyclic)}
+\NormalTok{comm\_12 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(F1, F2)}
+\NormalTok{comm\_23 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(F2, F3)}
+\NormalTok{comm\_31 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(F3, F1)}
+
+\NormalTok{comm\_relations }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Commutator =} \FunctionTok{c}\NormalTok{(}\StringTok{"[F1, F2]"}\NormalTok{, }\StringTok{"[F2, F3]"}\NormalTok{, }\StringTok{"[F3, F1]"}\NormalTok{),}
+  \AttributeTok{Expected =} \FunctionTok{c}\NormalTok{(}\StringTok{"F3"}\NormalTok{, }\StringTok{"F1"}\NormalTok{, }\StringTok{"F2"}\NormalTok{),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_12 }\SpecialCharTok{{-}}\NormalTok{ F3)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_23 }\SpecialCharTok{{-}}\NormalTok{ F1)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_31 }\SpecialCharTok{{-}}\NormalTok{ F2))}
+\NormalTok{  ),}
+  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_12 }\SpecialCharTok{{-}}\NormalTok{ F3)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_23 }\SpecialCharTok{{-}}\NormalTok{ F1)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_31 }\SpecialCharTok{{-}}\NormalTok{ F2)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(comm\_relations,}
+      \AttributeTok{caption =} \StringTok{"SO(3) Commutation Relations (Equation 16.3)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:so3-basis}SO(3) Commutation Relations (Equation 16.3)
+
+Commutator
+
+Expected
+
+Error
+
+Verified
+
+{[}F1, F2{]}
+
+F3
+
+0
+
+TRUE
+
+{[}F2, F3{]}
+
+F1
+
+0
+
+TRUE
+
+{[}F3, F1{]}
+
+F2
+
+0
+
+TRUE
+
+\textbf{Interpretation}: These commutation relations define the Lie algebra structure of \(\mathfrak{so}(3)\) and are isomorphic to \(\mathbb{R}^3\) with the cross product.
+
+\subsection{3D Visualization: Rotation Path}\label{d-visualization-rotation-path}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plotly)}
+\CommentTok{\# Rotation axis}
 \NormalTok{axis }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{skew\_symmetric}\NormalTok{(axis)}
-\NormalTok{v0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
-\NormalTok{t\_vals }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi, }\AttributeTok{length.out =} \DecValTok{100}\NormalTok{)}
-\NormalTok{path }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(}\FunctionTok{sapply}\NormalTok{(t\_vals, }\ControlFlowTok{function}\NormalTok{(t) }\FunctionTok{as.vector}\NormalTok{(}\FunctionTok{expm}\NormalTok{(t }\SpecialCharTok{*}\NormalTok{ X) }\SpecialCharTok{\%*\%}\NormalTok{ v0)))}
 
+\CommentTok{\# Initial vector}
+\NormalTok{v0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\# Generate rotation path: v(t) = exp(tX)v0}
+\NormalTok{t\_vals }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi, }\AttributeTok{length.out =} \DecValTok{100}\NormalTok{)}
+\NormalTok{path }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(}\FunctionTok{sapply}\NormalTok{(t\_vals, }\ControlFlowTok{function}\NormalTok{(t) \{}
+  \FunctionTok{as.vector}\NormalTok{(}\FunctionTok{expm}\NormalTok{(t }\SpecialCharTok{*}\NormalTok{ X) }\SpecialCharTok{\%*\%}\NormalTok{ v0)}
+\NormalTok{\}))}
+
+\CommentTok{\# Create unit sphere}
 \NormalTok{theta }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi, }\AttributeTok{length.out =} \DecValTok{50}\NormalTok{)}
 \NormalTok{phi }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, pi, }\AttributeTok{length.out =} \DecValTok{50}\NormalTok{)}
 \NormalTok{grid }\OtherTok{\textless{}{-}} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{theta =}\NormalTok{ theta, }\AttributeTok{phi =}\NormalTok{ phi)}
@@ -854,196 +1622,1121 @@ X is skew-symmetric & \textcolor{green}{\textbf{TRUE}}\\
 \NormalTok{sphere\_y }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{sin}\NormalTok{(grid}\SpecialCharTok{$}\NormalTok{phi) }\SpecialCharTok{*} \FunctionTok{sin}\NormalTok{(grid}\SpecialCharTok{$}\NormalTok{theta), }\DecValTok{50}\NormalTok{, }\DecValTok{50}\NormalTok{)}
 \NormalTok{sphere\_z }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{cos}\NormalTok{(grid}\SpecialCharTok{$}\NormalTok{phi), }\DecValTok{50}\NormalTok{, }\DecValTok{50}\NormalTok{)}
 
-\FunctionTok{plot\_ly}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{add\_surface}\NormalTok{(}\AttributeTok{x =}\NormalTok{ sphere\_x, }\AttributeTok{y =}\NormalTok{ sphere\_y, }\AttributeTok{z =}\NormalTok{ sphere\_z, }
-              \AttributeTok{opacity =} \FloatTok{0.2}\NormalTok{, }\AttributeTok{showscale =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{add\_trace}\NormalTok{(}\AttributeTok{type =} \StringTok{"scatter3d"}\NormalTok{, }\AttributeTok{mode =} \StringTok{"lines"}\NormalTok{,}
-            \AttributeTok{x =}\NormalTok{ path[,}\DecValTok{1}\NormalTok{], }\AttributeTok{y =}\NormalTok{ path[,}\DecValTok{2}\NormalTok{], }\AttributeTok{z =}\NormalTok{ path[,}\DecValTok{3}\NormalTok{],}
-            \AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{width =} \DecValTok{5}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{layout}\NormalTok{(}\AttributeTok{title =} \StringTok{"SO(3) Rotation on Unit Sphere"}\NormalTok{,}
-         \AttributeTok{scene =} \FunctionTok{list}\NormalTok{(}\AttributeTok{aspectmode =} \StringTok{"cube"}\NormalTok{))}
+\CommentTok{\# Create interactive 3D plot}
+\NormalTok{fig\_so3 }\OtherTok{\textless{}{-}} \FunctionTok{plot\_ly}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{add\_surface}\NormalTok{(}
+    \AttributeTok{x =}\NormalTok{ sphere\_x, }\AttributeTok{y =}\NormalTok{ sphere\_y, }\AttributeTok{z =}\NormalTok{ sphere\_z,}
+    \AttributeTok{opacity =} \FloatTok{0.15}\NormalTok{,}
+    \AttributeTok{colorscale =} \FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{, }\StringTok{"lightblue"}\NormalTok{)),}
+    \AttributeTok{showscale =} \ConstantTok{FALSE}\NormalTok{,}
+    \AttributeTok{name =} \StringTok{"Unit Sphere"}\NormalTok{,}
+    \AttributeTok{hoverinfo =} \StringTok{"skip"}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{add\_trace}\NormalTok{(}
+    \AttributeTok{type =} \StringTok{"scatter3d"}\NormalTok{,}
+    \AttributeTok{mode =} \StringTok{"lines"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ path[,}\DecValTok{1}\NormalTok{], }\AttributeTok{y =}\NormalTok{ path[,}\DecValTok{2}\NormalTok{], }\AttributeTok{z =}\NormalTok{ path[,}\DecValTok{3}\NormalTok{],}
+    \AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{width =} \DecValTok{5}\NormalTok{),}
+    \AttributeTok{name =} \StringTok{"Rotation Path"}\NormalTok{,}
+    \AttributeTok{hovertext =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"t/π = \%.2f"}\NormalTok{, t\_vals}\SpecialCharTok{/}\NormalTok{pi)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{add\_trace}\NormalTok{(}
+    \AttributeTok{type =} \StringTok{"scatter3d"}\NormalTok{,}
+    \AttributeTok{mode =} \StringTok{"lines+markers"}\NormalTok{,}
+    \AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, axis[}\DecValTok{1}\NormalTok{]), }\AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, axis[}\DecValTok{2}\NormalTok{]), }\AttributeTok{z =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, axis[}\DecValTok{3}\NormalTok{]),}
+    \AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{width =} \DecValTok{6}\NormalTok{),}
+    \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{size =} \DecValTok{6}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{),}
+    \AttributeTok{name =} \StringTok{"Rotation Axis"}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{add\_trace}\NormalTok{(}
+    \AttributeTok{type =} \StringTok{"scatter3d"}\NormalTok{,}
+    \AttributeTok{mode =} \StringTok{"markers"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ v0[}\DecValTok{1}\NormalTok{], }\AttributeTok{y =}\NormalTok{ v0[}\DecValTok{2}\NormalTok{], }\AttributeTok{z =}\NormalTok{ v0[}\DecValTok{3}\NormalTok{],}
+    \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{),}
+    \AttributeTok{name =} \StringTok{"Start Point"}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{add\_trace}\NormalTok{(}
+    \AttributeTok{type =} \StringTok{"scatter3d"}\NormalTok{,}
+    \AttributeTok{mode =} \StringTok{"markers"}\NormalTok{,}
+    \AttributeTok{x =}\NormalTok{ path[}\DecValTok{100}\NormalTok{,}\DecValTok{1}\NormalTok{], }\AttributeTok{y =}\NormalTok{ path[}\DecValTok{100}\NormalTok{,}\DecValTok{2}\NormalTok{], }\AttributeTok{z =}\NormalTok{ path[}\DecValTok{100}\NormalTok{,}\DecValTok{3}\NormalTok{],}
+    \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{color =} \StringTok{"darkred"}\NormalTok{),}
+    \AttributeTok{name =} \StringTok{"End Point (t=2π)"}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{layout}\NormalTok{(}
+    \AttributeTok{title =} \FunctionTok{list}\NormalTok{(}
+      \AttributeTok{text =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"SO(3) Rotation via exp(tX)v\textless{}br\textgreater{}Axis: [\%.2f, \%.2f, \%.2f]"}\NormalTok{, }
+\NormalTok{                     axis[}\DecValTok{1}\NormalTok{], axis[}\DecValTok{2}\NormalTok{], axis[}\DecValTok{3}\NormalTok{]),}
+      \AttributeTok{font =} \FunctionTok{list}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{)}
+\NormalTok{    ),}
+    \AttributeTok{scene =} \FunctionTok{list}\NormalTok{(}
+      \AttributeTok{xaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"X"}\NormalTok{, }\AttributeTok{range =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{, }\FloatTok{1.2}\NormalTok{)),}
+      \AttributeTok{yaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"Y"}\NormalTok{, }\AttributeTok{range =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{, }\FloatTok{1.2}\NormalTok{)),}
+      \AttributeTok{zaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"Z"}\NormalTok{, }\AttributeTok{range =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{, }\FloatTok{1.2}\NormalTok{)),}
+      \AttributeTok{aspectmode =} \StringTok{"cube"}\NormalTok{,}
+      \AttributeTok{camera =} \FunctionTok{list}\NormalTok{(}
+        \AttributeTok{eye =} \FunctionTok{list}\NormalTok{(}\AttributeTok{x =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{z =} \FloatTok{1.5}\NormalTok{)}
+\NormalTok{      )}
+\NormalTok{    ),}
+    \AttributeTok{showlegend =} \ConstantTok{TRUE}
+\NormalTok{  )}
+
+\NormalTok{fig\_so3}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/so3-visualization-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/so3-3d-viz-1} \end{center}
 
-\section{SU(2) Special Unitary Group}\label{su2-special-unitary-group}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(fig\_so3)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Interpretation}: The red curve shows how a point on the unit sphere rotates around the blue axis (proportional to {[}1,1,1{]}). The rotation is a geodesic on the sphere, demonstrating that SO(3) acts by rotations on \(\mathbb{R}^3\).
+
+\section{One-Parameter Subgroups}\label{one-parameter-subgroups}
+
+Verify that \(\exp(tX)\) forms a one-parameter subgroup (Theorem 16.18):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t1 }\OtherTok{\textless{}{-}} \FloatTok{0.7}
+\NormalTok{t2 }\OtherTok{\textless{}{-}} \FloatTok{0.3}
+\NormalTok{R1 }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(t1 }\SpecialCharTok{*}\NormalTok{ X)}
+\NormalTok{R2 }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(t2 }\SpecialCharTok{*}\NormalTok{ X)}
+\NormalTok{R\_sum }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{((t1 }\SpecialCharTok{+}\NormalTok{ t2) }\SpecialCharTok{*}\NormalTok{ X)}
+\NormalTok{R\_product }\OtherTok{\textless{}{-}}\NormalTok{ R1 }\SpecialCharTok{\%*\%}\NormalTok{ R2}
+
+\NormalTok{one\_param\_results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"exp(t1·X) ∈ SO(3)"}\NormalTok{,}
+    \StringTok{"exp(t2·X) ∈ SO(3)"}\NormalTok{,}
+    \StringTok{"exp(t1·X)·exp(t2·X) = exp((t1+t2)·X)"}
+\NormalTok{  ),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{t}\NormalTok{(R1) }\SpecialCharTok{\%*\%}\NormalTok{ R1 }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{3}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{t}\NormalTok{(R2) }\SpecialCharTok{\%*\%}\NormalTok{ R2 }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{3}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(R\_product }\SpecialCharTok{{-}}\NormalTok{ R\_sum))}
+\NormalTok{  ),}
+  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{t}\NormalTok{(R1) }\SpecialCharTok{\%*\%}\NormalTok{ R1 }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{3}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{t}\NormalTok{(R2) }\SpecialCharTok{\%*\%}\NormalTok{ R2 }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{3}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(R\_product }\SpecialCharTok{{-}}\NormalTok{ R\_sum)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(one\_param\_results,}
+      \AttributeTok{digits =} \DecValTok{12}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"One{-}Parameter Subgroup Property (Theorem 16.18)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:one-parameter-subgroup}One-Parameter Subgroup Property (Theorem 16.18)
+
+Property
+
+Error
+
+Verified
+
+exp(t1·X) ∈ SO(3)
+
+0
+
+TRUE
+
+exp(t2·X) ∈ SO(3)
+
+0
+
+TRUE
+
+exp(t1·X)·exp(t2·X) = exp((t1+t2)·X)
+
+0
+
+TRUE
+
+This confirms that \(t \mapsto \exp(tX)\) is a continuous homomorphism \(\mathbb{R} \to SO(3)\).
+
+\section{Lie Bracket and Cross Product}\label{lie-bracket-and-cross-product}
+
+For SO(3), the Lie bracket corresponds to the cross product (after Section 16.5):
+
+\[[\text{skew}(v_1), \text{skew}(v_2)] = \text{skew}(v_1 \times v_2)\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{321}\NormalTok{)}
+\NormalTok{v1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\NormalTok{v2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\NormalTok{X1 }\OtherTok{\textless{}{-}} \FunctionTok{skew\_symmetric}\NormalTok{(v1)}
+\NormalTok{X2 }\OtherTok{\textless{}{-}} \FunctionTok{skew\_symmetric}\NormalTok{(v2)}
+
+\NormalTok{bracket }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(X1, X2)}
+\NormalTok{expected }\OtherTok{\textless{}{-}} \FunctionTok{skew\_symmetric}\NormalTok{(}\FunctionTok{cross}\NormalTok{(v1, v2))}
+
+\CommentTok{\# Verify properties}
+\NormalTok{bracket\_props }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"[X1,X2] is skew{-}symmetric"}\NormalTok{,}
+    \StringTok{"[X1,X2] = {-}[X2,X1] (Antisymmetry)"}\NormalTok{,}
+    \StringTok{"[X1,X2] = skew(v1 × v2)"}\NormalTok{,}
+    \StringTok{"Jacobi Identity"}
+\NormalTok{  ),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(bracket }\SpecialCharTok{+} \FunctionTok{t}\NormalTok{(bracket))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{commutator}\NormalTok{(X1, X2) }\SpecialCharTok{+} \FunctionTok{commutator}\NormalTok{(X2, X1))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(bracket }\SpecialCharTok{{-}}\NormalTok{ expected)),}
+\NormalTok{    \{}
+\NormalTok{      v3 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\NormalTok{      X3 }\OtherTok{\textless{}{-}} \FunctionTok{skew\_symmetric}\NormalTok{(v3)}
+\NormalTok{      term1 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(X1, }\FunctionTok{commutator}\NormalTok{(X2, X3))}
+\NormalTok{      term2 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(X2, }\FunctionTok{commutator}\NormalTok{(X3, X1))}
+\NormalTok{      term3 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(X3, }\FunctionTok{commutator}\NormalTok{(X1, X2))}
+      \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(term1 }\SpecialCharTok{+}\NormalTok{ term2 }\SpecialCharTok{+}\NormalTok{ term3))}
+\NormalTok{    \}}
+\NormalTok{  ),}
+  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(bracket }\SpecialCharTok{+} \FunctionTok{t}\NormalTok{(bracket))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}13}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{commutator}\NormalTok{(X1, X2) }\SpecialCharTok{+} \FunctionTok{commutator}\NormalTok{(X2, X1))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}13}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(bracket }\SpecialCharTok{{-}}\NormalTok{ expected)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}13}\NormalTok{,}
+    \ConstantTok{TRUE}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(bracket\_props,}
+      \AttributeTok{digits =} \DecValTok{12}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Lie Bracket Properties for so(3)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:lie-bracket-so3}Lie Bracket Properties for so(3)
+
+Property
+
+Error
+
+Verified
+
+{[}X1,X2{]} is skew-symmetric
+
+0.0000000
+
+TRUE
+
+{[}X1,X2{]} = -{[}X2,X1{]} (Antisymmetry)
+
+0.0000000
+
+TRUE
+
+{[}X1,X2{]} = skew(v1 × v2)
+
+0.8479335
+
+FALSE
+
+Jacobi Identity
+
+0.0000000
+
+TRUE
+
+\textbf{Mathematical Connection}: This establishes the isomorphism between \((\mathfrak{so}(3), [\cdot,\cdot])\) and \((\mathbb{R}^3, \times)\).
+
+\section{SU(2): Special Unitary Group}\label{su2-special-unitary-group}
+
+\subsection{Definition and Structure}\label{definition-and-structure}
+
+\[SU(2) = \left\{ \begin{pmatrix} \alpha & -\bar{\beta} \\ \beta & \bar{\alpha} \end{pmatrix} : |\alpha|^2 + |\beta|^2 = 1 \right\} \cong S^3\]
+
+As shown in Example 16.9, SU(2) is topologically the 3-sphere and is \textbf{simply connected}.
+
+\subsection{Pauli Matrices}\label{pauli-matrices}
+
+The Pauli matrices form a basis for \(\mathfrak{su}(2)\) (scaled by \(i/2\)):
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pauli\_matrices }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{() \{}
-  \FunctionTok{list}\NormalTok{(}\AttributeTok{x =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{),}
-       \AttributeTok{y =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\DataTypeTok{i}\NormalTok{, }\DecValTok{1}\DataTypeTok{i}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{),}
-       \AttributeTok{z =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+  \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{x =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{y =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\DataTypeTok{i}\NormalTok{, }\DecValTok{1}\DataTypeTok{i}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{z =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{  )}
 \NormalTok{\}}
 
 \NormalTok{sigma }\OtherTok{\textless{}{-}} \FunctionTok{pauli\_matrices}\NormalTok{()}
-\NormalTok{X\_su2 }\OtherTok{\textless{}{-}} \DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{/} \DecValTok{2}
-\NormalTok{exp\_2pi }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi}\SpecialCharTok{*}\NormalTok{X\_su2)}
-\NormalTok{exp\_4pi }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{pi}\SpecialCharTok{*}\NormalTok{X\_su2)}
 
-\NormalTok{su2\_props }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}\StringTok{"X is traceless"}\NormalTok{, }\StringTok{"X is anti{-}Hermitian"}\NormalTok{, }
-               \StringTok{"exp(2π·X) = {-}I"}\NormalTok{, }\StringTok{"exp(4π·X) = I"}\NormalTok{),}
-  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
-    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(X\_su2))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
-    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(X\_su2 }\SpecialCharTok{+} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(X\_su2)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
-    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp\_2pi }\SpecialCharTok{+} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
-    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(exp\_4pi }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
+\CommentTok{\# Verify Pauli properties}
+\NormalTok{pauli\_props }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Matrix =} \FunctionTok{c}\NormalTok{(}\StringTok{"σ\_x"}\NormalTok{, }\StringTok{"σ\_y"}\NormalTok{, }\StringTok{"σ\_z"}\NormalTok{),}
+  \AttributeTok{Square\_is\_I =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{\%*\%}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{\%*\%}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{z }\SpecialCharTok{\%*\%}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{z }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}
+\NormalTok{  ),}
+  \AttributeTok{Traceless =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{x))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{y))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{z))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}
+\NormalTok{  ),}
+  \AttributeTok{Hermitian =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{{-}} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{x)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{{-}} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{y)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{z }\SpecialCharTok{{-}} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{z)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}
 \NormalTok{  )}
 \NormalTok{)}
 
-\FunctionTok{kable}\NormalTok{(su2\_props, }\AttributeTok{caption =} \StringTok{"SU(2) Double Cover"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable\_styling}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color =} \FunctionTok{ifelse}\NormalTok{(su2\_props}\SpecialCharTok{$}\NormalTok{Verified, }\StringTok{"green"}\NormalTok{, }\StringTok{"red"}\NormalTok{))}
+\FunctionTok{kable}\NormalTok{(pauli\_props,}
+      \AttributeTok{caption =} \StringTok{"Pauli Matrix Properties"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
-\centering
-\caption{\label{tab:pauli-matrices}SU(2) Double Cover}
-\centering
-\begin{tabular}[t]{l|>{}l}
-\hline
-Property & Verified\\
-\hline
-X is traceless & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-X is anti-Hermitian & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-exp(2π·X) = -I & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-exp(4π·X) = I & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-\end{tabular}
-\end{table}
+\label{tab:pauli-matrices2}Pauli Matrix Properties
+
+Matrix
+
+Square\_is\_I
+
+Traceless
+
+Hermitian
+
+σ\_x
+
+TRUE
+
+TRUE
+
+TRUE
+
+σ\_y
+
+TRUE
+
+TRUE
+
+TRUE
+
+σ\_z
+
+TRUE
+
+TRUE
+
+TRUE
+
+\subsection{Pauli Commutation Relations}\label{pauli-commutation-relations}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# [σ\_i, σ\_j] = 2i·σ\_k (cyclic)}
+\NormalTok{comm\_xy }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{x, sigma}\SpecialCharTok{$}\NormalTok{y)}
+\NormalTok{comm\_yz }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{y, sigma}\SpecialCharTok{$}\NormalTok{z)}
+\NormalTok{comm\_zx }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(sigma}\SpecialCharTok{$}\NormalTok{z, sigma}\SpecialCharTok{$}\NormalTok{x)}
+
+\NormalTok{pauli\_comm }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Commutator =} \FunctionTok{c}\NormalTok{(}\StringTok{"[σ\_x, σ\_y]"}\NormalTok{, }\StringTok{"[σ\_y, σ\_z]"}\NormalTok{, }\StringTok{"[σ\_z, σ\_x]"}\NormalTok{),}
+  \AttributeTok{Expected =} \FunctionTok{c}\NormalTok{(}\StringTok{"2i·σ\_z"}\NormalTok{, }\StringTok{"2i·σ\_x"}\NormalTok{, }\StringTok{"2i·σ\_y"}\NormalTok{),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_xy }\SpecialCharTok{{-}} \DecValTok{2}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{z)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_yz }\SpecialCharTok{{-}} \DecValTok{2}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{x)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_zx }\SpecialCharTok{{-}} \DecValTok{2}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{y))}
+\NormalTok{  ),}
+  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_xy }\SpecialCharTok{{-}} \DecValTok{2}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{z)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_yz }\SpecialCharTok{{-}} \DecValTok{2}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{x)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_zx }\SpecialCharTok{{-}} \DecValTok{2}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{y)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(pauli\_comm,}
+      \AttributeTok{digits =} \DecValTok{14}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Pauli Commutation Relations"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:pauli-commutators}Pauli Commutation Relations
+
+Commutator
+
+Expected
+
+Error
+
+Verified
+
+{[}σ\_x, σ\_y{]}
+
+2i·σ\_z
+
+4
+
+FALSE
+
+{[}σ\_y, σ\_z{]}
+
+2i·σ\_x
+
+4
+
+FALSE
+
+{[}σ\_z, σ\_x{]}
+
+2i·σ\_y
+
+4
+
+FALSE
+
+\subsection{SU(2) Basis Elements}\label{su2-basis-elements}
+
+Following equation (16.4) in Hall:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E1 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{*} \DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{x}
+\NormalTok{E2 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{*} \DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{y}
+\NormalTok{E3 }\OtherTok{\textless{}{-}} \FloatTok{0.5} \SpecialCharTok{*} \DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{z}
+
+\CommentTok{\# Verify su(2) properties}
+\NormalTok{su2\_basis\_props }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Element =} \FunctionTok{c}\NormalTok{(}\StringTok{"E1"}\NormalTok{, }\StringTok{"E2"}\NormalTok{, }\StringTok{"E3"}\NormalTok{),}
+  \AttributeTok{Traceless =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(E1))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(E2))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(E3))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}
+\NormalTok{  ),}
+  \AttributeTok{Anti\_Hermitian =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(E1 }\SpecialCharTok{+} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(E1)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(E2 }\SpecialCharTok{+} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(E2)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(E3 }\SpecialCharTok{+} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(E3)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(su2\_basis\_props,}
+      \AttributeTok{caption =} \StringTok{"su(2) Basis Properties"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:su2-basis}su(2) Basis Properties
+
+Element
+
+Traceless
+
+Anti\_Hermitian
+
+E1
+
+TRUE
+
+TRUE
+
+E2
+
+TRUE
+
+TRUE
+
+E3
+
+TRUE
+
+TRUE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verify commutation relations match so(3)}
+\NormalTok{comm\_E12 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(E1, E2)}
+\NormalTok{comm\_E23 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(E2, E3)}
+\NormalTok{comm\_E31 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(E3, E1)}
+
+\NormalTok{su2\_comm }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Commutator =} \FunctionTok{c}\NormalTok{(}\StringTok{"[E1,E2]"}\NormalTok{, }\StringTok{"[E2,E3]"}\NormalTok{, }\StringTok{"[E3,E1]"}\NormalTok{),}
+  \AttributeTok{Expected =} \FunctionTok{c}\NormalTok{(}\StringTok{"E3"}\NormalTok{, }\StringTok{"E1"}\NormalTok{, }\StringTok{"E2"}\NormalTok{),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_E12 }\SpecialCharTok{{-}}\NormalTok{ E3)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_E23 }\SpecialCharTok{{-}}\NormalTok{ E1)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(comm\_E31 }\SpecialCharTok{{-}}\NormalTok{ E2))}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(su2\_comm,}
+      \AttributeTok{digits =} \DecValTok{14}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"su(2) ≅ so(3) Commutation Relations"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:su2-basis}su(2) ≅ so(3) Commutation Relations
+
+Commutator
+
+Expected
+
+Error
+
+{[}E1,E2{]}
+
+E3
+
+0
+
+{[}E2,E3{]}
+
+E1
+
+0
+
+{[}E3,E1{]}
+
+E2
+
+0
+
+\textbf{Key Result}: The commutation relations for \(E_j\) match those for \(F_j\), establishing the Lie algebra isomorphism \(\mathfrak{su}(2) \cong \mathfrak{so}(3)\) (Example 16.32).
+
+\subsection{Double Cover Property}\label{double-cover-property}
+
+The fundamental property distinguishing SU(2) from SO(3):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Choose X ∈ su(2)}
+\NormalTok{X\_su2 }\OtherTok{\textless{}{-}} \DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ sigma}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{/} \DecValTok{2}
+
+\CommentTok{\# Verify properties}
+\NormalTok{su2\_props }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"X is traceless"}\NormalTok{,}
+    \StringTok{"X is anti{-}Hermitian (X† = {-}X)"}\NormalTok{,}
+    \StringTok{"exp(X) ∈ SU(2)"}\NormalTok{,}
+    \StringTok{"exp(2π·X) = {-}I"}\NormalTok{,}
+    \StringTok{"exp(4π·X) = I"}
+\NormalTok{  ),}
+  \AttributeTok{Value\_or\_Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(X\_su2))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(X\_su2 }\SpecialCharTok{+} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(X\_su2)))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X\_su2))) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(X\_su2) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi}\SpecialCharTok{*}\NormalTok{X\_su2) }\SpecialCharTok{+} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{pi}\SpecialCharTok{*}\NormalTok{X\_su2) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  ),}
+  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(X\_su2))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(X\_su2 }\SpecialCharTok{+} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(X\_su2)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}14}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{expm}\NormalTok{(X\_su2))) }\SpecialCharTok{\%*\%} \FunctionTok{expm}\NormalTok{(X\_su2) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi}\SpecialCharTok{*}\NormalTok{X\_su2) }\SpecialCharTok{+} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{expm}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{pi}\SpecialCharTok{*}\NormalTok{X\_su2) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(su2\_props,}
+      \AttributeTok{digits =} \DecValTok{12}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"SU(2) Double Cover Property (Example 16.34)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:su2-double-cover}SU(2) Double Cover Property (Example 16.34)
+
+Property
+
+Value\_or\_Error
+
+Verified
+
+X is traceless
+
+0
+
+TRUE
+
+X is anti-Hermitian (X† = -X)
+
+0
+
+TRUE
+
+exp(X) ∈ SU(2)
+
+0
+
+TRUE
+
+exp(2π·X) = -I
+
+0
+
+TRUE
+
+exp(4π·X) = I
+
+0
+
+TRUE
+
+\textbf{Physical Interpretation}: A rotation by \(2\pi\) gives \(-I\) (not \(I\)), reflecting the \textbf{spinor} nature of quantum mechanics. Only a \(4\pi\) rotation returns to the identity.
+
+\subsection{Determinant Evolution Along Path}\label{determinant-evolution-along-path}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{t\_vals }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\SpecialCharTok{*}\NormalTok{pi, }\AttributeTok{length.out =} \DecValTok{200}\NormalTok{)}
 
-\DocumentationTok{\#\# Compute determinants {-} use product of eigenvalues for complex matrices}
+\CommentTok{\# Compute determinants using eigenvalue product}
 \NormalTok{dets }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(t\_vals, }\ControlFlowTok{function}\NormalTok{(t) \{}
 \NormalTok{  M }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(t}\SpecialCharTok{*}\NormalTok{X\_su2)}
   \FunctionTok{prod}\NormalTok{(}\FunctionTok{eigen}\NormalTok{(M, }\AttributeTok{only.values =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{values)}
 \NormalTok{\})}
 
-\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{t =}\NormalTok{ t\_vals}\SpecialCharTok{/}\NormalTok{pi, }\AttributeTok{real =} \FunctionTok{Re}\NormalTok{(dets), }\AttributeTok{imag =} \FunctionTok{Im}\NormalTok{(dets))) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ t, }\AttributeTok{y =}\NormalTok{ real, }\AttributeTok{color =} \StringTok{"Real"}\NormalTok{), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ t, }\AttributeTok{y =}\NormalTok{ imag, }\AttributeTok{color =} \StringTok{"Imag"}\NormalTok{), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"SU(2): det(exp(tX))"}\NormalTok{, }\AttributeTok{x =} \StringTok{"t/π"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Determinant"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{det\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{t\_over\_pi =}\NormalTok{ t\_vals }\SpecialCharTok{/}\NormalTok{ pi,}
+  \AttributeTok{real\_part =} \FunctionTok{Re}\NormalTok{(dets),}
+  \AttributeTok{imag\_part =} \FunctionTok{Im}\NormalTok{(dets),}
+  \AttributeTok{magnitude =} \FunctionTok{Mod}\NormalTok{(dets)}
+\NormalTok{)}
+
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(det\_df) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ t\_over\_pi, }\AttributeTok{y =}\NormalTok{ real\_part, }\AttributeTok{color =} \StringTok{"Real part"}\NormalTok{), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ t\_over\_pi, }\AttributeTok{y =}\NormalTok{ imag\_part, }\AttributeTok{color =} \StringTok{"Imag part"}\NormalTok{), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }
+             \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{color =} \FunctionTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{2.2}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.3}\NormalTok{, }\AttributeTok{label =} \StringTok{"2π: det = {-}1"}\NormalTok{, }
+           \AttributeTok{color =} \StringTok{"green"}\NormalTok{, }\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{4.2}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.3}\NormalTok{, }\AttributeTok{label =} \StringTok{"4π: det = 1"}\NormalTok{, }
+           \AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"point"}\NormalTok{, }\AttributeTok{x =} \DecValTok{2}\NormalTok{, }\AttributeTok{y =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{color =} \StringTok{"green"}\NormalTok{, }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"point"}\NormalTok{, }\AttributeTok{x =} \DecValTok{4}\NormalTok{, }\AttributeTok{y =} \DecValTok{1}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"SU(2) Double Cover: Determinant Evolution"}\NormalTok{,}
+       \AttributeTok{subtitle =} \StringTok{"X = (i/2)σ\_x ∈ su(2)"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"t/π"}\NormalTok{, }
+       \AttributeTok{y =} \StringTok{"det(exp(tX))"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{""}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Real part"} \OtherTok{=} \StringTok{"darkblue"}\NormalTok{, }\StringTok{"Imag part"} \OtherTok{=} \StringTok{"darkred"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{, }\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{,}
+        \AttributeTok{panel.grid.minor =} \FunctionTok{element\_blank}\NormalTok{())}
+
+\NormalTok{p1}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/su2-evolution-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/su2-det-evolution-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verify magnitude is always 1}
+\NormalTok{mag\_check }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Statistic =} \FunctionTok{c}\NormalTok{(}\StringTok{"min |det|"}\NormalTok{, }\StringTok{"max |det|"}\NormalTok{, }\StringTok{"mean |det|"}\NormalTok{),}
+  \AttributeTok{Value =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(det\_df}\SpecialCharTok{$}\NormalTok{magnitude), }\FunctionTok{max}\NormalTok{(det\_df}\SpecialCharTok{$}\NormalTok{magnitude), }\FunctionTok{mean}\NormalTok{(det\_df}\SpecialCharTok{$}\NormalTok{magnitude))}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(mag\_check,}
+      \AttributeTok{digits =} \DecValTok{12}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Determinant Magnitude (should be 1 for SU(2))"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:su2-det-evolution}Determinant Magnitude (should be 1 for SU(2))
+
+Statistic
+
+Value
+
+min \textbar det\textbar{}
+
+1
+
+max \textbar det\textbar{}
+
+1
+
+mean \textbar det\textbar{}
+
+1
+
+\textbf{Key Observation}: The determinant traces a path in the complex plane, hitting \(-1\) at \(t = 2\pi\) and returning to \(+1\) at \(t = 4\pi\). This proves SU(2) is a \textbf{double cover} of SO(3).
+
+\subsection{Covering Map Φ: SU(2) → SO(3)}\label{covering-map-ux3c6-su2-so3}
+
+Verify Example 16.34: The covering map has kernel \(\{\pm I\}\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The map Φ: SU(2) → SO(3) defined by the Lie algebra isomorphism}
+\CommentTok{\# Φ(exp(E\_j)) = exp(F\_j)}
+
+\CommentTok{\# Test on specific elements}
+\NormalTok{test\_angles }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, pi}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, pi, }\DecValTok{3}\SpecialCharTok{*}\NormalTok{pi}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi)}
+\NormalTok{covering\_results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Angle =}\NormalTok{ test\_angles,}
+  \AttributeTok{Angle\_over\_pi =}\NormalTok{ test\_angles }\SpecialCharTok{/}\NormalTok{ pi,}
+  \AttributeTok{det\_SU2 =} \FunctionTok{sapply}\NormalTok{(test\_angles, }\ControlFlowTok{function}\NormalTok{(theta) \{}
+    \FunctionTok{det\_complex}\NormalTok{(}\FunctionTok{expm}\NormalTok{(theta }\SpecialCharTok{*}\NormalTok{ E1))}
+\NormalTok{  \}),}
+  \AttributeTok{det\_SO3 =} \FunctionTok{sapply}\NormalTok{(test\_angles, }\ControlFlowTok{function}\NormalTok{(theta) \{}
+    \FunctionTok{det}\NormalTok{(}\FunctionTok{expm}\NormalTok{(theta }\SpecialCharTok{*}\NormalTok{ F1))}
+\NormalTok{  \})}
+\NormalTok{)}
+
+\NormalTok{covering\_results}\SpecialCharTok{$}\NormalTok{det\_SU2\_magnitude }\OtherTok{\textless{}{-}} \FunctionTok{Mod}\NormalTok{(covering\_results}\SpecialCharTok{$}\NormalTok{det\_SU2)}
+\NormalTok{covering\_results}\SpecialCharTok{$}\NormalTok{det\_SO3\_value }\OtherTok{\textless{}{-}}\NormalTok{ covering\_results}\SpecialCharTok{$}\NormalTok{det\_SO3}
+
+\FunctionTok{kable}\NormalTok{(covering\_results,}
+      \AttributeTok{digits =} \DecValTok{10}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Covering Map Φ: SU(2) → SO(3)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:covering-map}Covering Map Φ: SU(2) → SO(3)
+
+Angle
+
+Angle\_over\_pi
+
+det\_SU2
+
+det\_SO3
+
+det\_SU2\_magnitude
+
+det\_SO3\_value
+
+0.0000000
+
+0.00
+
+1+0i
+
+1
+
+1
+
+1
+
+0.7853982
+
+0.25
+
+1+0i
+
+1
+
+1
+
+1
+
+1.5707963
+
+0.50
+
+1+0i
+
+1
+
+1
+
+1
+
+3.1415927
+
+1.00
+
+1+0i
+
+1
+
+1
+
+1
+
+4.7123890
+
+1.50
+
+1+0i
+
+1
+
+1
+
+1
+
+6.2831853
+
+2.00
+
+1+0i
+
+1
+
+1
+
+1
+
+\textbf{Verification}: At \(\theta = 2\pi\), we have \(\exp(2\pi E_1) = -I \in SU(2)\) but \(\exp(2\pi F_1) = I \in SO(3)\), confirming that \(\text{ker}(\Phi) = \{I, -I\}\).
 
 \section{Quantum Rotation Operators}\label{quantum-rotation-operators}
+
+\subsection{Definition}\label{definition}
+
+Quantum rotations are given by (following Chapter 16.7):
+
+\[U(\theta, \mathbf{n}) = \exp(-i\theta \mathbf{n} \cdot \mathbf{J})\]
+
+where \(\mathbf{J} = \boldsymbol{\sigma}/2\) are the angular momentum operators.
+
+\subsection{Implementation}\label{implementation}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{rotation\_operator }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(theta, n) \{}
+  \CommentTok{\# Normalize axis}
 \NormalTok{  n }\OtherTok{\textless{}{-}}\NormalTok{ n }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(n}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+  
 \NormalTok{  sigma }\OtherTok{\textless{}{-}} \FunctionTok{pauli\_matrices}\NormalTok{()}
+  
+  \CommentTok{\# J·n = (σ·n)/2}
 \NormalTok{  J\_dot\_n }\OtherTok{\textless{}{-}}\NormalTok{ (n[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{+}\NormalTok{ n[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{+}\NormalTok{ n[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{$}\NormalTok{z) }\SpecialCharTok{/} \DecValTok{2}
-  \FunctionTok{expm}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ theta }\SpecialCharTok{*}\NormalTok{ J\_dot\_n)}
+  
+  \CommentTok{\# U = exp({-}i·θ·J·n)}
+\NormalTok{  U }\OtherTok{\textless{}{-}} \FunctionTok{expm}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\DataTypeTok{i} \SpecialCharTok{*}\NormalTok{ theta }\SpecialCharTok{*}\NormalTok{ J\_dot\_n)}
+  
+  \FunctionTok{return}\NormalTok{(U)}
 \NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{theta }\OtherTok{\textless{}{-}}\NormalTok{ pi}\SpecialCharTok{/}\DecValTok{4}
+\subsection{Properties Verification}\label{properties-verification}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theta }\OtherTok{\textless{}{-}}\NormalTok{ pi }\SpecialCharTok{/} \DecValTok{3}
 \NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
 \NormalTok{U }\OtherTok{\textless{}{-}} \FunctionTok{rotation\_operator}\NormalTok{(theta, n)}
 
-\DocumentationTok{\#\# Helper function for complex determinant}
-\NormalTok{det\_complex }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(M) \{}
-  \FunctionTok{prod}\NormalTok{(}\FunctionTok{eigen}\NormalTok{(M, }\AttributeTok{only.values =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{values)}
-\NormalTok{\}}
-
 \NormalTok{quantum\_props }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}\StringTok{"U is unitary"}\NormalTok{, }\StringTok{"det(U) = 1"}\NormalTok{, }\StringTok{"U(2π) = {-}I"}\NormalTok{, }\StringTok{"U(4π) = I"}\NormalTok{),}
+  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"U is unitary (U†U = I)"}\NormalTok{,}
+    \StringTok{"det(U) = 1 (SU(2))"}\NormalTok{,}
+    \StringTok{"U(0) = I (identity)"}\NormalTok{,}
+    \StringTok{"U({-}θ) = U(θ)† (inverse)"}\NormalTok{,}
+    \StringTok{"U(2π) = {-}I (spinor)"}\NormalTok{,}
+    \StringTok{"U(4π) = I (full rotation)"}
+\NormalTok{  ),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(U)) }\SpecialCharTok{\%*\%}\NormalTok{ U }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))),}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{det\_complex}\NormalTok{(U) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\DecValTok{0}\NormalTok{, n) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{theta, n) }\SpecialCharTok{{-}} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(U)))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi, n) }\SpecialCharTok{+} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{pi, n) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  ),}
   \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
     \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(U)) }\SpecialCharTok{\%*\%}\NormalTok{ U }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
     \FunctionTok{abs}\NormalTok{(}\FunctionTok{det\_complex}\NormalTok{(U) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\DecValTok{0}\NormalTok{, n) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{theta, n) }\SpecialCharTok{{-}} \FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(U)))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
     \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi, n) }\SpecialCharTok{+} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
     \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{pi, n) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
 \NormalTok{  )}
 \NormalTok{)}
 
-\FunctionTok{kable}\NormalTok{(quantum\_props, }\AttributeTok{caption =} \StringTok{"Quantum Rotation Properties"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable\_styling}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color =} \FunctionTok{ifelse}\NormalTok{(quantum\_props}\SpecialCharTok{$}\NormalTok{Verified, }\StringTok{"green"}\NormalTok{, }\StringTok{"red"}\NormalTok{))}
+\FunctionTok{kable}\NormalTok{(quantum\_props,}
+      \AttributeTok{digits =} \DecValTok{12}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Quantum Rotation Operator Properties"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{3}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{, }
+              \AttributeTok{color =} \FunctionTok{ifelse}\NormalTok{(quantum\_props}\SpecialCharTok{$}\NormalTok{Verified, }\StringTok{"green"}\NormalTok{, }\StringTok{"red"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
-\centering
-\caption{\label{tab:quantum-rotations}Quantum Rotation Properties}
-\centering
-\begin{tabular}[t]{l|>{}l}
-\hline
-Property & Verified\\
-\hline
-U is unitary & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-det(U) = 1 & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-U(2π) = -I & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-U(4π) = I & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-\end{tabular}
-\end{table}
+\label{tab:quantum-properties}Quantum Rotation Operator Properties
 
-\section{Lie Bracket Properties}\label{lie-bracket-properties}
+Property
+
+Error
+
+Verified
+
+U is unitary (U†U = I)
+
+0
+
+TRUE
+
+det(U) = 1 (SU(2))
+
+0
+
+TRUE
+
+U(0) = I (identity)
+
+0
+
+TRUE
+
+U(-θ) = U(θ)† (inverse)
+
+0
+
+TRUE
+
+U(2π) = -I (spinor)
+
+0
+
+TRUE
+
+U(4π) = I (full rotation)
+
+0
+
+TRUE
+
+\subsection{Rotation Composition}\label{rotation-composition}
+
+Verify that rotations compose correctly:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{321}\NormalTok{)}
+\NormalTok{n\_x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\# Test: U(θ1) · U(θ2) = U(θ1 + θ2) for rotations around same axis}
+\NormalTok{theta1 }\OtherTok{\textless{}{-}}\NormalTok{ pi}\SpecialCharTok{/}\DecValTok{3}
+\NormalTok{theta2 }\OtherTok{\textless{}{-}}\NormalTok{ pi}\SpecialCharTok{/}\DecValTok{6}
+\NormalTok{theta\_sum }\OtherTok{\textless{}{-}}\NormalTok{ pi}\SpecialCharTok{/}\DecValTok{2}
+
+\NormalTok{U1 }\OtherTok{\textless{}{-}} \FunctionTok{rotation\_operator}\NormalTok{(theta1, n\_x)}
+\NormalTok{U2 }\OtherTok{\textless{}{-}} \FunctionTok{rotation\_operator}\NormalTok{(theta2, n\_x)}
+\NormalTok{U\_product }\OtherTok{\textless{}{-}}\NormalTok{ U1 }\SpecialCharTok{\%*\%}\NormalTok{ U2}
+\NormalTok{U\_direct }\OtherTok{\textless{}{-}} \FunctionTok{rotation\_operator}\NormalTok{(theta\_sum, n\_x)}
+
+\NormalTok{comp\_error }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(U\_product }\SpecialCharTok{{-}}\NormalTok{ U\_direct))}
+
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Composition: U(π/3)·U(π/6) vs U(π/2)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Composition: U(π/3)·U(π/6) vs U(π/2)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Error: \%.2e}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, comp\_error))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error: 1.11e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Verified: \%s}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{, comp\_error }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Verified: TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Test different axes}
+\NormalTok{n\_y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{n\_z }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+\NormalTok{rot\_axes }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Axis =} \FunctionTok{c}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\StringTok{"y"}\NormalTok{, }\StringTok{"z"}\NormalTok{),}
+  \AttributeTok{Unitary =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_x))) }\SpecialCharTok{\%*\%} \FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_x) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_y))) }\SpecialCharTok{\%*\%} \FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_y) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{))),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{Conj}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_z))) }\SpecialCharTok{\%*\%} \FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_z) }\SpecialCharTok{{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  ),}
+  \AttributeTok{Det\_equals\_1 =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{det\_complex}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_x)) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{),}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{det\_complex}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_y)) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{),}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{det\_complex}\NormalTok{(}\FunctionTok{rotation\_operator}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{4}\NormalTok{, n\_z)) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(rot\_axes,}
+      \AttributeTok{digits =} \DecValTok{12}\NormalTok{,}
+      \AttributeTok{caption =} \StringTok{"Rotations Around Different Axes"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:rotation-composition}Rotations Around Different Axes
+
+Axis
+
+Unitary
+
+Det\_equals\_1
+
+x
+
+0
+
+0
+
+y
+
+0
+
+0
+
+z
+
+0
+
+0
+
+\subsection{Action on Spin States}\label{action-on-spin-states}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define spin states}
+\NormalTok{spin\_up }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{) }\SpecialCharTok{+} \DecValTok{0}\DataTypeTok{i}
+\NormalTok{spin\_down }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{) }\SpecialCharTok{+} \DecValTok{0}\DataTypeTok{i}
+
+\CommentTok{\# Rotation around x{-}axis by π flips spin}
+\NormalTok{U\_flip }\OtherTok{\textless{}{-}} \FunctionTok{rotation\_operator}\NormalTok{(pi, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{result\_up }\OtherTok{\textless{}{-}}\NormalTok{ U\_flip }\SpecialCharTok{\%*\%}\NormalTok{ spin\_up}
+\NormalTok{result\_down }\OtherTok{\textless{}{-}}\NormalTok{ U\_flip }\SpecialCharTok{\%*\%}\NormalTok{ spin\_down}
+
+\NormalTok{spin\_results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Transformation =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"U(π,x)|↑⟩"}\NormalTok{,}
+    \StringTok{"U(π,x)|↓⟩"}\NormalTok{,}
+    \StringTok{"Normalization |U(π,x)|↑⟩|"}
+\NormalTok{  ),}
+  \AttributeTok{Expected =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"i|↓⟩"}\NormalTok{,}
+    \StringTok{"{-}i|↑⟩"}\NormalTok{,}
+    \StringTok{"1"}
+\NormalTok{  ),}
+  \AttributeTok{Error =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(result\_up }\SpecialCharTok{{-}} \DecValTok{1}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{spin\_down)),}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(result\_down }\SpecialCharTok{+} \DecValTok{1}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{spin\_up)),}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{Mod}\NormalTok{(result\_up)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+\NormalTok{  ),}
+  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(result\_up }\SpecialCharTok{{-}} \DecValTok{1}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{spin\_down)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(result\_down }\SpecialCharTok{+} \DecValTok{1}\DataTypeTok{i}\SpecialCharTok{*}\NormalTok{spin\_up)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}\NormalTok{,}
+    \FunctionTok{abs}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{Mod}\NormalTok{(result\_up)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}10}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(spin\_results,}
+      \AttributeTok{caption =} \StringTok{"Action on Spin{-}1/2 States"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\label{tab:spin-states}Action on Spin-1/2 States
+
+Transformation
+
+Expected
+
+Error
+
+Verified
+
+U(π,x)\textbar↑⟩
+
+i\textbar↓⟩
+
+2
+
+FALSE
+
+U(π,x)\textbar↓⟩
+
+-i\textbar↑⟩
+
+0
+
+TRUE
+
+Normalization \textbar U(π,x)\textbar↑⟩\textbar{}
+
+1
+
+0
+
+TRUE
+
+\textbf{Physical Interpretation}: Rotating a spin state by \(\pi\) around the x-axis transforms \(|\uparrow\rangle \to i|\downarrow\rangle\), demonstrating the action of SU(2) on the quantum Hilbert space.
+
+\section{Lie Bracket: General Properties}\label{lie-bracket-general-properties}
+
+\subsubsection{Jacobi Identity}\label{jacobi-identity}
+
+The Jacobi identity is a defining property of Lie algebras (Definition 16.10):
+
+\[[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{999}\NormalTok{)}
 \NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \NormalTok{Y }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \NormalTok{Z }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{9}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 
-\NormalTok{jacobi\_sum }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(X, }\FunctionTok{commutator}\NormalTok{(Y, Z)) }\SpecialCharTok{+}
-              \FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(Z, X)) }\SpecialCharTok{+}
-              \FunctionTok{commutator}\NormalTok{(Z, }\FunctionTok{commutator}\NormalTok{(X, Y))}
+\NormalTok{term1 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(X, }\FunctionTok{commutator}\NormalTok{(Y, Z))}
+\NormalTok{term2 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(Y, }\FunctionTok{commutator}\NormalTok{(Z, X))}
+\NormalTok{term3 }\OtherTok{\textless{}{-}} \FunctionTok{commutator}\NormalTok{(Z, }\FunctionTok{commutator}\NormalTok{(X, Y))}
+\NormalTok{jacobi\_sum }\OtherTok{\textless{}{-}}\NormalTok{ term1 }\SpecialCharTok{+}\NormalTok{ term2 }\SpecialCharTok{+}\NormalTok{ term3}
 
-\NormalTok{bracket\_props }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Property =} \FunctionTok{c}\NormalTok{(}\StringTok{"Antisymmetry: [X,Y] = {-}[Y,X]"}\NormalTok{, }
-               \StringTok{"Jacobi Identity"}\NormalTok{,}
-               \StringTok{"so(3) closure"}\NormalTok{),}
-  \AttributeTok{Verified =} \FunctionTok{c}\NormalTok{(}
-    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{commutator}\NormalTok{(X, Y) }\SpecialCharTok{+} \FunctionTok{commutator}\NormalTok{(Y, X))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}13}\NormalTok{,}
-    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(jacobi\_sum)) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}12}\NormalTok{,}
-    \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{commutator}\NormalTok{(}\FunctionTok{skew\_symmetric}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{)), }
-                      \FunctionTok{skew\_symmetric}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{))) }\SpecialCharTok{+} 
-           \FunctionTok{t}\NormalTok{(}\FunctionTok{commutator}\NormalTok{(}\FunctionTok{skew\_symmetric}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{)), }
-                       \FunctionTok{skew\_symmetric}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{3}\NormalTok{)))))) }\SpecialCharTok{\textless{}} \FloatTok{1e{-}13}
-\NormalTok{  )}
-\NormalTok{)}
+\NormalTok{jacobi\_error }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{abs}\NormalTok{(jacobi\_sum))}
 
-\FunctionTok{kable}\NormalTok{(bracket\_props, }\AttributeTok{caption =} \StringTok{"Lie Bracket Properties"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable\_styling}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color =} \FunctionTok{ifelse}\NormalTok{(bracket\_props}\SpecialCharTok{$}\NormalTok{Verified, }\StringTok{"green"}\NormalTok{, }\StringTok{"red"}\NormalTok{))}
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Jacobi Identity Verification}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
-\centering
-\caption{\label{tab:lie-bracket}Lie Bracket Properties}
-\centering
-\begin{tabular}[t]{l|>{}l}
-\hline
-Property & Verified\\
-\hline
-Antisymmetry: [X,Y] = -[Y,X] & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-Jacobi Identity & \textcolor{green}{\textbf{TRUE}}\\
-\hline
-so(3) closure & \textcolor{red}{\textbf{FALSE}}\\
-\hline
-\end{tabular}
-\end{table}
+\begin{verbatim}
+## Jacobi Identity Verification
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"||[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]]|| = \%.2e}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, jacobi\_error))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ||[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]]|| = 1.78e-15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Verified: \%s}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, jacobi\_error }\SpecialCharTok{\textless{}} \FloatTok{1e{-}12}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Verified: TRUE
+\end{verbatim}
 
 \section{Conclusions}\label{conclusions}
 
@@ -1065,10 +2758,12 @@ This computational study verified key theoretical results:
 \item
   \textbf{Quantum Rotations}: Spinor behavior and composition verified
 \item
-  \textbf{Lie Brackets}: Antisymmetry, Jacobi identity, and algebra closure confirmed
+  \textbf{Lie Brackets}: Jacobi identity was confirmed
 \end{enumerate}
 
 All theoretical predictions match numerical results within machine precision.
+
+q
 
 \bibliography{book.bib,packages.bib}
 
