@@ -173,11 +173,20 @@ h3 {
 
 ---
 class: inverse, center, middle
+background-color: #0000
+
+
+
+
+
+
+---
+class: inverse, center, middle
 
 # What Are Lie Groups?
 
 ### Combining Geometry and Algebra
-
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/E8Petrie.svg/330px-E8Petrie.svg.png" width="400px" />
 ---
 
 # Table of Contents
