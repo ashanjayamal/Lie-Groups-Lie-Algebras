@@ -86,6 +86,3 @@ action-on-spin-states
 lie-bracket-general-properties
 jacobi-identity
 conclusions
-lie-bracket-properties
-su2-special-unitary-group-1
-quantum-rotation-operators-1
