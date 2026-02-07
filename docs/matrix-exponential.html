@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Matrix Exponential | Lie Groups and Lie Algbera</title>
   <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Matrix Exponential | Lie Groups and Lie Algbera" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ashan De Silva (Student Number: 008058631)" />
 
 
-<meta name="date" content="2026-01-03" />
+<meta name="date" content="2026-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,14 +54,14 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="code-implantation.html"><a href="code-implantation.html#method-1-direct-power-series"><i class="fa fa-check"></i><b>7.2.1</b> Method 1: Direct Power Series</a></li>
 <li class="chapter" data-level="7.2.2" data-path="code-implantation.html"><a href="code-implantation.html#method-2-eigenvalue-decomposition"><i class="fa fa-check"></i><b>7.2.2</b> Method 2: Eigenvalue Decomposition</a></li>
-<li class="chapter" data-level="7.2.3" data-path="03-matrix_exp.html"><a href="#method-3-pad%C3%A9-approximation-expm-package"><i class="fa fa-check"></i><b>7.2.3</b> Method 3: Padé Approximation (expm package)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="code-implantation.html"><a href="code-implantation.html#method-3-pad%C3%A9-approximation-expm-package"><i class="fa fa-check"></i><b>7.2.3</b> Method 3: Padé Approximation (expm package)</a></li>
 <li class="chapter" data-level="7.2.4" data-path="code-implantation.html"><a href="code-implantation.html#performance-comparison"><i class="fa fa-check"></i><b>7.2.4</b> Performance Comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="code-implantation.html"><a href="code-implantation.html#seven-fundamental-properties"><i class="fa fa-check"></i><b>7.3</b> Seven Fundamental Properties</a>
@@ -206,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8.4" data-path="code-implantation.html"><a href="code-implantation.html#su2-basis-elements"><i class="fa fa-check"></i><b>7.8.4</b> SU(2) Basis Elements</a></li>
 <li class="chapter" data-level="7.8.5" data-path="code-implantation.html"><a href="code-implantation.html#double-cover-property"><i class="fa fa-check"></i><b>7.8.5</b> Double Cover Property</a></li>
 <li class="chapter" data-level="7.8.6" data-path="code-implantation.html"><a href="code-implantation.html#determinant-evolution-along-path"><i class="fa fa-check"></i><b>7.8.6</b> Determinant Evolution Along Path</a></li>
-<li class="chapter" data-level="7.8.7" data-path="03-matrix_exp.html"><a href="#covering-map-%CF%86-su2-so3"><i class="fa fa-check"></i><b>7.8.7</b> Covering Map Φ: SU(2) → SO(3)</a></li>
+<li class="chapter" data-level="7.8.7" data-path="code-implantation.html"><a href="code-implantation.html#covering-map-%CF%86-su2-so3"><i class="fa fa-check"></i><b>7.8.7</b> Covering Map Φ: SU(2) → SO(3)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="code-implantation.html"><a href="code-implantation.html#quantum-rotation-operators"><i class="fa fa-check"></i><b>7.9</b> Quantum Rotation Operators</a>
 <ul>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lie Groups and Lie Algebra</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ashan De Silva" />
+    <meta name="date" content="2026-02-07" />
+    <script src="pre_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Lie Groups and Lie Algebra
+]
+.author[
+### Ashan De Silva
+]
+.institute[
+### Department of Mathematics<br>University of Manitoba
+]
+.date[
+### 2026-02-07
+]
+
+---
+
+
+
+
+&lt;style type="text/css"&gt;
+.definition-box {
+  background-color: #eee8d5;
+  border-left: 5px solid #dc322f;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.theorem-box {
+  background-color: #eee8d5;
+  border-left: 5px solid #dc322f;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.example-box {
+  background-color: #fdf6e3;
+  border-left: 5px solid #268bd2;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.insight-box {
+  background-color: #fdf6e3;
+  border-left: 5px solid #859900;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+}
+
+.remark-code {
+  font-size: 18px;
+}
+
+.small-text {
+  font-size: 18px;
+}
+
+.large-number {
+  font-size: 48px;
+  font-weight: bold;
+  color: #dc322f;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.column-left {
+  padding: 20px;
+  background-color: #eee8d5;
+  border-radius: 8px;
+  border-left: 3px solid #268bd2;
+}
+
+.column-right {
+  padding: 20px;
+  background-color: #eee8d5;
+  border-radius: 8px;
+  border-left: 3px solid #859900;
+}
+
+h3 {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.math-large {
+  font-size: 24px;
+}
+
+.venn-area {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.v-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  position: absolute;
+  top: 25px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 22px;
+  /* Removed background-color, added border */
+  border: 2px solid #002b36; 
+  background-color: transparent;
+}
+
+.v-left {
+  left: 50px;
+  justify-content: flex-start;
+  padding-left: 30px;
+  color: #002b36;
+}
+
+.v-right {
+  right: 50px;
+  justify-content: flex-end;
+  padding-right: 20px;
+  color: #002b36;
+}
+
+.v-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 26px;
+  color: #dc322f; /* Using your theme's red for the central label to make it pop */
+  text-align: center;
+  z-index: 10;
+  line-height: 1.1;
+}
+&lt;/style&gt;
+
+---
+class: inverse, center, middle
+
+# What Are Lie Groups?
+
+### Combining Geometry and Algebra
+
+---
+
+# Table of Contents
+
+.large[
+1. **Introduction to Lie Groups**  
+   *Definition and basic properties*
+
+2. **Examples of Lie Groups**  
+   *Classical groups and matrix groups*
+
+3. **Lie Algebras**  
+   *The tangent space perspective*
+
+4. **The Exponential Map**  
+   *Connecting groups and algebras*
+
+5. **Applications**  
+   *Physics and geometry*
+]
+
+---
+
+# Definition: Lie Group
+
+.definition-box[
+**DEFINITION**
+
+A **Lie group** is a smooth manifold `\(G\)` which is also a group, such that:
+
+1. The group multiplication map is smooth:
+`\(\mu: G \times G \to G, \quad (g,h) \mapsto gh\)`
+
+2. The inverse map is smooth:
+`\(\iota: G \to G, \quad g \mapsto g^{-1}\)`
+]
+
+.insight-box[
+💡 **Key Insight**
+
+Lie groups blend continuous symmetry (manifold structure) with algebraic operations (group structure).
+]
+
+---
+
+# Intuitive Understanding
+
+.two-column[
+.column-left[
+### As a Manifold
+
+- Smooth, continuous space
+- Has tangent vectors at each point
+- Can do calculus
+- Locally looks like `\(\mathbb{R}^n\)`
+]
+
+.column-right[
+### As a Group
+
+- Can multiply elements
+- Has identity element `\(e\)`
+- Every element has inverse
+- Multiplication is associative
+]
+]
+
+&lt;br&gt;
+
+.insight-box[
+*The Magic: These Two Structures Are Compatible**
+
+The group operations (multiplication and inverse) respect the smooth structure. This means we can use calculus to study symmetries!
+]
+
+
+A **Lie Group** lives exactly where Algebra meets Geometry.
+
+&lt;div class="venn-area"&gt; &lt;div class="v-circle v-left"&gt;Groups&lt;/div&gt; &lt;div class="v-circle v-right"&gt;Manifolds&lt;/div&gt; &lt;div class="v-label"&gt;Lie
+Groups&lt;/div&gt; &lt;/div&gt;
+
+
+---
+# Example 1: The Circle Group `\(S^1\)`
+
+
+.example-box[
+Let `\(G = \mathbb{R} \times \mathbb{R} \times S\)`, equipped with the group operation
+`$$(x_1, y_1, \lambda_1) \cdot (x_2, y_2, \lambda_2) = (x_1 + x_2,\, y_1 + y_2,\, e^{ix_1y_2}\lambda_1 \lambda_2). \text{ and }$$`
+`$$(x,y,\lambda)^{-1}=\left(-x,\; -y,\; e^{ixy}\lambda^{-1}\right)$$`
+Then `\(G\)` is a Lie group.
+]
+&lt;!---
+.example-box[
+**EXAMPLE 1**
+
+The unit circle in the complex plane:
+`\(S^1 = \{z \in \mathbb{C} : |z| = 1\}\)`
+- **Group operation:**
+`\(z_1 \cdot z_2 = e^{i\theta_1} \cdot e^{i\theta_2} = e^{i(\theta_1+\theta_2)}\)`
+- **Identity:** `\(e^{i \cdot 0} = 1\)`
+- **Inverse:** `\((e^{i\theta})^{-1} = e^{-i\theta}\)`
+]
+
+.insight-box[
+**Geometric View:** Multiplication = Rotation
+
+Rotating by angle `\(\theta_1\)` then by angle `\(\theta_2\)` equals rotating by angle `\(\theta_1 + \theta_2\)`
+
+`\(S^1\)` models rotational symmetry!
+]
+---&gt;
+---
+
+# Example 2: General Linear Group `\(GL(n,\mathbb{R})\)`
+
+
+.example-box[
+**EXAMPLE 2**
+
+The group of invertible `\(n \times n\)` real matrices:
+
+`$$GL(n,\mathbb{R}) = \{A \in \text{Mat}(n \times n, \mathbb{R}) : \det(A) \neq 0\}$$`
+]
+
+**Properties:**
+
+- **Manifold structure:** Open subset of `\(\mathbb{R}^{n^2}\)`  
+  (condition `\(\det(A) \neq 0\)` defines open set)
+
+- **Group operation:** Matrix multiplication
+
+- **Identity:** `\(I_n\)` (identity matrix)
+
+- **Inverse:** `\(A^{-1}\)` (matrix inverse)
+
+- **Dimension:** `\(n^2\)` as a manifold
+
+---
+
+# Classical Lie Groups
+
+| Symbol | Name | Definition | Dimension |
+|--------|------|------------|-----------|
+| `\(SL(n,\mathbb{R})\)` | Special Linear Group | Matrices with `\(\det(A) = 1\)` | `\(n^2 - 1\)` |
+| `\(O(n)\)` | Orthogonal Group | `\(A^T A = I\)` (preserves inner product) | `\(\frac{n(n-1)}{2}\)` |
+| `\(SO(n)\)` | Special Orthogonal Group | `\(O(n)\)` with `\(\det(A) = 1\)` (rotations) | `\(\frac{n(n-1)}{2}\)` |
+| `\(U(n)\)` | Unitary Group | `\(A^* A = I\)` in `\(\mathbb{C}^{n \times n}\)` | `\(n^2\)` |
+| `\(Sp(2n,\mathbb{R})\)` | Symplectic Group | Preserves symplectic form | `\(n(2n+1)\)` |
+
+&lt;br&gt;
+
+.small-text[
+These groups appear throughout mathematics and physics as fundamental symmetry groups.
+]
+
+---
+class: inverse, center, middle
+
+# Lie Algebras
+
+### The Infinitesimal Structure
+
+---
+
+# Definition: Lie Algebra
+
+.definition-box[
+**DEFINITION**
+
+A **Lie algebra** is a vector space `\(\mathfrak{g}\)` equipped with a bilinear operation
+
+`$$[\cdot, \cdot]: \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$$`
+
+called the **Lie bracket**, satisfying:
+
+1. **Antisymmetry:** `\([X, Y] = -[Y, X]\)`
+
+2. **Jacobi identity:** `\([X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0\)`
+]
+
+.insight-box[
+**Connection to Lie Groups**
+
+For a Lie group `\(G\)`, its Lie algebra `\(\mathfrak{g} = T_e G\)` is the tangent space at the identity.
+
+The Lie bracket captures how tangent vectors "fail to commute" in the group.
+]
+
+---
+
+# Example: Lie Algebra of `\(GL(n,\mathbb{R})\)`
+
+.example-box[
+The Lie algebra of `\(GL(n,\mathbb{R})\)` is:
+
+`$$\mathfrak{gl}(n,\mathbb{R}) = \text{Mat}(n \times n, \mathbb{R})$$`
+
+(all `\(n \times n\)` real matrices)
+]
+
+**Lie Bracket:**
+
+The Lie bracket is the **matrix commutator**:
+
+`$$[A, B] = AB - BA$$`
+
+**Verification of Properties:**
+
+✓ **Antisymmetry:** `\([A, B] = AB - BA = -(BA - AB) = -[B, A]\)`
+
+✓ **Jacobi identity:** Can be verified by direct computation
+
+---
+
+# The Exponential Map
+
+.theorem-box[
+**THEOREM**
+
+The exponential map `\(\exp: \mathfrak{g} \to G\)` is defined by:
+
+`$$\exp(X) = e^X = I + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \cdots$$`
+]
+
+.two-column[
+.column-left[
+### Key Properties
+
+1. `\(\exp(0) = e\)` (identity)
+
+2. `\(\exp(tX)\)` is a 1-parameter subgroup for each `\(X \in \mathfrak{g}\)`
+
+3. `\(\frac{d}{dt}\exp(tX)\big|_{t=0} = X\)`
+
+4. `\(\exp\)` is a local diffeomorphism near `\(0 \in \mathfrak{g}\)`
+]
+
+.column-right[
+### Geometric Meaning
+
+The exponential map takes:
+
+**Tangent vectors at identity**  
+(infinitesimal symmetries)
+
+↓
+
+**Group elements**  
+(actual symmetries)
+]
+]
+
+---
+
+# Example: Exponential of Matrices
+
+**Example 1: Diagonal Matrix**
+
+If `\(X = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_n)\)`, then:
+
+`$$\exp(X) = \text{diag}(e^{\lambda_1}, e^{\lambda_2}, \ldots, e^{\lambda_n})$$`
+
+&lt;br&gt;
+
+**Example 2: Rotation Matrix**
+
+For the `\(2 \times 2\)` skew-symmetric matrix:
+
+`$$X = \begin{pmatrix} 0 &amp; \theta \\ -\theta &amp; 0 \end{pmatrix}, \quad \exp(X) = \begin{pmatrix} \cos\theta &amp; \sin\theta \\ -\sin\theta &amp; \cos\theta \end{pmatrix}$$`
+
+This gives a rotation by angle `\(\theta\)`!
+
+.insight-box[
+💡 The exponential map converts infinitesimal rotations into actual rotations!
+]
+
+---
+
+# Applications of Lie Theory
+
+.example-box[
+### ⚛️ Physics
+
+- Quantum mechanics: Angular momentum, spin
+- Particle physics: Gauge theories, Standard Model
+- General relativity: Lorentz group, spacetime symmetries
+]
+
+.example-box[
+### 📐 Differential Geometry
+
+- Isometry groups of Riemannian manifolds
+- Holonomy groups and parallel transport
+- Symmetric spaces and homogeneous spaces
+]
+
+.example-box[
+### 🎮 Control Theory
+
+- Robotics: Configuration spaces
+- Nonlinear control systems
+- Optimal control on manifolds
+]
+
+---
+
+# Summary
+
+### Key Takeaways
+
+1. **Lie groups** combine smooth manifold structure with group structure
+
+2. **Classical examples:** `\(GL(n,\mathbb{R})\)`, `\(SO(n)\)`, `\(SU(n)\)` — fundamental in mathematics and physics
+
+3. **Lie algebras** are the "infinitesimal" version — tangent space at identity
+
+4. **The exponential map** connects Lie algebras to Lie groups
+
+5. **Applications** span physics, geometry, control theory, and beyond
+
+&lt;br&gt;
+
+.insight-box[
+📚 **Further Study:** Representation theory, Homogeneous spaces, Lie group cohomology
+]
+
+---
+class: inverse, center, middle
+
+# Thank You!
+
+### Questions?
+
+**Ashan De Silva**  
+Department of Mathematics  
+University of Manitoba
+
+---
+
+# References and Further Reading
+
+.small-text[
+**Recommended Textbooks:**
+
+- Stillwell, J. (2008). *Naive Lie Theory*. Springer.
+- Hall, B. (2015). *Lie Groups, Lie Algebras, and Representations*. Springer.
+- Knapp, A. (2002). *Lie Groups Beyond an Introduction*. Birkhäuser.
+
+**Online Resources:**
+
+- nLab: Lie group (https://ncatlab.org/nlab/show/Lie+group)
+- MIT OpenCourseWare: Topics in Lie Theory
+- University of Chicago: Lie Groups Notes
+
+**Applications:**
+
+- Georgi, H. (1999). *Lie Algebras in Particle Physics*. Perseus Books.
+- Sattinger, D. &amp; Weaver, O. (1986). *Lie Groups and Algebras with Applications to Physics, Geometry, and Mechanics*. Springer.
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "ratio": "16:9",
+  "countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

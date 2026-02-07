@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 What Is a Random Variable? | Introduction to Random Variables</title>
+  <meta name="description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 What Is a Random Variable? | Introduction to Random Variables" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
+  <meta name="github-repo" content="ashanjayamal/Lie-Groups-Lie-Algebras" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 What Is a Random Variable? | Introduction to Random Variables" />
+  
+  <meta name="twitter:description" content="This was make keep tarack of my independent studies of lIe groups. All the detils of citataion will be added later." />
+  
+
+<meta name="author" content="Ashan Jayamal" />
+
+
+<meta name="date" content="2026-02-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="references.html"/>
+
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Lie Groups</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#notation-and-some-definitions"><i class="fa fa-check"></i><b>1.1</b> Notation and Some definitions</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lie-groups.html"><a href="lie-groups.html"><i class="fa fa-check"></i><b>2</b> Lie Groups</a></li>
+<li class="chapter" data-level="3" data-path="lie-algebra.html"><a href="lie-algebra.html"><i class="fa fa-check"></i><b>3</b> Lie Algebra</a></li>
+<li class="chapter" data-level="4" data-path="matrix-exponential.html"><a href="matrix-exponential.html"><i class="fa fa-check"></i><b>4</b> Matrix Exponential</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matrix-exponential.html"><a href="matrix-exponential.html#computing-exponential"><i class="fa fa-check"></i><b>4.1</b> Computing Exponential</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="the-lie-algebra-of-a-matrix-lie-group.html"><a href="the-lie-algebra-of-a-matrix-lie-group.html"><i class="fa fa-check"></i><b>5</b> The Lie Algebra of a Matrix Lie Group</a></li>
+<li class="chapter" data-level="6" data-path="relationships-between-lie-groups-and-lie-algebras.html"><a href="relationships-between-lie-groups-and-lie-algebras.html"><i class="fa fa-check"></i><b>6</b> Relationships Between Lie Groups and Lie Algebras</a></li>
+<li class="chapter" data-level="7" data-path="code-implantation.html"><a href="code-implantation.html"><i class="fa fa-check"></i><b>7</b> Code Implantation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="code-implantation.html"><a href="code-implantation.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="code-implantation.html"><a href="code-implantation.html#matrix-exponential-algorithms"><i class="fa fa-check"></i><b>7.2</b> Matrix Exponential Algorithms</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="code-implantation.html"><a href="code-implantation.html#method-1-direct-power-series"><i class="fa fa-check"></i><b>7.2.1</b> Method 1: Direct Power Series</a></li>
+<li class="chapter" data-level="7.2.2" data-path="code-implantation.html"><a href="code-implantation.html#method-2-eigenvalue-decomposition"><i class="fa fa-check"></i><b>7.2.2</b> Method 2: Eigenvalue Decomposition</a></li>
+<li class="chapter" data-level="7.2.3" data-path="code-implantation.html"><a href="code-implantation.html#method-3-pad%C3%A9-approximation-expm-package"><i class="fa fa-check"></i><b>7.2.3</b> Method 3: Padé Approximation (expm package)</a></li>
+<li class="chapter" data-level="7.2.4" data-path="code-implantation.html"><a href="code-implantation.html#performance-comparison"><i class="fa fa-check"></i><b>7.2.4</b> Performance Comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="code-implantation.html"><a href="code-implantation.html#seven-fundamental-properties"><i class="fa fa-check"></i><b>7.3</b> Seven Fundamental Properties</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="code-implantation.html"><a href="code-implantation.html#property-1-identity-element"><i class="fa fa-check"></i><b>7.3.1</b> Property 1: Identity Element</a></li>
+<li class="chapter" data-level="7.3.2" data-path="code-implantation.html"><a href="code-implantation.html#property-2-transpose"><i class="fa fa-check"></i><b>7.3.2</b> Property 2: Transpose</a></li>
+<li class="chapter" data-level="7.3.3" data-path="code-implantation.html"><a href="code-implantation.html#property-3-adjoint-conjugate-transpose"><i class="fa fa-check"></i><b>7.3.3</b> Property 3: Adjoint (Conjugate Transpose)</a></li>
+<li class="chapter" data-level="7.3.4" data-path="code-implantation.html"><a href="code-implantation.html#property-4-conjugation"><i class="fa fa-check"></i><b>7.3.4</b> Property 4: Conjugation</a></li>
+<li class="chapter" data-level="7.3.5" data-path="code-implantation.html"><a href="code-implantation.html#property-5-determinant"><i class="fa fa-check"></i><b>7.3.5</b> Property 5: Determinant</a></li>
+<li class="chapter" data-level="7.3.6" data-path="code-implantation.html"><a href="code-implantation.html#property-6-commuting-matrices"><i class="fa fa-check"></i><b>7.3.6</b> Property 6: Commuting Matrices</a></li>
+<li class="chapter" data-level="7.3.7" data-path="code-implantation.html"><a href="code-implantation.html#property-7-lie-product-formula"><i class="fa fa-check"></i><b>7.3.7</b> Property 7: Lie Product Formula</a></li>
+<li class="chapter" data-level="7.3.8" data-path="code-implantation.html"><a href="code-implantation.html#summary-theorem-refthmthm1"><i class="fa fa-check"></i><b>7.3.8</b> Summary: Theorem @ref(thm:thm1)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="code-implantation.html"><a href="code-implantation.html#baker-campbell-hausdorff-formula"><i class="fa fa-check"></i><b>7.4</b> Baker-Campbell-Hausdorff Formula</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="code-implantation.html"><a href="code-implantation.html#background"><i class="fa fa-check"></i><b>7.4.1</b> Background</a></li>
+<li class="chapter" data-level="7.4.2" data-path="code-implantation.html"><a href="code-implantation.html#implimentation"><i class="fa fa-check"></i><b>7.4.2</b> Implimentation</a></li>
+<li class="chapter" data-level="7.4.3" data-path="code-implantation.html"><a href="code-implantation.html#convergence-analysis"><i class="fa fa-check"></i><b>7.4.3</b> Convergence Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="code-implantation.html"><a href="code-implantation.html#so3-rotation-group"><i class="fa fa-check"></i><b>7.5</b> SO(3) Rotation Group</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="code-implantation.html"><a href="code-implantation.html#mathematical-background"><i class="fa fa-check"></i><b>7.5.1</b> Mathematical Background</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="code-implantation.html"><a href="code-implantation.html#su2-special-unitary-group"><i class="fa fa-check"></i><b>7.6</b> SU(2) Special Unitary Group</a></li>
+<li class="chapter" data-level="7.7" data-path="code-implantation.html"><a href="code-implantation.html#quantum-rotation-operators"><i class="fa fa-check"></i><b>7.7</b> Quantum Rotation Operators</a></li>
+<li class="chapter" data-level="7.8" data-path="code-implantation.html"><a href="code-implantation.html#lie-bracket-properties"><i class="fa fa-check"></i><b>7.8</b> Lie Bracket Properties</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="code-implantation.html"><a href="code-implantation.html#basis-for-mathfrakso3"><i class="fa fa-check"></i><b>7.8.1</b> Basis for <span class="math inline">\(\mathfrak{so}(3)\)</span></a></li>
+<li class="chapter" data-level="7.8.2" data-path="code-implantation.html"><a href="code-implantation.html#d-visualization-rotation-path"><i class="fa fa-check"></i><b>7.8.2</b> 3D Visualization: Rotation Path</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="code-implantation.html"><a href="code-implantation.html#one-parameter-subgroups"><i class="fa fa-check"></i><b>7.9</b> One-Parameter Subgroups</a></li>
+<li class="chapter" data-level="7.10" data-path="code-implantation.html"><a href="code-implantation.html#lie-bracket-and-cross-product"><i class="fa fa-check"></i><b>7.10</b> Lie Bracket and Cross Product</a></li>
+<li class="chapter" data-level="7.11" data-path="code-implantation.html"><a href="code-implantation.html#su2-special-unitary-group-1"><i class="fa fa-check"></i><b>7.11</b> SU(2): Special Unitary Group</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="code-implantation.html"><a href="code-implantation.html#definition-and-structure"><i class="fa fa-check"></i><b>7.11.1</b> Definition and Structure</a></li>
+<li class="chapter" data-level="7.11.2" data-path="code-implantation.html"><a href="code-implantation.html#pauli-matrices"><i class="fa fa-check"></i><b>7.11.2</b> Pauli Matrices</a></li>
+<li class="chapter" data-level="7.11.3" data-path="code-implantation.html"><a href="code-implantation.html#pauli-commutation-relations"><i class="fa fa-check"></i><b>7.11.3</b> Pauli Commutation Relations</a></li>
+<li class="chapter" data-level="7.11.4" data-path="code-implantation.html"><a href="code-implantation.html#su2-basis-elements"><i class="fa fa-check"></i><b>7.11.4</b> SU(2) Basis Elements</a></li>
+<li class="chapter" data-level="7.11.5" data-path="code-implantation.html"><a href="code-implantation.html#double-cover-property"><i class="fa fa-check"></i><b>7.11.5</b> Double Cover Property</a></li>
+<li class="chapter" data-level="7.11.6" data-path="code-implantation.html"><a href="code-implantation.html#determinant-evolution-along-path"><i class="fa fa-check"></i><b>7.11.6</b> Determinant Evolution Along Path</a></li>
+<li class="chapter" data-level="7.11.7" data-path="code-implantation.html"><a href="code-implantation.html#covering-map-%CF%86-su2-so3"><i class="fa fa-check"></i><b>7.11.7</b> Covering Map Φ: SU(2) → SO(3)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="code-implantation.html"><a href="code-implantation.html#quantum-rotation-operators-1"><i class="fa fa-check"></i><b>7.12</b> Quantum Rotation Operators</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="code-implantation.html"><a href="code-implantation.html#definition"><i class="fa fa-check"></i><b>7.12.1</b> Definition</a></li>
+<li class="chapter" data-level="7.12.2" data-path="code-implantation.html"><a href="code-implantation.html#implementation"><i class="fa fa-check"></i><b>7.12.2</b> Implementation</a></li>
+<li class="chapter" data-level="7.12.3" data-path="code-implantation.html"><a href="code-implantation.html#properties-verification"><i class="fa fa-check"></i><b>7.12.3</b> Properties Verification</a></li>
+<li class="chapter" data-level="7.12.4" data-path="code-implantation.html"><a href="code-implantation.html#rotation-composition"><i class="fa fa-check"></i><b>7.12.4</b> Rotation Composition</a></li>
+<li class="chapter" data-level="7.12.5" data-path="code-implantation.html"><a href="code-implantation.html#action-on-spin-states"><i class="fa fa-check"></i><b>7.12.5</b> Action on Spin States</a></li>
+</ul></li>
+<li class="chapter" data-level="7.13" data-path="code-implantation.html"><a href="code-implantation.html#lie-bracket-general-properties"><i class="fa fa-check"></i><b>7.13</b> Lie Bracket: General Properties</a></li>
+<li class="chapter" data-level="7.14" data-path="code-implantation.html"><a href="code-implantation.html#conclusions"><i class="fa fa-check"></i><b>7.14</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="what-is-a-random-variable.html"><a href="what-is-a-random-variable.html"><i class="fa fa-check"></i><b>8</b> What Is a Random Variable?</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/ashanjayamal" target="blank">Ashan De Silva</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Random Variables</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="what-is-a-random-variable" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> What Is a Random Variable?<a href="what-is-a-random-variable.html#what-is-a-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/ashanjayamal/Lie-Groups-Lie-Algebras/edit/BRANCH/presenataion.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

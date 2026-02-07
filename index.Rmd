@@ -1,6 +1,6 @@
 --- 
 title: "Lie Groups and Lie Algbera"
-author: "Ashan De Silva (Student Number: 008058631)"
+author: "Ashan De Silva (Student Number: *********)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 always_allow_html: true
