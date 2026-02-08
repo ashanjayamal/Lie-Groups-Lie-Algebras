@@ -4,7 +4,7 @@
     <title>Lie Groups and Lie Algebra</title>
     <meta charset="utf-8" />
     <meta name="author" content="Ashan De Silva" />
-    <meta name="date" content="2026-02-07" />
+    <meta name="date" content="2026-02-08" />
     <script src="pre_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 ### Department of Mathematics<br>University of Manitoba
 ]
 .date[
-### 2026-02-07
+### 2026-02-08
 ]
 
 ---
@@ -154,25 +154,9 @@ h3 {
   z-index: 10;
   line-height: 1.1;
 }
+
 &lt;/style&gt;
 
----
-class: inverse, center, middle
-background-color: #0000
-
-
-
-
-
-
----
-class: inverse, center, middle
-
-# What Are Lie Groups?
-
-### Combining Geometry and Algebra
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/E8Petrie.svg/330px-E8Petrie.svg.png" width="400px" /&gt;
----
 
 # Table of Contents
 
@@ -193,8 +177,17 @@ class: inverse, center, middle
    *Physics and geometry*
 ]
 
----
 
+---
+class: inverse, center, middle
+
+# What Are Lie Groups?
+### Combining Geometry and Algebra
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/E8Petrie.svg/330px-E8Petrie.svg.png" style="width: 300px; margin-top: 20px;" /&gt;
+
+.footnote[Image Credit: Wikeipedia]
+---
 # Definition: Lie Group
 
 .definition-box[
@@ -222,57 +215,44 @@ Lie groups blend continuous symmetry (manifold structure) with algebraic operati
 .two-column[
 .column-left[
 ### As a Manifold
-
 - Smooth, continuous space
-- Has tangent vectors at each point
-- Can do calculus
+- Has tangent vectors
 - Locally looks like `\(\mathbb{R}^n\)`
 ]
 
 .column-right[
 ### As a Group
-
-- Can multiply elements
-- Has identity element `\(e\)`
-- Every element has inverse
-- Multiplication is associative
+- Multiplication is smooth
+- Has identity and inverses
+- Algebraic structure
 ]
 ]
 
-&lt;br&gt;
+&lt;div class="venn-area"&gt; 
+  &lt;div class="v-circle v-left" style="border: 2px solid #586e75;"&gt;Groups&lt;/div&gt; 
+  &lt;div class="v-circle v-right" style="border: 2px solid #586e75;"&gt;Manifolds&lt;/div&gt; 
+  &lt;div class="v-label"&gt;Lie&lt;br&gt;Groups&lt;/div&gt; 
+&lt;/div&gt;
 
-.insight-box[
-*The Magic: These Two Structures Are Compatible**
-
-The group operations (multiplication and inverse) respect the smooth structure. This means we can use calculus to study symmetries!
-]
-
-
-A **Lie Group** lives exactly where Algebra meets Geometry.
-
-&lt;div class="venn-area"&gt; &lt;div class="v-circle v-left"&gt;Groups&lt;/div&gt; &lt;div class="v-circle v-right"&gt;Manifolds&lt;/div&gt; &lt;div class="v-label"&gt;Lie
-Groups&lt;/div&gt; &lt;/div&gt;
-
+&lt;br clear="all"&gt;
 
 ---
+
 # Example 1: The Circle Group `\(S^1\)`
 
-
+&lt;!--
 .example-box[
 Let `\(G = \mathbb{R} \times \mathbb{R} \times S\)`, equipped with the group operation
 `$$(x_1, y_1, \lambda_1) \cdot (x_2, y_2, \lambda_2) = (x_1 + x_2,\, y_1 + y_2,\, e^{ix_1y_2}\lambda_1 \lambda_2). \text{ and }$$`
 `$$(x,y,\lambda)^{-1}=\left(-x,\; -y,\; e^{ixy}\lambda^{-1}\right)$$`
 Then `\(G\)` is a Lie group.
-]
-&lt;!---
-.example-box[
-**EXAMPLE 1**
+]--&gt;
 
-The unit circle in the complex plane:
-`\(S^1 = \{z \in \mathbb{C} : |z| = 1\}\)`
+.example-box[
+**EXAMPLE 1** The unit circle in the complex plane:
+`\(S^1 = \{z \in \mathbb{C} : |z| = 1\}=\{e^{i\theta}:0\leq \theta &lt;2\pi\}\)`
 - **Group operation:**
 `\(z_1 \cdot z_2 = e^{i\theta_1} \cdot e^{i\theta_2} = e^{i(\theta_1+\theta_2)}\)`
-- **Identity:** `\(e^{i \cdot 0} = 1\)`
 - **Inverse:** `\((e^{i\theta})^{-1} = e^{-i\theta}\)`
 ]
 
@@ -283,7 +263,7 @@ Rotating by angle `\(\theta_1\)` then by angle `\(\theta_2\)` equals rotating by
 
 `\(S^1\)` models rotational symmetry!
 ]
----&gt;
+
 ---
 
 # Example 2: General Linear Group `\(GL(n,\mathbb{R})\)`
@@ -301,17 +281,13 @@ The group of invertible `\(n \times n\)` real matrices:
 
 - **Manifold structure:** Open subset of `\(\mathbb{R}^{n^2}\)`  
   (condition `\(\det(A) \neq 0\)` defines open set)
-
 - **Group operation:** Matrix multiplication
-
 - **Identity:** `\(I_n\)` (identity matrix)
-
 - **Inverse:** `\(A^{-1}\)` (matrix inverse)
-
 - **Dimension:** `\(n^2\)` as a manifold
 
 ---
-
+&lt;!---
 # Classical Lie Groups
 
 | Symbol | Name | Definition | Dimension |
@@ -328,6 +304,36 @@ The group of invertible `\(n \times n\)` real matrices:
 These groups appear throughout mathematics and physics as fundamental symmetry groups.
 ]
 
+---&gt;
+
+
+# Intutive Idea Cont ...
+![](pic/Picture1.png)
+---
+# Intutive Idea Cont ...
+![](pic/Picture2.png)
+---
+# Intutive Idea Cont ...
+![](pic/Picture3.png)
+---
+# Intutive Idea Cont ...
+![](pic/Picture4.png)
+---
+# Intutive Idea Cont ...
+![](pic/Picture5.png)
+---
+# Intutive Idea Cont ...
+![](pic/Picture6.png)
+---
+#Intutive Idean Cont ...
+&lt;img src="pic/Picture7.png" width="50%"&gt;
+
+--
+`$$Z= X + Y + \frac{1}{2}[X,Y]+ \frac{1}{12}[X,[X,Y]]- \frac{1}{12}[Y,[X,Y]]- \frac{1}{24}[Y,[X,[X,Y]]]+ \cdots$$`
+
+--
+This formula is called **Baker–Campbell–Hausdorff Formula**
+
 ---
 class: inverse, center, middle
 
@@ -335,6 +341,14 @@ class: inverse, center, middle
 
 ### The Infinitesimal Structure
 
+---
+## Intuitive Idea
+--
+
+|Curved Space|Flat Space|
+|:-:|:-:|
+|&lt;img src="https://imgs.search.brave.com/LYPN50ihJGwGZAJBFhcKNHLmgFnCjVQ02hhm99t64to/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9nbG9i/ZS03MzQ2MTc2Lmpw/Zw" width="200px" /&gt;|&lt;img src="https://imgs.search.brave.com/H28MCU5JiRpf5zL7AshdyinUh6PesIuL0cWnZBWm3lc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93b3Js/ZG1hcGJsYW5rLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/My8wNy9Mb25naXR1/ZGUtYW5kLUxhdGl0/dWRlLU1hcC1NaWxs/ZXItUHJvamVjdGlv/bi53ZWJw" width="200px" /&gt;|
+|Lie Group|Lie Algebra|
 ---
 
 # Definition: Lie Algebra
@@ -361,6 +375,7 @@ For a Lie group `\(G\)`, its Lie algebra `\(\mathfrak{g} = T_e G\)` is the tange
 The Lie bracket captures how tangent vectors "fail to commute" in the group.
 ]
 
+
 ---
 
 # Example: Lie Algebra of `\(GL(n,\mathbb{R})\)`
@@ -375,15 +390,12 @@ The Lie algebra of `\(GL(n,\mathbb{R})\)` is:
 
 **Lie Bracket:**
 
-The Lie bracket is the **matrix commutator**:
-
-`$$[A, B] = AB - BA$$`
+The Lie bracket is the **matrix commutator**:$[A, B] = AB - BA$
 
 **Verification of Properties:**
 
-✓ **Antisymmetry:** `\([A, B] = AB - BA = -(BA - AB) = -[B, A]\)`
-
-✓ **Jacobi identity:** Can be verified by direct computation
+ - **Antisymmetry:** `\([A, B] = AB - BA = -(BA - AB) = -[B, A]\)`
+ - **Jacobi identity:** Can be verified by direct computation
 
 ---
 
@@ -402,11 +414,8 @@ The exponential map `\(\exp: \mathfrak{g} \to G\)` is defined by:
 ### Key Properties
 
 1. `\(\exp(0) = e\)` (identity)
-
 2. `\(\exp(tX)\)` is a 1-parameter subgroup for each `\(X \in \mathfrak{g}\)`
-
 3. `\(\frac{d}{dt}\exp(tX)\big|_{t=0} = X\)`
-
 4. `\(\exp\)` is a local diffeomorphism near `\(0 \in \mathfrak{g}\)`
 ]
 
@@ -432,7 +441,6 @@ The exponential map takes:
 **Example 1: Diagonal Matrix**
 
 If `\(X = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_n)\)`, then:
-
 `$$\exp(X) = \text{diag}(e^{\lambda_1}, e^{\lambda_2}, \ldots, e^{\lambda_n})$$`
 
 &lt;br&gt;
@@ -446,7 +454,7 @@ For the `\(2 \times 2\)` skew-symmetric matrix:
 This gives a rotation by angle `\(\theta\)`!
 
 .insight-box[
-💡 The exponential map converts infinitesimal rotations into actual rotations!
+The exponential map converts infinitesimal rotations into actual rotations!
 ]
 
 ---
@@ -454,7 +462,7 @@ This gives a rotation by angle `\(\theta\)`!
 # Applications of Lie Theory
 
 .example-box[
-### ⚛️ Physics
+### Physics
 
 - Quantum mechanics: Angular momentum, spin
 - Particle physics: Gauge theories, Standard Model
@@ -462,7 +470,7 @@ This gives a rotation by angle `\(\theta\)`!
 ]
 
 .example-box[
-### 📐 Differential Geometry
+### Differential Geometry
 
 - Isometry groups of Riemannian manifolds
 - Holonomy groups and parallel transport
@@ -470,7 +478,7 @@ This gives a rotation by angle `\(\theta\)`!
 ]
 
 .example-box[
-### 🎮 Control Theory
+### Control Theory
 
 - Robotics: Configuration spaces
 - Nonlinear control systems
@@ -527,12 +535,38 @@ University of Manitoba
 - MIT OpenCourseWare: Topics in Lie Theory
 - University of Chicago: Lie Groups Notes
 
-**Applications:**
 
-- Georgi, H. (1999). *Lie Algebras in Particle Physics*. Perseus Books.
-- Sattinger, D. &amp; Weaver, O. (1986). *Lie Groups and Algebras with Applications to Physics, Geometry, and Mechanics*. Springer.
+
+# Visualizing  and its Lie Algebra
+
+
+
+.pull-left[
+
+* This is the Lie Group  (the unit circle).
+
+--
+
+* We pick the identity element .
+
+--
+
+* The Lie Algebra  is the tangent space .
 ]
 
+.pull-right[
+
+&lt;img src="pre_files/figure-html/plot-step1-1.png" alt="" width="100%" /&gt;
+
+--
+
+&lt;img src="pre_files/figure-html/plot-step2-1.png" alt="" width="100%" style="position: absolute; top: 120px; right: 50px;" /&gt;
+
+--
+
+&lt;img src="pre_files/figure-html/plot-step3-1.png" alt="" width="100%" style="position: absolute; top: 120px; right: 50px;" /&gt;
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
